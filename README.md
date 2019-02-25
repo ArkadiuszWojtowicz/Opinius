@@ -1,2 +1,3 @@
-# web-development
-PHP and JavaScript projects
+# PHP service
+
+Strona opinius, zrzeszająca opinie na temat sprzętu elektronicznego. Ponadto ukazuje w jaki sposób inne strony manipulują ludźmi, tworząc sztuczne opinie.
