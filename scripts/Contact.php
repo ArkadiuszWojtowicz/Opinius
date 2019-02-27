@@ -55,7 +55,7 @@ $contentLOG = '
                         <p>Temat:</p>
                         <input type="text" name="nazwa" class="addReview" required><br>                        
                         <p>Treść:</p>
-                        <textarea rows="6" cols="50" name="opinia" class="addReview" required></textarea><br>
+                        <textarea rows="6" cols="50" name="review" class="addReview" required></textarea><br>
                         <input type="submit" class="addReview" value="Wyślij"><br>                        
                         </div>
                         
@@ -73,7 +73,7 @@ $content = '
                         Temat:<br>
                         <input type="text" name="nazwa" class="addReview" required><br>                        
                         Treść:
-                        <textarea rows="6" cols="70" name="opinia" class="addReview" required></textarea><br>
+                        <textarea rows="6" cols="70" name="review" class="addReview" required></textarea><br>
                         <input type="submit" class="addReview" value="Wyślij"><br>                        
                         </div>
                     </form>

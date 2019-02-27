@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 class User {
 
     const STATUS_USER = 1;
@@ -7,26 +6,26 @@ class User {
 
     protected $userName;
     protected $passwd;
-    protected $fullName;
+    protected $firstName;
     protected $surname;
     protected $emial;
     protected $date;
     protected $status;
 
-    function __construct($userName, $fullName, $surname, $email, $passwd) {
+    function __construct($userName, $firstName, $surname, $email, $passwd) {
         $this->status = User::STATUS_USER;
         $this->userName = $userName;
         $this->surname = $surname;
-        $this->fullName = $fullName;
+        $this->firstName = $firstName;
         $this->email = $email;
         $this->passwd = hash('ripemd160',$passwd);  //$this->passwd = password_hash($passwd, PASSWORD_DEFAULT); 
         $this->date = (new DateTime())->format("Y-m-d H:i:s");
     }
 
     function saveDB($db) {
-        $fullNameCapital = "CONCAT((UPPER(substring('$this->fullName',1,1))),(LOWER(substring('$this->fullName',2,length('$this->fullName')-1))))"; // odpowiada za zapisanie do bazy imienia z dużej litery
+        $firstNameCapital = "CONCAT((UPPER(substring('$this->firstName',1,1))),(LOWER(substring('$this->firstName',2,length('$this->firstName')-1))))"; // odpowiada za zapisanie do bazy imienia z dużej litery
         $surnameCapital = "CONCAT((UPPER(substring('$this->surname',1,1))),(LOWER(substring('$this->surname',2,length('$this->surname')-1))))"; // odpowiada za zapisanie do bazy nazwiska z dużej litery       
-        $db->INSERT("INSERT INTO users Values(NULL,'$this->userName',$fullNameCapital,$surnameCapital,'$this->email','$this->passwd','$this->status','$this->date')");
+        $db->INSERT("INSERT INTO users Values(NULL,'$this->userName',$firstNameCapital,$surnameCapital,'$this->email','$this->passwd','$this->status','$this->date')");
     }
 
     function getUserName() {
@@ -38,7 +37,7 @@ class User {
     }
 
     function getFullName() {
-        return $this->fullName;
+        return $this->firstName;
     }
 
     function getEmial() {
@@ -61,8 +60,8 @@ class User {
         $this->passwd = $passwd;
     }
 
-    function setFullName($fullName) {
-        $this->fullName = $fullName;
+    function setFullName($firstName) {
+        $this->firstName = $firstName;
     }
 
     function setEmial($emial) {

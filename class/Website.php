@@ -1,5 +1,5 @@
 <?php
-include_once 'scripts/class/Database.php'; // cel: zmienne $content $contentLOG $contentAdmin
+include_once 'scripts/class/database.php'; // cel: zmienne $content $contentLOG $contentAdmin
 
 class Website {
 
@@ -161,10 +161,10 @@ class Website {
                 </div>
             </div>
             <div class="fakeReviews" style="height: 290px">                                      
-<!--                <div class="frLink">-->
-                    <div class="text">Zauważyłeś stronę z fałszywymi opiniami w internecie?<br><br>
-                        Nie czekaj ani chwili dłużej.<br><br>
-                        Skontaktuj się z adminem, a zostaną dodane w tej sekcji!</div>
+                <!--                <div class="frLink">-->
+                <div class="text">Zauważyłeś stronę z fałszywymi opiniami w internecie?<br><br>
+                    Nie czekaj ani chwili dłużej.<br><br>
+                    Skontaktuj się z adminem, a zostaną dodane w tej sekcji!</div>
                 <!--</div>-->
                 <div class="frDestination2">
                     <a href="index.php?site=Contact">Skontaktuj się <i class="icon-right"></i></a>
@@ -232,10 +232,10 @@ class Website {
 
             echo '<div id="container">';
             $this->menu();
-            echo '<div id="middle"> ';
+            
             $this->left_menu();
             echo '<div id="right">';
-            $db = new Database("localhost", "root", "", "klienci");
+            $db = new Database("localhost", "root", "", "opinius");
             $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
             if ($this->log == True && $status == 1) {
                 echo $this->contentLOG;
@@ -244,7 +244,7 @@ class Website {
             } else {
                 echo $this->content;
             }
-            echo "</div></div>";
+            echo "</div>";
             $this->socials();
             $this->footer();
             echo "</div>";

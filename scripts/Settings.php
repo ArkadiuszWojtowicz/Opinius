@@ -6,10 +6,10 @@ if (!isset($_SESSION)) {
 
 $title = 'Ustawienia';
 
-include_once 'class/Database.php';
-include_once 'class/UserManager.php';
+include_once 'class/database.php';
+include_once 'class/userManager.php';
 
-$db = new Database("localhost", "root", "", "klienci");
+$db = new Database("localhost", "root", "", "opinius");
 $um = new UserManager();
 
 $contentAdmin = '

@@ -1,9 +1,9 @@
 <?php
 // przydziela lub odbiera prawa admina zwykłym użytkownikom
 session_start();
-include_once 'class/Database.php';
+include_once 'class/database.php';
 
-$db = new Database("localhost", "root", "", "klienci");
+$db = new Database("localhost", "root", "", "opinius");
 
 $nick = $_POST['nazwa'];
 $nickSelect = $db->select("SELECT userName from users WHERE userName='$nick'", array("userName"));

@@ -1,6 +1,6 @@
 <?php
 
-require_once("class/Website.php");
+require_once("class/website.php");
 $site_akt = new Website();
 
 if (isset($_GET['site'])) {
