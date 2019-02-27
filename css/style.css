@@ -64,9 +64,12 @@ a:hover {
     margin: 0 auto;
     width: 100%;
     text-align: left;
-/*    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);*/
+    display: inline-grid;
+    /*grid-template-columns: 355px 680px;*/
+    grid-template-columns: 350px 2fr;
+    /*grid-template-columns: minmax(200px, 300px), minmax(200px, 1fr) ;*/
+    grid-template-rows: auto auto auto auto;
+    /*justify-content: space-evenly;*/
 }
 
 #middle { 
@@ -75,10 +78,15 @@ a:hover {
 }
 
 #left {
-    float: left;
-    margin: 110px 0px 30px 30px;
-    width: 300px;    
+    /*float: left;*/
+    margin: 110px 15px 30px 30px;
+    /*margin: 110px 0px 30px 240px;*/
+    /*width: 300px;*/    
     background: #f4e1e5;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    height: 1615px;
+    /*justify-self: end;*/
 }
 
 #logo {
@@ -206,19 +214,21 @@ a:hover {
     text-decoration: none;  
 }
 .frDestination2 a:hover{
-
     text-decoration: underline;
 }
 #right {
-    float: left;
-    margin: 110px 30px 30px 30px;
+/*    float: left;*/
+    margin: 110px 30px 30px 15px;
     padding: 10px 60px 18px 60px;
-    width: 580px;
+    /*width: 580px;*/
     font-size: 12px;
     color: black;
     background: #f4e1e5;
     line-height: normal;
-
+    grid-column-start: 2;
+    grid-column-end: span 2;
+    grid-row-start: 2;
+    /*justify-self: right;*/
 }
 
 #footer {
@@ -228,6 +238,9 @@ a:hover {
     width: 100%;
     background: #000;
     text-align: center;
+    grid-column: 1 / span 2;
+    /*grid-column-end: span 2;*/
+    grid-row-start: 4;
 }
 
 #footer p {		
@@ -241,27 +254,6 @@ a:hover {
 #footer a:hover {
     color: #DFCEB6;
 }
-
-/*@media only screen and (max-width: 600px) {
-    body{
-        background-color: #3333ff;
-    }
-    #right {
-        float: left;
-        width:100%;
-    }
-    #menu{
-        float: left;
-        width:320%;
-    }
-    #left {
-        float: left;
-       
-        width:320 ;
-      
-    }
-
-}*/
 .menu
 { 
     width: 100%;
@@ -269,8 +261,10 @@ a:hover {
     background: black;
     text-align: center;
     position: fixed; /* Przykleja element podczas skrolowania */
-    top: 0; /* w tym przypadku do górnego lewego rogu */
+    top: 0;  /*w tym przypadku do górnego lewego rogu */
     left: 0;
+    grid-column-start: 1;
+    grid-column-end: span 2;
 }
 .menu ul
 {
@@ -281,6 +275,7 @@ a:hover {
     height: 35px;
     line-height: 200%;
     display: inline-block;
+    
 }
 
 .menu ul a
@@ -470,21 +465,31 @@ a:hover {
     width:100%;
     text-align: center;
     background-color: #202020; 
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 3;
+    /*display: inline-block;*/
+
 }
 
 .socialdivs
 {
 
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    /*width: 1000px;*/
+/*    margin: auto;*/
+    display: inline-block;
+
+    
+    
+
 }
 
 .fb
 {
-    width: 250px;
+    width: 235px;
     height: 155px;
     float:left;
+    
 }
 
 .fb:hover
@@ -494,7 +499,7 @@ a:hover {
 
 .yt
 {
-    width: 250px;
+    width: 235px;
     height: 155px;
     float:left;
 }
@@ -506,7 +511,7 @@ a:hover {
 
 .tw
 {
-    width: 250px;
+    width: 235px;
     height: 155px;
     float:left;
 }
@@ -518,7 +523,7 @@ a:hover {
 
 .gplus
 {
-    width: 250px;
+    width: 235px;
     height: 155px;
     float:left;
 }

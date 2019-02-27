@@ -5,11 +5,11 @@ session_start();
 
 $title = "Logowanie";
 
-include_once 'class/Database.php';
-include_once 'class/User.php';
-include_once 'class/UserManager.php';
+include_once 'class/database.php';
+include_once 'class/user.php';
+include_once 'class/userManager.php';
 
-$db = new Database("localhost", "root", "", "klienci");
+$db = new Database("localhost", "root", "", "opinius");
 $um = new UserManager();
 
 if (filter_input(INPUT_GET, "akcja") == "wyloguj") {
@@ -122,7 +122,7 @@ if (filter_input(INPUT_POST, "zaloguj")) {
 
     // JESZCZE TRZEBA DODAC VALUE value= I POTEM "
     $content .= '
-            <input type="text" name="fullName" placeholder="Imię" onfocus="this.placeholder=" onblur="this.placeholder=imię"/>
+            <input type="text" name="firstName" placeholder="Imię" onfocus="this.placeholder=" onblur="this.placeholder=imię"/>
             
             ';
     if (isset($_SESSION['e_imie'])) {

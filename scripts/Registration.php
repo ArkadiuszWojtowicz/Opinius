@@ -1,9 +1,9 @@
 <?php
 
-include_once 'class/Database.php';
-include_once 'class/User.php';
+include_once 'class/database.php';
+include_once 'class/user.php';
 
-$db = new Database("localhost", "root", "", "klienci");
+$db = new Database("localhost", "root", "", "opinius");
 
 if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
 
@@ -33,8 +33,8 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
         }
 
         //Sprawdzenie imienia 
-        $imie = $_POST['fullName'];
-        if ((strlen($imie) < 3) || (strlen($imie) > 25)) {
+        $firstName = $_POST['firstName'];
+        if ((strlen($firstName) < 3) || (strlen($firstName) > 25)) {
             $wszystko_OK = false;
             $_SESSION['e_imie'] = "Imię musi zawierać od 3-25 znaków!";
         }

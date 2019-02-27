@@ -1,10 +1,10 @@
 <?php
 // zmienia e-mail, nick, hasło lub usuwa konto użytkownika
 session_start();
-include_once 'class/Database.php';
-include_once 'class/UserManager.php'; // potrzebne do wylogowania po usunięciu konta
+include_once 'class/database.php';
+include_once 'class/userManager.php'; // potrzebne do wylogowania po usunięciu konta
 
-$db = new Database("localhost", "root", "", "klienci");
+$db = new Database("localhost", "root", "", "opinius");
 $um = new UserManager(); // potrzebne do wylogowania po usunięciu konta
 
 

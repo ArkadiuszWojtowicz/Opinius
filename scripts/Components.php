@@ -2,11 +2,11 @@
 
 $title = "Podzespoły";
 
-include_once 'class/Database.php';
-$db = new Database("localhost", "root", "", "klienci");
+include_once 'class/database.php';
+$db = new Database("localhost", "root", "", "opinius");
 
-$opinie = $db->displayReviews("SELECT nick, nazwa, kategoria, opinia from produkty WHERE kategoria= 'Podzespoły' ORDER BY `id-produkt` DESC"  , array("nick","nazwa","kategoria","opinia"));
-$opinieAdmin = $db->selectAdmin("SELECT `id-produkt`, nick, nazwa, kategoria, opinia from produkty WHERE kategoria= 'Podzespoły' ORDER BY `id-produkt` DESC"  , array("id-produkt","nick","nazwa","kategoria","opinia"));
+$opinie = $db->displayReviews("SELECT nick, name, category, review from items WHERE category= 'Podzespoły' ORDER BY `id-item` DESC"  , array("nick","name","category","review"));
+$opinieAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, review from items WHERE category= 'Podzespoły' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category","review"));
 
 $contentLOG = "                       
                         <h2>Podzespoły</h2><br>                       

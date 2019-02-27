@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 class Database {
 
     public $mysqli;
@@ -9,10 +8,8 @@ class Database {
 
         if ($this->mysqli->connect_errno) {
             printf("Nie udało się połączyć z serwerem: %s\n", $this->mysqli->connect_error);
-
             exit();
         }
-
         $this->mysqli->set_charset("utf8");
     }
 
@@ -31,7 +28,7 @@ class Database {
                 }
             }
         } else {
-            echo "<p>Błąd przy odczycie danych z bazy</p>";
+            echo "Błąd przy odczycie danych z bazy";
         }
         $result->close();
         return $tresc;
@@ -68,7 +65,7 @@ class Database {
                         ";
             }
         } else {
-            echo "<p>Błąd przy odczycie danych z bazy</p>";
+            echo "Błąd przy odczycie danych z bazy";
         }
         $tresc .= "</tbody></table>";
         $result->close();
@@ -80,9 +77,9 @@ class Database {
             $ilepol = count($pola);
 
             $tresc = "<table width='584' class='table'><tbody>"; //TU EDYTOWAC
-            $db = new Database("localhost", "root", "", "klienci");
+            $db = new Database("localhost", "root", "", "opinius");
 
-            //$remove = $db->DELETE("DELETE FROM produkty WHERE (`id-produkt` = '$reviewNumber')");
+            //$remove = $db->DELETE("DELETE FROM items WHERE (`id-item` = '$reviewNumber')");
             while ($row = $result->fetch_object()) {
                 $p0 = $pola[0];
                 $p1 = $pola[1];
@@ -90,11 +87,11 @@ class Database {
                 $p3 = $pola[3];
                 $p4 = $pola[4];
 //$reviewNumber = $row->$p0;
-                //TU EDYTOWAC   DELETE FROM produkty WHERE opinia = '$row->$p4'
+                //TU EDYTOWAC   DELETE FROM items WHERE review = '$row->$p4'
 //                static $i = 1;
 //                while ($i == 1) {
 //                    $reviewNumber = $row->$p0;
-//                    $remove = $db->DELETE("DELETE FROM produkty WHERE (`id-produkt` = '$reviewNumber')");
+//                    $remove = $db->DELETE("DELETE FROM items WHERE (`id-item` = '$reviewNumber')");
 //                    $i++;
 //                }
 //                
@@ -142,19 +139,17 @@ class Database {
                 $x3 = $row->$p3;
                 $x4 = $row->$p4;
 
-                //TU EDYTOWAC   DELETE FROM produkty WHERE opinia = '$row->$p4'
-                $db = new Database("localhost", "root", "", "klienci");
+                //TU EDYTOWAC   DELETE FROM items WHERE review = '$row->$p4'
+                $db = new Database("localhost", "root", "", "opinius");
                 static $i = 1; // ZABECZPIECZENIE PRZED USUNIECIEM WSZYSTKICH REKORDÓW // USUWANA JEST JEDNA OPINIA
                 while ($i == 1) {
-                    //$db->DELETE("DELETE FROM produkty WHERE `id-produkt` = '$x0'");
-                    $db->DELETE("DELETE FROM produkty WHERE (`id-produkt` = '$x0')");
+                    $db->DELETE("DELETE FROM items WHERE (`id-item` = '$x0')");
                     header("location: ../index.php");
                     $i++;
                 }
-                $tresc .= "";
             }
         } else {
-            echo "<p>Błąd przy odczycie danych ::USER</p>";
+            echo "Błąd przy odczycie danych z bazy";
         }
         $result->close();
         return $tresc;
@@ -204,7 +199,6 @@ class Database {
 
     public function selectUser($login, $passwd, $table) {
         $ret = -1;
-        //Ja tu używam funkcji hash , powinna być passwordhas ale nie chce mi się zmienić
         $hashedpass = hash('ripemd160', $passwd);
         echo "SELECT * FROM $table WHERE userName='$login' AND passwd='$hashedpass' LIMIT 1";
         if ($result = $this->mysqli->query("SELECT * FROM $table WHERE userName='$login' AND passwd='$hashedpass' LIMIT 1")) {
@@ -221,10 +215,11 @@ class Database {
         return $this->mysqli->real_escape_string($str);
     }
 
+    // Ochrona przed atakiem SQL injection
     public function protect_int($nmb) {
         return (int) $nmb;
     }
-    // Koniec ochorny przed atakiem SQL injection
+
 }
 
 ?>
