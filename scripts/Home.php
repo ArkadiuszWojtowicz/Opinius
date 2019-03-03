@@ -62,12 +62,14 @@ $contentLOG .= '<h2> Tutaj możesz dodać opinię </h2>
                             <option>Inne</option>  
                         </select><br>
                         <p>Twoja opinia:<p>
-                        <textarea rows="9" cols="67" name="review" class="addReview" required></textarea><br>
+                        <textarea rows="9" name="review" class="addReview" required></textarea><br>
                         <input type="submit" value="Dodaj opinię" class="addReview"><br>                        
                         
                         </div>
                     </form>    
                 ' . $opinie;
+
+
 
 if (isset($_SESSION['logged'])) { // info o zalogowaniu
     $contentAdmin.= '

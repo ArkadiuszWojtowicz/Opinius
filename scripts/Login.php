@@ -155,8 +155,9 @@ if (filter_input(INPUT_POST, "zaloguj")) {
     }
 
     $content .= '
-            <input type="password" name="passwd2" placeholder="Powtórz hasło" onfocus="this.placeholder=" onblur="this.placeholder=powtórz hasło"/>
-            
+ 
+            <input type="password" name="passwd2" placeholder="Powtórz hasło" onfocus="this.placeholder=" onblur="this.placeholder=powtórz hasło" />
+      
             ';
     if (isset($_SESSION['e_haslo2'])) {
         $content .= '
@@ -168,7 +169,7 @@ if (filter_input(INPUT_POST, "zaloguj")) {
 
     $content .= '
 
-            <input type="email" name="email" placeholder="E-mail" onfocus="this.placeholder=" onblur="this.placeholder=e-mail"/>
+            <br><input type="email" name="email" placeholder="E-mail" onfocus="this.placeholder=" onblur="this.placeholder=e-mail"/>
             
             ';
     if (isset($_SESSION['e_email'])) {
@@ -193,10 +194,10 @@ if (filter_input(INPUT_POST, "zaloguj")) {
     }           //<div class="g-recaptcha captcha" data-sitekey="6LfrbIwUAAAAABgkg530Z2pPdu1VKIUeSIHlmF02"></div>
     $content .= '
 
+                    <div class="g-recaptcha captcha" " data-sitekey="6LcoJ4sUAAAAAG1NRSZ6O2HoSvnz7Y0K3f4fQEjE"></div>
             
-            <div class="g-recaptcha captcha" data-sitekey="6LcoJ4sUAAAAAG1NRSZ6O2HoSvnz7Y0K3f4fQEjE"></div>
             ';
-    if (isset($_SESSION['e_bot'])) {
+    if (isset($_SESSION['e_bot'])) {//wyżej w puste miejsce wstawić //
         $content .= '
                                     <div class="error">' . $_SESSION['e_bot'] . '</div>
                               ';
