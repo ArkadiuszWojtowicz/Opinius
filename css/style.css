@@ -66,7 +66,7 @@ a:hover {
     text-align: left;
     display: inline-grid;
     /*grid-template-columns: 355px 680px;*/
-    grid-template-columns: 350px 2fr;
+    grid-template-columns:350px 1fr;
     /*grid-template-columns: minmax(200px, 300px), minmax(200px, 1fr) ;*/
     grid-template-rows: auto auto auto auto;
     /*justify-content: space-evenly;*/
@@ -81,11 +81,11 @@ a:hover {
     /*float: left;*/
     margin: 110px 15px 30px 30px;
     /*margin: 110px 0px 30px 240px;*/
-    /*width: 300px;*/    
+    width: 300px;    
     background: #f4e1e5;
     grid-column-start: 1;
     grid-row-start: 2;
-    height: 1615px;
+    height: 1645px;
     /*justify-self: end;*/
 }
 
@@ -182,7 +182,7 @@ a:hover {
     /*text-align: center;*/
     margin: 30px 30px 30px 20px;
     font-size: 20px;
-   
+
 }
 .frLink a{
     text-decoration: none;  
@@ -217,7 +217,7 @@ a:hover {
     text-decoration: underline;
 }
 #right {
-/*    float: left;*/
+    /*    float: left;*/
     margin: 110px 30px 30px 15px;
     padding: 10px 60px 18px 60px;
     /*width: 580px;*/
@@ -275,7 +275,7 @@ a:hover {
     height: 35px;
     line-height: 200%;
     display: inline-block;
-    
+
 }
 
 .menu ul a
@@ -288,7 +288,7 @@ a:hover {
 .menu ul li
 {
     float: left;
-    width: 150px;
+    width: 149px;
     height: 40px;
     border-left: 3px solid #d10000;
 }
@@ -298,8 +298,8 @@ a:hover {
     border-left: 0px solid #d10000;
     /*border-right: 3px solid #d10000;*/
     background: #d10000;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 .menu ul li:nth-last-child(2) a 
 {
@@ -320,7 +320,6 @@ a:hover {
     /*    background: #ff3a41;*/
     border-left: 3px solid #d10000;
     border-right: 3px solid #d10000;
-
 }
 
 .menu ul li:hover
@@ -349,7 +348,7 @@ a:hover {
 }
 .menu ul li ul li
 {
-    background-color: #000000;
+    background: #000;
     position: relative;
     z-index: 100;
     float: left;
@@ -409,11 +408,11 @@ a:hover {
 }
 .menu ul li:hover ol
 {
-    display: block;
+    display: inline-block;
 }
 .menu ul li ol li
 {
-    background-color: #000000;
+    background: #000;
     position: relative;
     z-index: 100;
     float: left;
@@ -431,10 +430,7 @@ a:hover {
 {
     color: #AB7859;
 }
-.menu ul li ol li:nth-last-child(2)
-{
-    background: #000000;
-}
+
 .menu ul li ol li:nth-last-child(2) a 
 {
     font-weight: normal;
@@ -447,6 +443,7 @@ a:hover {
 /*TU EDYTOWAĆ W PRZYPADKU ZWIĘKSZAJĄCEJ SIĘ LICZBY PODSTRON W MENU "WIĘCEJ" -> nth-last-child(x+1) */
 .menu ul li ol li:nth-last-child(2) 
 {
+    background: #000000;
     margin-top: 8px;
     border-top: 0px solid #751b1b;
     margin-left: 0px;
@@ -476,11 +473,11 @@ a:hover {
 {
 
     /*width: 1000px;*/
-/*    margin: auto;*/
+    /*    margin: auto;*/
     display: inline-block;
 
-    
-    
+
+
 
 }
 
@@ -489,7 +486,7 @@ a:hover {
     width: 235px;
     height: 155px;
     float:left;
-    
+
 }
 
 .fb:hover
@@ -534,6 +531,7 @@ a:hover {
 }
 
 .logowanie{
+    margin: auto;
     text-align: center;
     background: #f4e1e5;
 }
@@ -547,7 +545,8 @@ input[type=password],
 select
 {
     width: 300px;
-    background-color: #efefef;
+    background: #efefef;
+    /*background: yellow;*/
     color: #666;
     border: 2px solid #ddd;
     border-radius: 5px;
@@ -583,6 +582,21 @@ input[type=email]
     margin-top: 10px;
     margin-left: 5px; /* dodane bo jest krzywe pole z mailem */
 }
+input[type=passoword].secondPassword
+{
+    width: 300px;
+    /*background: #efefef;*/
+    background: yellow;
+    color: #666;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+    margin: 10px;
+    margin-left: 5px; /* dodane bo jest krzywe pole z mailem */
+}
 textarea
 {
     padding:18px;
@@ -593,6 +607,7 @@ textarea
     outline: none;
     background-color: #efefef;
     resize: none;  /*powoduje, że nie można zmieniać wielkości pola textarea */
+    width: 450px;
 }
 input[type=text]:focus,
 input[type=password]:focus,
@@ -638,8 +653,12 @@ input[type=submit]:hover
 {
     /*    margin-left:100px;
         padding:100px;*/
-    margin: 20px 135px;
+    /*margin: 20px 135px 20px 135px;*/
+    margin-top: 10px;
+    /*margin-left: 300px;*/
+
 }
+
 .error
 {
     color:red;
@@ -719,3 +738,276 @@ input[type=submit].deleteButton:hover{
     border: 3px solid red;
 }
 
+@media only screen and (max-width: 1020px) {
+    #container {   
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto auto auto;
+    }
+    .menu{
+        height: 101px;
+        background: #000;
+        position: static;
+    }
+    #left {
+        margin: 30px 15px 30px 30px;
+        grid-row-start: 3;
+        width: 350px;
+        justify-self: center;
+    }
+    #right {
+        margin: 30px 30px 30px 15px;
+        grid-column-start: 1;
+        grid-row-start: 2;
+        padding: 20px;
+        margin: 0;
+    }
+    /*    .menu ul
+        {
+            display: block;
+        }*/
+
+    .menu ul li:nth-last-child(1)
+    {
+        width: 140px;
+        margin-top: -40px;
+        margin-right:170px;
+        /*background: blue;*/
+        border-right: 0px;
+        border-left: 0px;
+        float: right;
+    }
+    .menu ul li:nth-last-child(2)
+    {
+        width: 147px;
+        /*background: green;*/
+        margin-top: -40px;
+        margin-left: -1px;
+        border-right: 0px;
+        border-left: 0px;
+        float: right;
+    }
+    .menu ul li:nth-last-child(3)
+    {
+        margin-top: 60px;
+        border-right: 0px;
+        border-left: 0px;
+        margin-left: 3px;
+        float: none;
+    }
+    .menu ul li:nth-last-child(4)
+    {
+        border-right: 3px solid #d10000;
+    }
+    .menu ul li ul li:nth-last-child(4)
+    {
+        border-right: 0px;
+    }
+    .menu ul li ul li:nth-last-child(3)
+    {
+        margin-top: 0px;
+        float: left;
+        margin-left: -40px;
+    }
+    .menu ul li ul li:nth-last-child(2)
+    {
+        margin-top: 0px;
+        float: left;
+        width: 230px;
+    }
+    .menu ul li ul li:nth-last-child(1)
+    {
+        margin-top: 0px;
+        float: left;
+        width: 230px;
+    }
+    .menu ul li ol li:nth-last-child(2) 
+    {
+        float: left;
+        margin-top: 8px;
+        width:150px;
+
+    }
+    .menu ul li ol li:nth-last-child(1) 
+    {
+        float: left;
+        margin-top: 0px;
+        width:150px;
+
+    }
+    .socials
+    {       
+        grid-row-start: 4;
+    }
+    .fb
+    {
+        float: left;
+    }
+    .yt
+    {
+        float: left;
+    }
+    .tw
+    {
+        float: none;
+    }
+    .gplus
+    {
+        float: right;
+    }
+    #footer 
+    {
+        grid-row-start: 5;
+    }      
+
+}
+/*smartfony pionowo*/
+@media only screen and (max-width: 340px) {
+    .fb
+    {
+        float: none;
+    }
+    .yt
+    {
+        float: none;
+    }
+    .tw
+    {
+        float: none;
+    }
+    .gplus
+    {
+        float: none;
+    }
+    #left
+    {
+        width: 320px;
+        margin: 0;
+    }
+    table td
+    {
+        padding: 3px 5px 3px 5px;
+    }
+    textarea.addReview
+    {
+        width: 240px;
+    }
+    input[type=text],
+    input[type=password],
+
+    input[type=submit].addReview,
+    input[type=submit],
+    select
+    {
+        width: 250px;
+    }
+    input[type=email]
+    {
+        width: 250px;
+    }
+    .captcha
+    {
+        transform:scale(0.82);
+        margin-left:7px;
+    }
+    /*    label
+        {
+            width: 100px;
+            padding: 0px 40px 0px 40px;
+        }*/
+    #right
+    {
+        padding-left: 0;
+        padding-right:0;
+    }
+    #left
+    {
+        width:319px;/* 1 pixel mniej bo pasek przesuwania na dole sie pojawia*/
+    }    
+    .menu{
+        height: 132px;
+        background: #000;
+        position: static;
+    }
+    .menu ul li ul li
+    {        
+        margin-left: -67px;
+        /*background: yellow;*/
+    }
+    .menu ul li ul li:nth-last-child(2)
+    {        
+        margin-left: -67px;
+        border-right: 0px;
+    }
+    .menu ul li ul li:nth-last-child(1)
+    {        
+        margin-left: -67px;
+    }
+    .menu ul li ul li:nth-last-child(3)
+    {        
+        margin-left: -67px;
+    }
+    .menu ul li ul li:nth-last-child(5)
+    {        
+        border-right: 0px;
+    }
+    .menu ul li ul li:nth-last-child(4)
+    {        
+        margin-top:-2px;
+    }
+    .menu ul li ol li:nth-last-child(2)
+    {        
+        border-right: 0px;
+    }
+    .menu ul li:nth-last-child(5)
+    {
+        border-right: 3px solid #d10000; 
+    }
+    .menu ul li:nth-last-child(4)
+    {
+        margin-top: 6px;  
+        margin-right: -3px;
+        border-right: 3px solid #000; 
+        border-left: 3px solid #000;
+    }
+    .menu ul li:nth-last-child(1) /* settings button */
+    {
+        width: 149px;
+        margin-top: -40px;
+        margin-right:170px;
+        margin-left:0px;
+        /*background: blue;*/
+        border-right: 3px solid #d10000; 
+        border-left: 3px solid #d10000; 
+        float: left;
+    }
+    .menu ul li:nth-last-child(2) /* login button */
+    {
+        width: 133px;
+        /*background: green;*/
+        margin-top: -86px;
+        /*margin-bottom: -8px;*/
+        /*padding-right: -10px;*/
+        margin-right: 29px;
+        border-right: 0px solid #d10000; 
+        border-left: 0px solid #d10000; 
+/*        border-collapse: separate;
+        border-spacing: 50px;*/
+        float: right;
+    }
+    .menu ul li:nth-last-child(3) /* more button */
+    {
+        margin-top: 52px;
+        border-right: 3px solid #d10000; 
+        border-left: 0px solid #d10000; 
+        /*margin-right: 30px;*/
+        float: left;
+    }
+
+}
+/* resize textarea */
+@media only screen and (max-width: 545px) {
+    textarea
+    {
+        width: 260px;
+    }
+}

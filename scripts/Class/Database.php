@@ -37,7 +37,9 @@ class Database {
     public function displayReviews($sql, $pola) { // ODPOWIADA ZA WYSWIETLANIE TABELI Z OPINIAMI NA STRONIE GLOWNEJ
         if ($result = $this->mysqli->query($sql)) {
             $ilepol = count($pola);
-
+            
+            
+            
             $tresc = "<table width='100%' class='table'><tbody>"; //TU EDYTOWAC
 
             while ($row = $result->fetch_object()) {
@@ -47,7 +49,7 @@ class Database {
                 $p3 = $pola[3];
 
                 //TU EDYTOWAC
-
+                
                 $tresc .= "
                             <tr> 
                               <th rowspan='3' height='275' width='150'>Użytkownik<br><br>" . $row->$p0 . "</th>

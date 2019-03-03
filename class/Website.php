@@ -205,7 +205,7 @@ class Website {
                 ?>
             <div class="socials">
                 <div class="socialdivs">
-                    <a href="https://www.facebook.com/" target="_blank"left><div class="fb">
+                    <a href="https://www.facebook.com/" target="_blank"><div class="fb">
                             <i class="icon-facebook"></i>                        
                         </div></a>
 

@@ -53,7 +53,7 @@ $contentLOG = '
                     <form action="mailto:'. $mojemail .'" method="post" class="logowanie" enctype="text/plain" onsubmit="mail_form(this); return false"> 
                         <div class="addReview">
                         <p>Temat:</p>
-                        <input type="text" name="nazwa" class="addReview" required><br>                        
+                        <input type="text" name="name" class="addReview" required><br>                        
                         <p>Treść:</p>
                         <textarea rows="6" cols="50" name="review" class="addReview" required></textarea><br>
                         <input type="submit" class="addReview" value="Wyślij"><br>                        
@@ -70,9 +70,9 @@ $content = '
                         <p>Odpowiem najszybciej jak to możliwe ;)</p><br>
                         <form action="mailto:'. $mojemail .'" method="post" class="logowanie" enctype="text/plain" onsubmit="mail_form(this); return false"> 
                         <div class="addReview">
-                        Temat:<br>
-                        <input type="text" name="nazwa" class="addReview" required><br>                        
-                        Treść:
+                        <p>Temat:</p>
+                        <input type="text" name="name" class="addReview" required><br>                        
+                        <p>Treść:</p>
                         <textarea rows="6" cols="70" name="review" class="addReview" required></textarea><br>
                         <input type="submit" class="addReview" value="Wyślij"><br>                        
                         </div>
@@ -97,7 +97,7 @@ $contentAdmin .= '
                     <form action="scripts/setAdmin.php" method="post" class="addReview"> 
                         <div class="addReview">
                         <p>Nazwa użytkownika:</p>
-                        <input type="text" name="nazwa" class="addReview" required><br>                       
+                        <input type="text" name="name" class="addReview" required><br>                       
                         <input type="submit" value="Zatwierdź" class="addReview" ><br>                                                
                         </div>
                     </form>    
@@ -114,7 +114,7 @@ $contentAdmin .= '
                     <form action="scripts/setAdmin.php" method="post" class="addReview"> 
                         <div class="addReview">
                         <p>Nazwa użytkownika:</p>
-                        <input type="text" name="nazwa2" class="addReview" required><br>                       
+                        <input type="text" name="name2" class="addReview" required><br>                       
                         <input type="submit" value="Zatwierdź" class="addReview deleteButton"><br>                                                
                         </div>
                     </form>    
