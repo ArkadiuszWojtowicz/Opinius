@@ -1,7 +1,7 @@
-* {
+/** {
     margin: 0;
     padding: 0;
-}
+}*/
 
 body {
     font: 12px/17px Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -542,6 +542,7 @@ a:hover {
 
 input[type=text],
 input[type=password],
+input[type=email],
 select
 {
     width: 300px;
@@ -567,21 +568,7 @@ input[type=submit].addReview{
     text-align: center;
 }
 
-input[type=email]
-{
-    width: 300px;
-    background-color: #efefef;
-    color: #666;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 20px;
-    padding: 10px;
-    box-sizing: border-box;
-    outline: none;
-    /*margin: 10px;*/
-    margin-top: 10px;
-    margin-left: 5px; /* dodane bo jest krzywe pole z mailem */
-}
+
 input[type=passoword].secondPassword
 {
     width: 300px;
@@ -595,7 +582,7 @@ input[type=passoword].secondPassword
     box-sizing: border-box;
     outline: none;
     margin: 10px;
-    margin-left: 5px; /* dodane bo jest krzywe pole z mailem */
+    /*margin-left: 5px;  dodane bo jest krzywe pole z mailem */
 }
 textarea
 {
@@ -651,12 +638,10 @@ input[type=submit]:hover
 
 .captcha
 {
-    /*    margin-left:100px;
-        padding:100px;*/
-    /*margin: 20px 135px 20px 135px;*/
-    margin-top: 10px;
-    /*margin-left: 300px;*/
-
+    /*margin-top: 20px;*/
+    /*text-align: center;*/
+    display: table; /* oblicza szerokość captchy - potrzebne aby wyśrodkować ją */
+    margin: auto; /* wyśrodkowanie captchy */
 }
 
 .error
@@ -666,7 +651,8 @@ input[type=submit]:hover
     margin-bottom: 10px;
 }
 
-table{
+table
+{
     background-image: url("../images/stone.png");
     color: #331104;
     border-collapse: collapse; /*powoduje że nie ma przestrzeni miedzy komórkami tabeli */
@@ -676,14 +662,9 @@ table{
 
 table th
 {
-    /*    background-color: #ffff33;
     /*    vertical-align: top; */
     text-align:center;
-    /*    color: #000000;*/
-    /*color: black;*/
     border: 3px solid #7956af;
-
-
 }
 
 table td
@@ -698,7 +679,6 @@ table td
     color: #331104;
     border: 3px solid #7956af;
     font-size: 13px;
-
 }
 
 table input[type=submit]
@@ -907,7 +887,7 @@ input[type=submit].deleteButton:hover{
     .captcha
     {
         transform:scale(0.82);
-        margin-left:7px;
+        /*margin-left:7px;*/
     }
     /*    label
         {
