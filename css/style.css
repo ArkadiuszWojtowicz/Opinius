@@ -7,7 +7,7 @@ body {
     font: 12px/17px Verdana, Geneva, Arial, Helvetica, sans-serif;
     text-align: center;
     color: #DFCEB6;
-    background: #ffffff;
+    background: #fff;
     margin: 0 !important;
 }
 
@@ -51,7 +51,13 @@ p {
     font-size: 14px;
 
 }
-
+.textCenter{
+    margin: auto;
+    text-align: center;
+}
+.textLeft{
+    text-align: left;
+}
 /*a {
     text-decoration: none;
 }
@@ -65,11 +71,8 @@ a:hover {
     width: 100%;
     text-align: left;
     display: inline-grid;
-    /*grid-template-columns: 355px 680px;*/
     grid-template-columns:350px 1fr;
-    /*grid-template-columns: minmax(200px, 300px), minmax(200px, 1fr) ;*/
     grid-template-rows: auto auto auto auto;
-    /*justify-content: space-evenly;*/
 }
 
 #middle { 
@@ -78,26 +81,21 @@ a:hover {
 }
 
 #left {
-    /*float: left;*/
     margin: 110px 15px 30px 30px;
-    /*margin: 110px 0px 30px 240px;*/
     width: 300px;    
     background: #f4e1e5;
     grid-column-start: 1;
     grid-row-start: 2;
     height: 1645px;
-    /*justify-self: end;*/
 }
 
 #logo {
     margin: 0 0px;   
     height:130px;
     background: #202020; 
-
     text-align: center;
     font-size: 25px;
     padding: 10px 5px 20px 5px;
-
 }
 
 .opinius{
@@ -105,24 +103,19 @@ a:hover {
     font-size: 45px;
     padding: 5px 0px 0px 8px; 
     margin: 0;
-    /*font-weight: normal;*/ 
     font-family: Impact, Charcoal, sans-serif;
     letter-spacing: 11px;
     margin-top: 15px;
-    /*    padding: 30px 0 20px 30px;*/
-    /*font: bold 45px Verdana, Geneva, Arial, Helvetica, sans-serif;*/
     color: #E2D6C7; 
 }
 .logoText{
-    /*margin: 20px 0px 0px 0px;*/
-    /*    padding: 5px 0;*/
     text-align: center;
     font-size: 13px;
     padding: 29px 0px 5px 0px; 
     margin: 0;
     font-weight: normal; 
     letter-spacing: 1px;
-    color: #ffffff;
+    color: #fff;
 }
 #logo p{
     text-align: center;
@@ -131,7 +124,6 @@ a:hover {
     margin: 0;
     font-weight: normal; 
     letter-spacing: 1px;
-
 }
 .star{
     color:yellow;
@@ -145,14 +137,12 @@ a:hover {
     font-weight: bold;
     border-top: 20px solid #fff;
     line-height: 1.5;
-    /*color: #800080;*/
     color: #444;    
     font-weight: bold;
 }
 .examples2 {
     padding: 0px 20px 25px 20px;
     text-align: center;
-    /*color: #800080;*/
     color: #444;
 }
 .icon-down{
@@ -163,7 +153,6 @@ a:hover {
     height: 300px;
 }
 .frLink{
-    /*text-align: center;*/
     margin: 25px 30px 0px 20px;
     font-size: 20px;
     padding-bottom: 20px;
@@ -171,18 +160,13 @@ a:hover {
 }
 
 .frDestination{
-
-    /*text-align: center;*/
     margin: 0px 30px 20px 20px;
     font-size: 20px;
     padding-top: 20px;
 }
 .frDestination2{
-
-    /*text-align: center;*/
     margin: 30px 30px 30px 20px;
     font-size: 20px;
-
 }
 .frLink a{
     text-decoration: none;  
@@ -191,11 +175,9 @@ a:hover {
     text-decoration: none;  
 }
 .frLink a:hover{
-
     text-decoration: underline;
 }
 .frDestination a:hover{
-
     text-decoration: underline;
 }
 .frPhoto{
@@ -203,7 +185,6 @@ a:hover {
     padding:0;
 }
 .text{
-    /*color: #800080;*/
     color: #444;
     line-height: normal;
     font-size: 18px;
@@ -217,7 +198,6 @@ a:hover {
     text-decoration: underline;
 }
 #right {
-    /*    float: left;*/
     margin: 110px 30px 30px 15px;
     padding: 10px 60px 18px 60px;
     /*width: 580px;*/
@@ -228,7 +208,6 @@ a:hover {
     grid-column-start: 2;
     grid-column-end: span 2;
     grid-row-start: 2;
-    /*justify-self: right;*/
 }
 
 #footer {
@@ -275,7 +254,6 @@ a:hover {
     height: 35px;
     line-height: 200%;
     display: inline-block;
-
 }
 
 .menu ul a
@@ -368,7 +346,7 @@ a:hover {
 }
 .menu ul li ul li:nth-last-child(2)
 {
-    background: #000000;
+    background: #000;
     margin-left: -40px;
     /*margin-right: 0px;*/
 }
@@ -443,7 +421,7 @@ a:hover {
 /*TU EDYTOWAĆ W PRZYPADKU ZWIĘKSZAJĄCEJ SIĘ LICZBY PODSTRON W MENU "WIĘCEJ" -> nth-last-child(x+1) */
 .menu ul li ol li:nth-last-child(2) 
 {
-    background: #000000;
+    background: #000;
     margin-top: 8px;
     border-top: 0px solid #751b1b;
     margin-left: 0px;
@@ -453,8 +431,6 @@ a:hover {
     border-left: 0px solid #751b1b;
     border-right: 0px solid #751b1b;
 }
-
-
 
 .socials /* Ikony fb, yt, tw, g+ */
 {
@@ -471,14 +447,9 @@ a:hover {
 
 .socialdivs
 {
-
     /*width: 1000px;*/
     /*    margin: auto;*/
     display: inline-block;
-
-
-
-
 }
 
 .fb
@@ -530,15 +501,7 @@ a:hover {
     background-color: #d95333;
 }
 
-.logowanie{
-    margin: auto;
-    text-align: center;
-    background: #f4e1e5;
-}
-.addReview{
-    text-align: left;
-    /*background: #f4e1e5;*/
-}
+
 
 input[type=text],
 input[type=password],
@@ -557,13 +520,14 @@ select
     outline: none;
     margin: 10px;
 }
-input[type=text].addReview,
-select.addReview,
-textarea.addReview
+input[type=text].textLeft,
+input[type=email].textLeft,
+select.textLeft,
+textarea.textLeft
 {
     margin: 0px 0px 10px 0px;
 }
-input[type=submit].addReview{
+input[type=submit].textLeft{
     margin: 20px 0px 20px 0px;
     text-align: center;
 }
@@ -675,7 +639,7 @@ table td
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 20px;
-    /*    color: #000000;*/
+    /*    color: #000;*/
     color: #331104;
     border: 3px solid #7956af;
     font-size: 13px;
@@ -867,14 +831,14 @@ input[type=submit].deleteButton:hover{
     {
         padding: 3px 5px 3px 5px;
     }
-    textarea.addReview
+    textarea.textLeft
     {
         width: 240px;
     }
     input[type=text],
     input[type=password],
 
-    input[type=submit].addReview,
+    input[type=submit].textLeft,
     input[type=submit],
     select
     {
@@ -970,8 +934,8 @@ input[type=submit].deleteButton:hover{
         margin-right: 29px;
         border-right: 0px solid #d10000; 
         border-left: 0px solid #d10000; 
-/*        border-collapse: separate;
-        border-spacing: 50px;*/
+        /*        border-collapse: separate;
+                border-spacing: 50px;*/
         float: right;
     }
     .menu ul li:nth-last-child(3) /* more button */

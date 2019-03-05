@@ -13,7 +13,7 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
     if (isset($_POST['email'])) {
 
         $nick = $_POST['userName'];
-        $checkNick = '/^[0-9A_Za-ząęłńśćźżó_-]{2,25}$/';
+        $checkNick = '/^[0-9A-Za-ząęłńśćźżó_-]{2,25}$/';
         if ((preg_match($checkNick, $nick))==false) {
             $correct = false;
             $_SESSION['error_nick'] = "Nick musi zawierać 2-20 znaków!";
@@ -52,7 +52,7 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
 
         $password1 = $_POST['passwd'];
         $password2 = $_POST['passwd2'];
-        $checkPassword = '/^[0-9A_Za-ząęłńśćźżó_-]{8,25}$/';
+        $checkPassword = '/^[0-9A-Za-ząęłńśćźżó_-]{8,25}$/';
         if ((preg_match($checkPassword, $password1))==false) {
             $correct = false;
             $_SESSION['error_password'] = "Hasło musi zawierać 8-25 znaków! <br>Nie może zawierać znaków specjalnych z wyjątkiem - i _ !";
@@ -129,14 +129,14 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
 //                            $polaczenie->close();
 //                        }
 //                    } catch (Exception $e) {
-//                        echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie!</span>';
-//                        echo '<br />Informacja developerska: ' . $e;
+//                        echo '<span style="color:red;">Błąd!</span>';
+//                        
 //                    }
         header('Location: ../index.php?site=Login');
         if ($correct == true) {
             $user = new User($nick, $imie, $surname, $email, $password1);
             $user->saveDB($db);
-            $_SESSION['registration'] = '<span style="color:green">Rejestracja przebiegła pomyślnie. Teraz możesz się zalogować!</span>';
+            $_SESSION['registration'] = '<span style="color:green;">Rejestracja przebiegła pomyślnie. Teraz możesz się zalogować!</span>';
             header('Location: ../index.php?site=Login');
         }
     }

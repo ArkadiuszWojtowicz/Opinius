@@ -14,9 +14,10 @@ $um = new UserManager();
 
 if (filter_input(INPUT_GET, "akcja") == "wyloguj") {
     $um->logout($db);
+    header("location:../index.php?site=index"); // PRZEKIEROWANIE PO WYLOGOWANIU
     $_SESSION['loggedOut'] = '<span style="color:green; font-size:16px;">Wylogowano pomyślnie!</span>'; // NIE DZIALA
     //$_SESSION['logged'] = '<span style="color:green; font-size:16px;">Logowanie poprawne!</span>';
-    header("location:../index.php?site=index"); // PRZEKIEROWANIE PO WYLOGOWANIU
+    
 }
 if (filter_input(INPUT_POST, "zaloguj")) {
     $userId = $um->login($db);
@@ -29,7 +30,7 @@ if (filter_input(INPUT_POST, "zaloguj")) {
         }
         exit;
     } else {
-        $_SESSION['logowanie'] = '<span style="color:red">Nieprawidłowy login lub hasło!</span>';
+        $_SESSION['wrongLogin'] = 'Nieprawidłowy login lub hasło!';
         header("location:../index.php?site=Login");
     }
 } else {  
@@ -37,21 +38,22 @@ if (filter_input(INPUT_POST, "zaloguj")) {
     $contentLOG = ""; // aby nie wyswietlał sie blad niezdefiniowania zmiennej w sekcji logowanie
     $content = '';
              
-    $content .= '<div class="logowanie">';
+    $content .= '<div class="textCenter">';
                 if (isset($_SESSION['registration'])) {
-                    $content .= '<div class="error">' . $_SESSION['registration'] . '</div>';
+                    $content .= $_SESSION['registration'];
                     unset($_SESSION['registration']);
                 }
     $content .='<h2>Chcesz dodać opinię? Zaloguj się!</h2>
                 <form action="scripts/Login.php" method="post"> 
                 <input type="text" name="userName" placeholder="Login" onfocus="this.placeholder=" onblur="this.placeholder=login"><br>
                 <input type="password" name="passwd" placeholder="Hasło" onfocus="this.placeholder=" onblur="this.placeholder=hasło" ><br>';
-                if (isset($_SESSION['logowanie'])) {
-                    $content .= '<div class="error">' . $_SESSION['logowanie'] . '</div>';
-                    unset($_SESSION['logowanie']);
+                if (isset($_SESSION['wrongLogin'])) {
+                    $content .= '<div class="error">' . $_SESSION['wrongLogin'] . '</div>';
+                    unset($_SESSION['wrongLogin']);
                 }
     $content .='<input type="submit" value="Zaloguj się" name="zaloguj">
                 </form>
+                <a href="index.php?site=PasswordReminder">Zapomniałeś hasła?</a>
                 <br><h3>Pierwszy raz w serwisie? Zarejestruj się!</h3>    
                 <form action="scripts/Registration.php" method="post">
                 <input type="text" name="userName" placeholder="Nazwa użytkownika" onfocus="this.placeholder=" onblur="this.placeholder=nazwa użytkownika" ><br>';
@@ -86,7 +88,7 @@ if (filter_input(INPUT_POST, "zaloguj")) {
                 }
     $content .= '<br>
                 <label>
-                    <input type="checkbox" name="regulamin" value="regulamin" >  Oświadczam, że znam i akceptuję postanowienia Regulaminu Opinius.
+                    <input type="checkbox" name="regulamin" value="regulamin" >  Oświadczam, że znam i akceptuję postanowienia <a href="images/Regulamin_Opinius.pdf" download>Regulaminu Opinius</a>.
                 </label><br><br>';
                 if (isset($_SESSION['error_regulamin'])) {
                     $content .= '<div class="error">' . $_SESSION['error_regulamin'] . '</div><br>';

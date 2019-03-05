@@ -8,7 +8,7 @@ if (isset($_GET['site'])) {
     switch ($site) {
         case 'OurGoal':$site = 'OurGoal';
             break;
-        case 'JoinUs':$site = 'JoinUs';
+        case 'PasswordReminder':$site = 'PasswordReminder';
             break;
         case 'Settings':$site = 'Settings';
             break;

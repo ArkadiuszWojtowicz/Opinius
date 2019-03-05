@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_SESSION)) { // aby wyświetlić info o usunięciu konta po usunięciu //NIE DZIAŁA
+if (!isset($_SESSION)) { 
     session_start();
 }
 
@@ -10,7 +10,6 @@ include_once 'class/database.php';
 include_once 'class/userManager.php';
 
 $db = new Database("localhost", "root", "", "opinius");
-//$um = new UserManager();
 
 $opinie = $db->displayReviews("SELECT nick, name, category, review from items ORDER BY `id-item` DESC", array("nick", "name", "category", "review"));
 $opinieAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, review from items ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "review"));
@@ -24,47 +23,36 @@ $contentLOG = '';
 $content = '';
 
 if (isset($_SESSION['logged'])) { // info o zalogowaniu
-    $contentLOG .= '
-                                        <div class="logowanie">' . $_SESSION['logged'] . '</div>
-                                    ';
+    $contentLOG .= '<div class="textCenter">' . $_SESSION['logged'] . '</div>';
     unset($_SESSION['logged']);
 }
-
 if (isset($_SESSION['loggedOut'])) { // info o wylogowaniu
-    $content .= '
-                                        <div class="logowanie">' . $_SESSION['loggedOut'] . '</div>
-                                    ';
+    $content .= '<div class="textCenter">' . $_SESSION['loggedOut'] . '</div>';
     unset($_SESSION['loggedOut']);
 }
-
 if (isset($_SESSION['added'])) { // info o dodaniu opinii
-    $contentLOG .= '
-                                        <div class="logowanie">' . $_SESSION['added'] . '</div>
-                                    ';
+    $contentLOG .= '<div class="textCenter">' . $_SESSION['added'] . '</div>';
     unset($_SESSION['added']);
 }
 
-
-
-$contentLOG .= '<h2> Tutaj możesz dodać opinię </h2>
+$contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                     <form action="scripts/addOpinion.php" method="post"> 
-                        <div class="addReview">
-                        <p>Nazwa przedmiotu:</p>
-                        <input type="text" name="name" class="addReview" required><br>
-                        <p>Kategoria:</p>
-                        <select name="category" class="addReview">
-                            <option>Telewizory</option>
-                            <option>Komputery i laptopy</option>
-                            <option>Telefony i smartfony</option>
-                            <option>Urządzenia peryferyjne</option>
-                            <option>Podzespoły</option>
-                            <option>Akcesoria</option>    
-                            <option>Inne</option>  
-                        </select><br>
-                        <p>Twoja opinia:<p>
-                        <textarea rows="9" name="review" class="addReview" required></textarea><br>
-                        <input type="submit" value="Dodaj opinię" class="addReview"><br>                        
-                        
+                        <div class="textLeft">
+                            <p>Nazwa przedmiotu:</p>
+                            <input type="text" name="name" class="textLeft" required><br>
+                            <p>Kategoria:</p>
+                            <select name="category" class="textLeft">
+                                <option>Telewizory</option>
+                                <option>Komputery i laptopy</option>
+                                <option>Telefony i smartfony</option>
+                                <option>Urządzenia peryferyjne</option>
+                                <option>Podzespoły</option>
+                                <option>Akcesoria</option>    
+                                <option>Inne</option>  
+                            </select><br>
+                            <p>Twoja opinia:<p>
+                            <textarea rows="9" name="review" class="textLeft" required></textarea><br>
+                            <input type="submit" value="Dodaj opinię" class="textLeft"><br>                                                
                         </div>
                     </form>    
                 ' . $opinie;
@@ -72,41 +60,35 @@ $contentLOG .= '<h2> Tutaj możesz dodać opinię </h2>
 
 
 if (isset($_SESSION['logged'])) { // info o zalogowaniu
-    $contentAdmin.= '
-                                        <div class="logowanie">' . $_SESSION['logged'] . '</div>
-                                    ';
+    $contentAdmin.= '<div class="textCenter">' . $_SESSION['logged'] . '</div>';
     unset($_SESSION['logged']);
 }
 if (isset($_SESSION['added'])) { // info o dodaniu opinii
-    $contentAdmin .= '
-                                        <div class="logowanie">' . $_SESSION['added'] . '</div>
-                                    ';
+    $contentAdmin .= '<div class="textCenter">' . $_SESSION['added'] . '</div>';
     unset($_SESSION['added']);
 }
 $contentAdmin .= '                        
                     <h2> Tutaj możesz dodać opinię </h2>
-                    <form action="scripts/addOpinion.php" method="post" class="logowanie"> 
-                        <div class="addReview">
-                        <p>Nazwa przedmiotu:</p>
-                        <input type="text" name="name" class="addReview" required><br>
-                        <p>Kategoria:</p>
-                        <select name="category" class="addReview">
-                            <option>Telewizory</option>
-                            <option>Komputery i laptopy</option>
-                            <option>Telefony i smartfony</option>
-                            <option>Urządzenia peryferyjne</option>
-                            <option>Podzespoły</option>
-                            <option>Akcesoria</option>    
-                            <option>Inne</option>  
-                        </select><br>
-                        <p>Twoja opinia:<p>
-                        <textarea rows="6" cols="59" name="review" class="addReview" required></textarea><br>
-                        <input type="submit" value="Dodaj opinię" class="addReview"><br>                        
-                        
+                    <form action="scripts/addOpinion.php" method="post"> 
+                        <div class="textLeft">
+                            <p>Nazwa przedmiotu:</p>
+                            <input type="text" name="name" class="textLeft" required><br>
+                            <p>Kategoria:</p>
+                            <select name="category" class="textLeft">
+                                <option>Telewizory</option>
+                                <option>Komputery i laptopy</option>
+                                <option>Telefony i smartfony</option>
+                                <option>Urządzenia peryferyjne</option>
+                                <option>Podzespoły</option>
+                                <option>Akcesoria</option>    
+                                <option>Inne</option>  
+                            </select><br>
+                            <p>Twoja opinia:<p>
+                            <textarea rows="9" name="review" class="textLeft" required></textarea><br>
+                            <input type="submit" value="Dodaj opinię" class="textLeft"><br>                                                
                         </div>
-                    </form>    
+                    </form> 
                 ' . $opinieAdmin;
-
 
 $content .= '          
                 <h2>Aby dodać opinię musisz się zalogować!</h2>        

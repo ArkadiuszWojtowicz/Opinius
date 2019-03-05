@@ -7,17 +7,15 @@ include_once 'class/userManager.php'; // potrzebne do wylogowania po usunięciu 
 $db = new Database("localhost", "root", "", "opinius");
 $um = new UserManager(); // potrzebne do wylogowania po usunięciu konta
 
-
-// ZMIANA ADRESU EMAIL
+//ZMIANA ADRESU EMAIL
 $email = $_POST['email'];
 $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
 $emailN = $_POST['emailN'];
 $emailLogged = $db->select("SELECT email from users u JOIN logged_in_users l ON u.id = l.userId", array("email"));
 
-
 if (isset($_POST['email'])) {
     if ($email == $emailLogged && ((strlen($emailN) >= 3) && (strlen($emailN) <= 40)) ) { //&& (filter_var($emailB, FILTER_VALIDATE_EMAIL
-        $_SESSION['email'] = '<span style="color:red">Twój e-mail został zmieniony</span>';
+        $_SESSION['email'] = '<span style="color:green">Twój e-mail został zmieniony</span>';
         $db->UPDATE("UPDATE users SET email='$emailN' WHERE email = '$email'");
         header("location: ../index.php?site=Settings");
     } else {
@@ -26,7 +24,6 @@ if (isset($_POST['email'])) {
     }
 }
 
-
 //ZMIANA NICKU
 $nick = $_POST['nick'];
 $nickN = $_POST['nickN'];
@@ -34,7 +31,7 @@ $nickLogged = $db->select("SELECT userName from users u JOIN logged_in_users l O
 
 if (isset($_POST['nick'])) {
     if ($nick == $nickLogged && ((strlen($nickN) >= 3) && (strlen($nickN) <= 20))) {
-        $_SESSION['nick'] = '<span style="color:red">Twój nick został zmieniony</span>';
+        $_SESSION['nick'] = '<span style="color:green">Twój nick został zmieniony</span>';
         $db->UPDATE("UPDATE users SET userName='$nickN' WHERE userName = '$nick'");
         header("location: ../index.php?site=Settings");
     } else {
@@ -43,44 +40,47 @@ if (isset($_POST['nick'])) {
     }
 }
 
-
 //ZMIANA HASŁA
-$haslo = $_POST['haslo'];
-$hasloN = $_POST['hasloN'];
-$hashed = hash('ripemd160', $haslo);
-$hashedN = hash('ripemd160', $hasloN);
-$hasloLogged = $db->select("SELECT passwd from users u JOIN logged_in_users l ON u.id = l.userId", array("passwd"));
+$password = $_POST['password'];
+$passwordN = $_POST['passwordN'];
+$passwordN2 = $_POST['passwordN2'];
+$hashed = hash('ripemd160', $password);
+$hashedN = hash('ripemd160', $passwordN);
+$passwordLogged = $db->select("SELECT passwd from users u JOIN logged_in_users l ON u.id = l.userId", array("passwd"));
 
-if (isset($_POST['haslo'])) {
-    if ($hashed == $hasloLogged && ((strlen($hasloN) >= 8) && (strlen($hasloN) <= 25))) {//$hashed == $hasloLogged && ((strlen($hasloN) >= 8) && (strlen($hasloN) <= 25))
-        $_SESSION['haslo'] = '<span style="color:red">Twoje hasło zostało zmienione</span>';
+if (isset($_POST['password'])) {
+    if ($hashed == $passwordLogged && ((strlen($passwordN) >= 8) && (strlen($passwordN) <= 25)) && $passwordN==$passwordN2) {
+        $_SESSION['password'] = '<span style="color:green">Twoje hasło zostało zmienione</span>';
         $db->UPDATE("UPDATE users SET passwd='$hashedN' WHERE passwd = '$hashed'");
         header("location: ../index.php?site=Settings");
     } else {
-        $_SESSION['haslo'] = '<span style="color:red">Niepoprawne hasło!<br>Twoje nowe hasło musi zawierać między 8 a 25 znaków!</span>';
+        $_SESSION['password'] = '<span style="color:red">Niepoprawne hasło!<br>Twoje nowe hasło musi zawierać między 8 a 25 znaków!</span>';
         header("location: ../index.php?site=Settings");
     }
+    if($passwordN!=$passwordN2){
+        $_SESSION['password'] = '<span style="color:red">Twoje nowe hasła nie są identyczne!</span>';
+        header("location: ../index.php?site=Settings");
+    } 
 }
 
-
 //USUNIĘCIE KONTA
-$usunE = $_POST['usunE'];
-$usunH = $_POST['usunH'];
-$hashedH = hash('ripemd160', $usunH);
+$removeE = $_POST['removeE'];
+$removeH = $_POST['removeH'];
+$hashedH = hash('ripemd160', $removeH);
 
 $emailLogged2 = $db->select("SELECT email from users u JOIN logged_in_users l ON u.id = l.userId", array("email"));
-$hasloLogged2 = $db->select("SELECT passwd from users u JOIN logged_in_users l ON u.id = l.userId", array("passwd"));
+$passwordLogged2 = $db->select("SELECT passwd from users u JOIN logged_in_users l ON u.id = l.userId", array("passwd"));
 
-if (isset($_POST['usunE'])) {
-    if ($usunE == $emailLogged2 && $hashedH == $hasloLogged2) {
-        $_SESSION['usun'] = '<span style="color:red">Twoje konto zostało usunięte</span>';
+if (isset($_POST['removeE'])) {
+    if ($removeE == $emailLogged2 && $hashedH == $passwordLogged2) {
         $um->logout($db);
-        $db->DELETE("DELETE FROM users WHERE email = '$usunE' AND passwd ='$hashedH' ");
-        //$_SESSION['usun'] = '<span style="color:red">Twoje konto zostało usunięte!</span>';
+        $_SESSION['remove'] = '<span style="color:green">Twoje konto zostało usunięte</span>';
+        $db->DELETE("DELETE FROM users WHERE email = '$removeE' AND passwd ='$hashedH' ");
+        //$_SESSION['remove'] = '<span style="color:red">Twoje konto zostało usunięte!</span>';
         //dorobić info że konto zostało usunięte
         header("location: ../?site=index");
     } else {
-        $_SESSION['usun'] = '<span style="color:red">Niepoprawny e-mail lub hasło!</span>';
+        $_SESSION['remove'] = '<span style="color:red">Niepoprawny e-mail lub hasło!</span>';
         header("location: ../index.php?site=Settings");
     }
 }
