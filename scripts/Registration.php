@@ -7,100 +7,83 @@ $db = new Database("localhost", "root", "", "opinius");
 
 if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
 
-    $wszystko_OK = true;
+    $correct = true;
 
     session_start();
     if (isset($_POST['email'])) {
-        //Udana walidacja? Załóżmy, że tak!
-        //Sprawdź poprawność nickname'a
+
         $nick = $_POST['userName'];
-        //Sprawdzenie długości nicka
-
-        if (ctype_alnum($nick) == false) {
-            $wszystko_OK = false;
-            $_SESSION['e_nick'] = "Nick może składać się tylko z liter i cyfr (bez polskich znaków)!";
-        }
-
-        if ((strlen($nick) < 3) || (strlen($nick) > 20)) {
-            $wszystko_OK = false;
-            $_SESSION['e_nick'] = "Nick musi posiadać od 3 do 20 znaków!";
+        $checkNick = '/^[0-9A-Za-ząęłńśćźżó_-]{2,25}$/';
+        if ((preg_match($checkNick, $nick))==false) {
+            $correct = false;
+            $_SESSION['error_nick'] = "Nick musi zawierać 2-20 znaków!";
         }
 
         $nickBusy = $db->select("SELECT userName from users WHERE userName='$nick'", array("userName"));
         if ($nick == $nickBusy && $nick != '') {
-            $wszystko_OK = false;
-            $_SESSION['e_nick'] = "Nick jest już zajęty!";
+            $correct = false;
+            $_SESSION['error_nick'] = "Nick jest już zajęty!";
         }
 
-        //Sprawdzenie imienia 
-        $firstName = $_POST['firstName'];
-        if ((strlen($firstName) < 3) || (strlen($firstName) > 25)) {
-            $wszystko_OK = false;
-            $_SESSION['e_imie'] = "Imię musi zawierać od 3-25 znaków!";
+        $firstName = $_POST['firstName']; //   /^[A-ZŁŻŹa-ząęłńśćźżó]{2,30}$/
+        $check = '/^[A-ZŁŻŹa-ząęłńśćźżó]{2,30}$/';
+        if ((preg_match($check, $firstName))==false) {
+            $correct = false;
+            $_SESSION['error_imie'] = "Imię musi zawierać 2-25 liter! <br>Nie może zawierać cyfr i znaków specjalnych!";
         }
-        //Sprawdzenie nazwiska
         $surname = $_POST['surname'];
-        if ((strlen($surname) < 3) || (strlen($surname) > 25)) {
-            $wszystko_OK = false;
-            $_SESSION['e_surname'] = "Nazwisko musi zawierać od 3-25 znaków!";
+        if ((preg_match($check, $surname))==false) {
+            $correct = false;
+            $_SESSION['error_surname'] = "Nazwisko musi zawierać 2-25 liter! <br>Nie może zawierać cyfr i znaków specjalnych!";
         }
 
-        // Sprawdź poprawność adresu email
         $email = $_POST['email'];
         $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
-
         if ((filter_var($emailB, FILTER_VALIDATE_EMAIL) == false) || ($emailB != $email)) {
-            $wszystko_OK = false;
-            $_SESSION['e_email'] = "Podaj poprawny adres e-mail!";
+            $correct = false;
+            $_SESSION['error_email'] = "Podaj poprawny adres e-mail!";
         }
-        
+
         $emailBusy = $db->select("SELECT email from users WHERE email='$email'", array("email"));
         if ($email == $emailBusy && $email != '') {
-            $wszystko_OK = false;
-            $_SESSION['e_email'] = "E-mail jest już zajęty!";
+            $correct = false;
+            $_SESSION['error_email'] = "E-mail jest już zajęty!";
         }
 
-        //Sprawdź poprawność hasła
-        $haslo1 = $_POST['passwd'];
-        $haslo2 = $_POST['passwd2'];
-
-        if ((strlen($haslo1) < 8) || (strlen($haslo1) > 20)) {
-            $wszystko_OK = false;
-            $_SESSION['e_haslo'] = "Hasło musi posiadać od 8 do 20 znaków!";
+        $password1 = $_POST['passwd'];
+        $password2 = $_POST['passwd2'];
+        $checkPassword = '/^[0-9A-Za-ząęłńśćźżó_-]{8,25}$/';
+        if ((preg_match($checkPassword, $password1))==false) {
+            $correct = false;
+            $_SESSION['error_password'] = "Hasło musi zawierać 8-25 znaków! <br>Nie może zawierać znaków specjalnych z wyjątkiem - i _ !";
         }
 
-        if ($haslo1 != $haslo2) {
-            $wszystko_OK = false;
-            $_SESSION['e_haslo2'] = "Podane hasła nie są identyczne! " . $haslo1 . "+" . $haslo2;
+        if ($password1 != $password2) {
+            $correct = false;
+            $_SESSION['error_password2'] = "Podane hasła nie są identyczne! ";
         }
 
-        $haslo_hash = password_hash($haslo1, PASSWORD_DEFAULT);
+        $password_hash = password_hash($password1, PASSWORD_DEFAULT);
 
-        //Czy zaakceptowano regulamin?
         if (!isset($_POST['regulamin'])) {
-            $wszystko_OK = false;
-            $_SESSION['e_regulamin'] = "Potwierdź akceptację regulaminu!";
+            $correct = false;
+            $_SESSION['error_regulamin'] = "Potwierdź akceptację regulaminu!";
         }
 
-        //Sprawdzenie captcha!
-        $sekret = "6LcoJ4sUAAAAAHO7A1OroDdEU4p4bP_bkeQdyFgi";
-
-        //$sekret = "6LfrbIwUAAAAAMFsn-cmfTHkYfnUEurTHW8guh3w";
-        $sprawdz = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $sekret . '&response=' . $_POST['g-recaptcha-response']);
-
-        $odpowiedz = json_decode($sprawdz);
-
-        if ($odpowiedz->success == false) {
-            $wszystko_OK = false;
-            $_SESSION['e_bot'] = "Potwierdź, że nie jesteś botem!";
+        $secret = "6LcoJ4sUAAAAAHO7A1OroDdEU4p4bP_bkeQdyFgi";
+        $check = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($check);
+        if ($response->success == false) {
+            $correct = false;
+            $_SESSION['error_bot'] = "Potwierdź, że nie jesteś botem!";
         }
         //Zapamiętaj wprowadzone dane
 //            $nick2 = $_POST['userName'];
 //            $_SESSION['fr_nick'] = $nick2;
 //            $_SESSION['fr_imie'] = $imie;
 //            $_SESSION['fr_email'] = $email;
-//            $_SESSION['fr_haslo1'] = $haslo1;
-//            //$_SESSION['fr_haslo2'] = $haslo2;
+//            $_SESSION['fr_password1'] = $password1;
+//            //$_SESSION['fr_password2'] = $password2;
 //            if (isset($_POST['regulamin'])) {
 //                $_SESSION['fr_regulamin'] = true;
 //            }
@@ -117,8 +100,8 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
 //                            }
 //                            $ile_takich_maili = $rezultat->num_rows;
 //                            if ($ile_takich_maili > 0) {
-//                                $wszystko_OK = false;
-//                                $_SESSION['e_email'] = "Istnieje już konto przypisane do tego adresu e-mail!";
+//                                $correct = false;
+//                                $_SESSION['error_email'] = "Istnieje już konto przypisane do tego adresu e-mail!";
 //                            }
 //
 //                            //Czy nick jest już zarezerwowany?
@@ -129,13 +112,13 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
 //                            }
 //                            $ile_takich_nickow = $rezultat->num_rows;
 //                            if ($ile_takich_nickow > 0) {
-//                                $wszystko_OK = false;
-//                                $_SESSION['e_nick'] = "Istnieje już gracz o takim nicku!";
+//                                $correct = false;
+//                                $_SESSION['error_nick'] = "Istnieje już gracz o takim nicku!";
 //                            }
 //
-////                            if ($wszystko_OK == true) {
+////                            if ($correct == true) {
 ////                                
-////                                if ($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$nick', '$haslo_hash', '$email', 100, 100, 100, 14)")) {
+////                                if ($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$nick', '$password_hash', '$email', 100, 100, 100, 14)")) {
 ////                                    $_SESSION['udanarejestracja'] = true;
 ////                                    header('Location: witamy.php');
 ////                                } else {
@@ -146,14 +129,14 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
 //                            $polaczenie->close();
 //                        }
 //                    } catch (Exception $e) {
-//                        echo '<span style="color:red;">Błąd serwera! Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie!</span>';
-//                        echo '<br />Informacja developerska: ' . $e;
+//                        echo '<span style="color:red;">Błąd!</span>';
+//                        
 //                    }
         header('Location: ../index.php?site=Login');
-        if ($wszystko_OK == true) {
-            $user = new User($nick, $imie, $surname, $email, $haslo1);
+        if ($correct == true) {
+            $user = new User($nick, $imie, $surname, $email, $password1);
             $user->saveDB($db);
-            $_SESSION['registration'] = '<span style="color:green">Rejestracja przebiegła pomyślnie. Teraz możesz się zalogować!</span>';
+            $_SESSION['registration'] = '<span style="color:green;">Rejestracja przebiegła pomyślnie. Teraz możesz się zalogować!</span>';
             header('Location: ../index.php?site=Login');
         }
     }

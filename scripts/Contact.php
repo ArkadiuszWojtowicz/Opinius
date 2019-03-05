@@ -45,36 +45,32 @@ session_start();
 
 $mojemail = 'usor0192@wp.pl';
 $contentLOG = '           
-                        
-
                         <h2> Kontakt </h2>
                         <p>Masz pytanie? Napisz do admina.</p>                       
                         <p>Odpowiem najszybciej jak to możliwe ;)</p><br>
-                    <form action="mailto:'. $mojemail .'" method="post" class="logowanie" enctype="text/plain" onsubmit="mail_form(this); return false"> 
-                        <div class="addReview">
+                    <form action="mailto:'. $mojemail .'" method="post" class="textCenter" enctype="text/plain" onsubmit="mail_form(this); return false"> 
+                        <div class="textLeft">
                         <p>Temat:</p>
-                        <input type="text" name="name" class="addReview" required><br>                        
+                        <input type="text" name="name" class="textLeft" required><br>                        
                         <p>Treść:</p>
-                        <textarea rows="6" cols="50" name="review" class="addReview" required></textarea><br>
-                        <input type="submit" class="addReview" value="Wyślij"><br>                        
-                        </div>
-                        
+                        <textarea rows="6" cols="50" name="review" class="textLeft" required></textarea><br>
+                        <input type="submit" class="textLeft" value="Wyślij"><br>                        
+                        </div>                       
                     </form>    
 
 ';
-
-                        
+                     
 $content = '
                         <h2>Kontakt</h2>                         
                         <p>Masz pytanie? Napisz do admina!</p>
                         <p>Odpowiem najszybciej jak to możliwe ;)</p><br>
-                        <form action="mailto:'. $mojemail .'" method="post" class="logowanie" enctype="text/plain" onsubmit="mail_form(this); return false"> 
-                        <div class="addReview">
+                    <form action="mailto:'. $mojemail .'" method="post" class="textCenter" enctype="text/plain" onsubmit="mail_form(this); return false"> 
+                        <div class="textLeft">
                         <p>Temat:</p>
-                        <input type="text" name="name" class="addReview" required><br>                        
+                        <input type="text" name="name" class="textLeft" required><br>                        
                         <p>Treść:</p>
-                        <textarea rows="6" cols="70" name="review" class="addReview" required></textarea><br>
-                        <input type="submit" class="addReview" value="Wyślij"><br>                        
+                        <textarea rows="6" cols="70" name="review" class="textLeft" required></textarea><br>
+                        <input type="submit" class="textLeft" value="Wyślij"><br>                        
                         </div>
                     </form>
 ';
@@ -89,16 +85,16 @@ $contentAdmin = '
                   ';
 if (isset($_SESSION['name'])) { // info o zmianie statusu użytkownika
     $contentAdmin .= '
-                            <div class="addReview">' . $_SESSION['name'] . '</div>
+                            <div class="textLeft">' . $_SESSION['name'] . '</div>
                         ';
     unset($_SESSION['name']);
 }
 $contentAdmin .= '
-                    <form action="scripts/setAdmin.php" method="post" class="addReview"> 
-                        <div class="addReview">
+                    <form action="scripts/setAdmin.php" method="post" class="textLeft"> 
+                        <div class="textLeft">
                         <p>Nazwa użytkownika:</p>
-                        <input type="text" name="name" class="addReview" required><br>                       
-                        <input type="submit" value="Zatwierdź" class="addReview" ><br>                                                
+                        <input type="text" name="name" class="textLeft" required><br>                       
+                        <input type="submit" value="Zatwierdź" class="textLeft" ><br>                                                
                         </div>
                     </form>    
                     
@@ -106,16 +102,16 @@ $contentAdmin .= '
 ';
 if (isset($_SESSION['downGradeStatus'])) { // info o błędnej zmianie statusu użytkownika
     $contentAdmin .= '
-                            <div class="addReview">' . $_SESSION['downGradeStatus'] . '</div>
+                            <div class="textLeft">' . $_SESSION['downGradeStatus'] . '</div>
                         ';
     unset($_SESSION['downGradeStatus']);
 }
 $contentAdmin .= '
-                    <form action="scripts/setAdmin.php" method="post" class="addReview"> 
-                        <div class="addReview">
+                    <form action="scripts/setAdmin.php" method="post" class="textLeft"> 
+                        <div class="textLeft">
                         <p>Nazwa użytkownika:</p>
-                        <input type="text" name="name2" class="addReview" required><br>                       
-                        <input type="submit" value="Zatwierdź" class="addReview deleteButton"><br>                                                
+                        <input type="text" name="name2" class="textLeft" required><br>                       
+                        <input type="submit" value="Zatwierdź" class="textLeft deleteButton"><br>                                                
                         </div>
                     </form>    
 ';
