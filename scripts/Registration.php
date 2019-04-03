@@ -26,13 +26,13 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
         }
 
         $firstName = $_POST['firstName']; //   /^[A-ZŁŻŹa-ząęłńśćźżó]{2,30}$/
-        $check = '/^[A-ZŁŻŹa-ząęłńśćźżó]{2,30}$/';
-        if ((preg_match($check, $firstName))==false) {
+        $checkFirst = '/^[A-ZŁŻŹa-ząęłńśćźżó]{2,30}$/';
+        if ((preg_match($checkFirst, $firstName))==false) {
             $correct = false;
             $_SESSION['error_imie'] = "Imię musi zawierać 2-25 liter! <br>Nie może zawierać cyfr i znaków specjalnych!";
         }
         $surname = $_POST['surname'];
-        if ((preg_match($check, $surname))==false) {
+        if ((preg_match($checkFirst, $surname))==false) {
             $correct = false;
             $_SESSION['error_surname'] = "Nazwisko musi zawierać 2-25 liter! <br>Nie może zawierać cyfr i znaków specjalnych!";
         }
@@ -76,65 +76,10 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
         if ($response->success == false) {
             $correct = false;
             $_SESSION['error_bot'] = "Potwierdź, że nie jesteś botem!";
-        }
-        //Zapamiętaj wprowadzone dane
-//            $nick2 = $_POST['userName'];
-//            $_SESSION['fr_nick'] = $nick2;
-//            $_SESSION['fr_imie'] = $imie;
-//            $_SESSION['fr_email'] = $email;
-//            $_SESSION['fr_password1'] = $password1;
-//            //$_SESSION['fr_password2'] = $password2;
-//            if (isset($_POST['regulamin'])) {
-//                $_SESSION['fr_regulamin'] = true;
-//            }
-//                    try {
-//                        $polaczenie = new mysqli($serwer, $user, $pass, $baza);
-//                        if ($polaczenie->connect_errno != 0) {
-//                            throw new Exception(mysqli_connect_errno());
-//                        } else {
-//                            //Czy email już istnieje?
-//                            $rezultat = $polaczenie->query("SELECT id FROM users WHERE email='$email'");
-//
-//                            if (!$rezultat) {
-//                                throw new Exception($polaczenie->error);
-//                            }
-//                            $ile_takich_maili = $rezultat->num_rows;
-//                            if ($ile_takich_maili > 0) {
-//                                $correct = false;
-//                                $_SESSION['error_email'] = "Istnieje już konto przypisane do tego adresu e-mail!";
-//                            }
-//
-//                            //Czy nick jest już zarezerwowany?
-//                            $rezultat = $polaczenie->query("SELECT id FROM users WHERE userName='$userName'");
-//
-//                            if (!$rezultat) {
-//                                throw new Exception($polaczenie->error);
-//                            }
-//                            $ile_takich_nickow = $rezultat->num_rows;
-//                            if ($ile_takich_nickow > 0) {
-//                                $correct = false;
-//                                $_SESSION['error_nick'] = "Istnieje już gracz o takim nicku!";
-//                            }
-//
-////                            if ($correct == true) {
-////                                
-////                                if ($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$nick', '$password_hash', '$email', 100, 100, 100, 14)")) {
-////                                    $_SESSION['udanarejestracja'] = true;
-////                                    header('Location: witamy.php');
-////                                } else {
-////                                    throw new Exception($polaczenie->error);
-////                                }
-////                            }
-//
-//                            $polaczenie->close();
-//                        }
-//                    } catch (Exception $e) {
-//                        echo '<span style="color:red;">Błąd!</span>';
-//                        
-//                    }
+        }       
         header('Location: ../index.php?site=Login');
         if ($correct == true) {
-            $user = new User($nick, $imie, $surname, $email, $password1);
+            $user = new User($nick, $firstName, $surname, $email, $password1);
             $user->saveDB($db);
             $_SESSION['registration'] = '<span style="color:green;">Rejestracja przebiegła pomyślnie. Teraz możesz się zalogować!</span>';
             header('Location: ../index.php?site=Login');

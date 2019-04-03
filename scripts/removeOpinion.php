@@ -8,5 +8,9 @@ $db->DELETE("DELETE FROM items WHERE (`id-item` = '$x')");
 //$db->rozw("SELECT `id-item` from items ORDER BY `id-item` DESC", array("id-item"));
 //$db->rozw("SELECT `id-item`, nick, name, category, review from items ORDER BY `id-item` DESC", array("id-item","nick", "name", "category", "review"));
 
+if (isset($_POST['rem'])) {
+    $_SESSION['rem'] = '<span style="color:green; text-align: center; font-size:16px;">Opinia została usunięta!</span>';
+    header("location: ../index.php");
+}
 
-header("location: ../index.php");
+//header("location: ../index.php");

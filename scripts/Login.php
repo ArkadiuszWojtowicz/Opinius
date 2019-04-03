@@ -14,8 +14,9 @@ $um = new UserManager();
 
 if (filter_input(INPUT_GET, "akcja") == "wyloguj") {
     $um->logout($db);
-    header("location:../index.php?site=index"); // PRZEKIEROWANIE PO WYLOGOWANIU
+    $_SESSION['log'] = FALSE;
     $_SESSION['loggedOut'] = '<span style="color:green; font-size:16px;">Wylogowano pomyślnie!</span>'; // NIE DZIALA
+    header("location:../index.php?site=index"); // PRZEKIEROWANIE PO WYLOGOWANIU
     //$_SESSION['logged'] = '<span style="color:green; font-size:16px;">Logowanie poprawne!</span>';
     
 }
@@ -51,10 +52,11 @@ if (filter_input(INPUT_POST, "zaloguj")) {
                     $content .= '<div class="error">' . $_SESSION['wrongLogin'] . '</div>';
                     unset($_SESSION['wrongLogin']);
                 }
+                //<a href="index.php?site=PasswordReminder">Zapomniałeś hasła?</a>
     $content .='<input type="submit" value="Zaloguj się" name="zaloguj">
                 </form>
-                <a href="index.php?site=PasswordReminder">Zapomniałeś hasła?</a>
-                <br><h3>Pierwszy raz w serwisie? Zarejestruj się!</h3>    
+                
+                <h3>Pierwszy raz w serwisie? Zarejestruj się!</h3>    
                 <form action="scripts/Registration.php" method="post">
                 <input type="text" name="userName" placeholder="Nazwa użytkownika" onfocus="this.placeholder=" onblur="this.placeholder=nazwa użytkownika" ><br>';
                 if (isset($_SESSION['error_nick'])) {

@@ -10,7 +10,7 @@ class Website {
     protected $title = "Opinius";
     protected $keywords = "Opinie, komputery, laptopy, smartfony, IT, technologie";
 
-    //interfejs klasy – metody modyfikujące fragmenty strony
+//interfejs klasy – metody modyfikujące fragmenty strony
     public function set_content($new_content) {
         $this->content = $new_content;
     }
@@ -35,7 +35,7 @@ class Website {
         echo '<link rel="stylesheet" href=' . $url . ' type="text/css" />';
     }
 
-    //interfejs klasy – funkcje wyświetlające stronę
+//interfejs klasy – funkcje wyświetlające stronę
     public function display() {
         $this->display_html();
         $this->content();
@@ -50,7 +50,9 @@ class Website {
     }
 
     public function menu() {
-        if ($this->log == True) {
+        $db = new Database("localhost", "root", "", "opinius");
+        $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
+        if ($this->log == TRUE && $status == 1) {
             ?>
 
             <div class="menu">
@@ -67,12 +69,30 @@ class Website {
                         </ul>
                     </li> 
                     <li> <a href="?site=OurGoal">Nasz cel</a> </li>
-                    <li> <a href="#">Więcej <i class="icon-down-open"></i></a> 
-                        <ol class="secondUL">
-                            <li> <a href="?site=Contact">Kontakt</a> </li>
-                            <li> <a href="?site=Contact">Inna podstrona</a> </li>    
-                        </ol>
-                    </li>             
+                    <li> <a href="?site=Contact">Kontakt</a> </li>           
+                    <li> <a href="scripts/Login.php?akcja=wyloguj">Wyloguj</a> </li>
+                    <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>                          
+                </ul>
+            </div>
+            <?php
+        } else if ($this->log == TRUE && $status == 2) {
+            ?>
+
+            <div class="menu">
+                <ul>
+                    <li> <a href="?site=index">Opinie</a> </li>
+                    <li> <a href="#">Kategorie <i class="icon-down-open"></i></a> 
+                        <ul>
+                            <li> <a href="?site=Tvs">Telewizory</a> </li>
+                            <li> <a href="?site=Computers">Komputery i laptopy</a> </li>
+                            <li> <a href="?site=Phones">Telefony i smartfony</a> </li>
+                            <li> <a href="?site=Peripherals">Urządzenia peryferyjne</a> </li>
+                            <li> <a href="?site=Components">Podzespoły</a> </li>
+                            <li> <a href="?site=Accessories">Akcesoria</a> </li>
+                        </ul>
+                    </li> 
+                    <li> <a href="?site=OurGoal">Nasz cel</a> </li>
+                    <li> <a href="?site=Contact">Prawa admina</a> </li>           
                     <li> <a href="scripts/Login.php?akcja=wyloguj">Wyloguj</a> </li>
                     <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>                          
                 </ul>
@@ -95,12 +115,7 @@ class Website {
                         </ul>
                     </li> 
                     <li> <a href="?site=OurGoal">Nasz cel</a> </li>
-                    <li> <a href="#">Więcej <i class="icon-down-open"></i></a> 
-                        <ol class="secondUL">
-                            <li> <a href="?site=Contact">Kontakt</a> </li>
-                            <li> <a href="?site=Contact">Inna podstrona</a> </li>    
-                        </ol>
-                    </li> 
+                    <li> <a href="?site=Contact">Kontakt</a> </li>
                     <li> <a href="?site=Login">Logowanie</a> </li>
                     <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>
                 </ul>
@@ -114,60 +129,91 @@ class Website {
 
         <div id="left">
             <a href="?site=index" style="text-decoration: none;">
-                <div id="logo">
+<!--                <div id="logo">
                     <div class="opinius"><span style="color:red">O</span>pinius</div>
                     <div class="logoText">Łatwiejsze wybory z każdym dniem</div>
                     <div class="star">
                         <i class="icon-star-filled"></i><i class="icon-star-filled"></i><i class="icon-star-filled"></i><i class="icon-star-filled"></i><i class="icon-star"></i>
                     </div>
-                </div></a>
-            <div class="examples">
-                Przykłady fałszywych opinii znajdziesz poniżej<br>                    
-            </div>
-            <div class="examples2">
-                <i class="icon-down"></i><i class="icon-down"></i><i class="icon-down"></i><i class="icon-down"></i><i class="icon-down"></i>
-            </div>
+                </div>-->
+                <div id="slideLogo">
+                    <div id='logo'>
+                        <div class="opinius"><span style="color:red">O</span>pinius</div>
+                        <div class="logoText">Łatwiejsze wybory z każdym dniem</div>
+                        <div class="star">
+                            <i class="icon-star-filled s1"></i>
+                            <i class="icon-star-filled s2"></i>
+                            <i class="icon-star-filled s3"></i>
+                            <i class="icon-star-filled s4"></i>
+                            <i class="icon-star-filled s5"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
             <div class="fakeReviews">                                      
                 <div class="frLink">
-                    <a href="https://strefakursow.pl/kursy/programowanie/kurs_c_od_zera_do_bohatera.html" target="_blank">strefakursow.pl</a><br>
+                    <a href="index.php?site=Tvs">Telewizory</a><br>
                 </div>
                 <div class="frDestination">
-                    <a href="index.php?site=BritishCouncil">Dowiedz się więcej <i class="icon-right"></i></a>
+                    <a href="index.php?site=Tvs">Dowiedz się więcej <i class="icon-right"></i></a>
                 </div>
                 <div class="frPhoto" style="text-align: center;">
-                    <a href="index.php?site=BritishCouncil"><img src="images/strefaKursów.jpg" alt="Brak zdjęcia" width="85%" height="155px"></img></a>
+                    <a href="index.php?site=Tvs"><img src="images/tv.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
                 </div>
             </div>
             <div class="fakeReviews">                                      
                 <div class="frLink">
-                    <a href="https://nonacne.pl/opinie-klientow.html" target="_blank">nonacne.pl</a><br>
+                    <a href="index.php?site=Computers">Komputery i laptopy</a><br>
                 </div>
                 <div class="frDestination">
-                    <a href="index.php?site=BritishCouncil">Dowiedz się więcej <i class="icon-right"></i></a>
+                    <a href="index.php?site=Computers">Dowiedz się więcej <i class="icon-right"></i></a>
                 </div>
                 <div class="frPhoto">
-                    <a href="index.php?site=BritishCouncil"><img src="images/nonacne.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
+                    <a href="index.php?site=Computers"><img src="images/comp.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
                 </div>
             </div>
             <div class="fakeReviews">                                      
                 <div class="frLink">
-                    <a href="https://www.britishcouncil.pl/road-success-first-and-advanced?_ga=2.153140408.1673976468.1549381039-1215084853.1549283412" target="_blank">britishcouncil.pl</a><br>
+                    <a href="index.php?site=Phones">Telefony i smartfony</a><br>
                 </div>
                 <div class="frDestination">
-                    <a href="index.php?site=BritishCouncil">Dowiedz się więcej <i class="icon-right"></i></a>
+                    <a href="index.php?site=Phones">Dowiedz się więcej <i class="icon-right"></i></a>
                 </div>
                 <div class="frPhoto">
-                    <a href="index.php?site=BritishCouncil"><img src="images/britishCouncil.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
+                    <a href="index.php?site=Phones"><img src="images/phones.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
                 </div>
             </div>
-            <div class="fakeReviews" style="height: 290px">                                      
-                <!--                <div class="frLink">-->
-                <div class="text">Zauważyłeś stronę z fałszywymi opiniami w internecie?<br><br>
-                    Nie czekaj ani chwili dłużej.<br><br>
-                    Skontaktuj się z adminem, a zostaną dodane w tej sekcji!</div>
-                <!--</div>-->
-                <div class="frDestination2">
-                    <a href="index.php?site=Contact">Skontaktuj się <i class="icon-right"></i></a>
+            <div class="fakeReviews">                                      
+                <div class="frLink">
+                    <a href="index.php?site=Peripherals">Urządzenia peryferyjne</a><br>
+                </div>
+                <div class="frDestination">
+                    <a href="index.php?site=Peripherals">Dowiedz się więcej <i class="icon-right"></i></a>
+                </div>
+                <div class="frPhoto" style="text-align: center;">
+                    <a href="index.php?site=Peripherals"><img src="images/peri.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
+                </div>
+            </div>
+            <div class="fakeReviews">                                      
+                <div class="frLink">
+                    <a href="index.php?site=Components">Podzespoły</a><br>
+                </div>
+                <div class="frDestination">
+                    <a href="index.php?site=Components">Dowiedz się więcej <i class="icon-right"></i></a>
+                </div>
+                <div class="frPhoto">
+                    <a href="index.php?site=Components"><img src="images/components.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
+                </div>
+            </div>
+            <div class="fakeReviews">                                      
+                <div class="frLink">
+                    <a href="index.php?site=Accessories">Akcesoria</a><br>
+                </div>
+                <div class="frDestination">
+                    <a href="index.php?site=Accessories">Dowiedz się więcej <i class="icon-right"></i></a>
+                </div>
+                <div class="frPhoto">
+                    <a href="index.php?site=Accessories"><img src="images/accessories.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
                 </div>
             </div>
         </div>
@@ -195,6 +241,8 @@ class Website {
                 <link href="css/fontello.css" rel="stylesheet" type="text/css" />
                 <link href="css/style.css" rel="stylesheet" type="text/css" />
                 <script src='https://www.google.com/recaptcha/api.js'></script>
+                <script src="js/jquery-3.3.1.min.js"></script>
+                <script type="text/javascript" src="js/slide.js"></script>
 
                 <?php
                 $this->display_title();
@@ -230,9 +278,7 @@ class Website {
 
         public function content() {
 
-            echo '<div id="container">';
             $this->menu();
-            
             $this->left_menu();
             echo '<div id="right">';
             $db = new Database("localhost", "root", "", "opinius");
@@ -247,7 +293,8 @@ class Website {
             echo "</div>";
             $this->socials();
             $this->footer();
-            echo "</div>";
+
+
             echo '</body></html>';
         }
 
