@@ -40,26 +40,27 @@ class Database {
             
             
             
-            $tresc = "<table width='100%' class='table'><tbody>"; //TU EDYTOWAC
+            $tresc = "<table width='104%' class='table'><tbody>"; //TU EDYTOWAC
 
             while ($row = $result->fetch_object()) {
                 $p0 = $pola[0];
                 $p1 = $pola[1];
                 $p2 = $pola[2];
                 $p3 = $pola[3];
+                $p4 = $pola[4];
 
                 //TU EDYTOWAC
                 
                 $tresc .= "
                             <tr> 
-                              <th rowspan='3' height='275' width='150'>Użytkownik<br><br>" . $row->$p0 . "</th>
-                              <th height='40'>" . $row->$p1 . "</th>   
+                              <th rowspan='3' height='275' width='150'><br>Użytkownik:<br><br>" . $row->$p1 . "<br><br><br><br><br><br>ID opinii: " . $row->$p0 . "</th>
+                              <th height='40'>" . $row->$p2 . "</th>   
                             </tr>
                             <tr>    
-                              <th height='40'>" . $row->$p2 . "</th>    
+                              <th height='40'>" . $row->$p3 . "</th>    
                             </tr>
                             <tr>    
-                              <td>" . $row->$p3 . "</td>    
+                              <td>" . $row->$p4 . "</td>    
                             </tr>
                             <tr>    
                                <td width='580' colspan='2' class='reviewSpace'></td>    
@@ -78,29 +79,20 @@ class Database {
         if ($result = $this->mysqli->query($sql)) {
             $ilepol = count($pola);
 
-            $tresc = "<table width='584' class='table'><tbody>"; //TU EDYTOWAC
+            $tresc = "<table width='104%' class='table'><tbody>"; //TU EDYTOWAC
             $db = new Database("localhost", "root", "", "opinius");
 
-            //$remove = $db->DELETE("DELETE FROM items WHERE (`id-item` = '$reviewNumber')");
             while ($row = $result->fetch_object()) {
                 $p0 = $pola[0];
                 $p1 = $pola[1];
                 $p2 = $pola[2];
                 $p3 = $pola[3];
                 $p4 = $pola[4];
-//$reviewNumber = $row->$p0;
-                //TU EDYTOWAC   DELETE FROM items WHERE review = '$row->$p4'
-//                static $i = 1;
-//                while ($i == 1) {
-//                    $reviewNumber = $row->$p0;
-//                    $remove = $db->DELETE("DELETE FROM items WHERE (`id-item` = '$reviewNumber')");
-//                    $i++;
-//                }
-//                
+
                 $xd = $row->$p0;
                 $tresc .= "
                             <tr> 
-                              <th rowspan='3' height='275' width='150'>Id opinii:<br>" . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $xd . "' name='rem'> </form></th>
+                              <th rowspan='3' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $xd . "' class='rem' name='rem'> </form></th>
                               <th height='40'>" . $row->$p2 . "</th>   
                             </tr>
                             <tr>    
