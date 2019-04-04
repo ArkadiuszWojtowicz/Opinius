@@ -269,11 +269,12 @@ class Website {
                     <div style="clear:both"></div>
                 </div>
             </div>
+            
             <?php
         }
 
         public function footer() {
-            echo '<div id="footer"><p>Copyright © www.opinius.pl</p></div>';
+            echo '<div class="footer"><p>Copyright © www.opinius.pl</p></div>';
         }
 
         public function content() {

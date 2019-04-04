@@ -200,9 +200,10 @@ p {
     grid-row-start: 2;
 }
 
-#footer {
+.footer {
     clear: both;
     margin: 0 auto;
+    margin-bottom: -4px;
     padding: 6px 0 6px 0px;
     width: 100%;
     background: #000;
@@ -210,13 +211,13 @@ p {
     grid-column: 1 / span 2;
     grid-row-start: 4;
 }
-#footer p {		
+.footer p {		
     color: #8C594C;
 }
-#footer a {
+.footer a {
     color: #8C594C;
 }
-#footer a:hover {
+.footer a:hover {
     color: #DFCEB6;
 }
 .menu{ 
@@ -523,12 +524,11 @@ input[type=submit]:hover{
     margin-bottom: 10px;
 }
 table{
-    /*background-image: url("../images/stone.png");*/
     background: #c6c7c7;
     color: #331104;
     border-collapse: collapse; /*powoduje że nie ma przestrzeni miedzy komórkami tabeli */
     border: solid 20px #f4e1e5;
-    margin: 10px -20px 0px -20px;
+    /*margin: 10px 0px 0px -20px;*/
 }
 table th{
     /*    vertical-align: top; */
@@ -537,20 +537,18 @@ table th{
     border: 12px solid #f4e1e5;
 }
 table td{
-    /*    background-color: #ffff33;*/
     vertical-align: top; 
     padding-top: 20px;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 20px;
-    /*    color: #000;*/
     color: #331104;
     /*border: 3px solid #7956af;*/
     border: 3px solid #f4e1e5;
     font-size: 13px;
 }
 
-table input[type=submit]{
+/*table input[type=submit]{
     width: 150px;
     padding:10px;
     background: #d10000;
@@ -559,11 +557,10 @@ table input[type=submit]{
     cursor: pointer;
     outline: none;
     letter-spacing: 1px;
-    /*    color: #423b3b;*/
     font-weight: bold;
     font-size:15px;
 
-}
+}*/
 table input[type=submit]:hover{
     background: #dd1a20;
 
@@ -584,14 +581,27 @@ input[type=submit].deleteButton:hover{
     color: red;
     border: 3px solid red;
 }
-.allegImage{
-    transition: 1s ease-in-out;
-    /*position: relative;*/
-/*    right: 0;*/
-}
 
+.allegImage {
+    transition: 1s ease-in-out;
+    position: relative;
+    margin-top: 5px;
+    width: 300px;
+    height: 150px;
+    float: right;
+    padding-left: 10px;
+}
+.allegImage .icon-search{
+    position: absolute;
+    top: 34%;
+    left: 36%;
+    opacity: 0.5;
+}
+.allegImage:hover .icon-search{
+    display: none;
+}
 .allegImage:hover{
-    transform: scale(3);
+    transform: scale(1.7);
 }
 
 @media only screen and (max-width: 1020px) {
@@ -605,10 +615,13 @@ input[type=submit].deleteButton:hover{
         position: static;
     }
     #left {
-        margin: 30px 15px 30px 30px;
+        /*margin: 30px 15px 30px 30px;*/
+        /*margin: 0 auto;*/
         grid-row-start: 3;
-        width: 350px;
-        justify-self: center;
+        grid-column: 1 / span 8;
+        /*grid-column-end: span 2;*/
+        /*width: 350px;*/
+        /*justify-self: center;*/
     }
     #right {
         margin: 30px 30px 10px 15px;
@@ -618,26 +631,29 @@ input[type=submit].deleteButton:hover{
         margin: 0;
     }   
     .menu ul li:nth-last-child(1){
-        width: 140px;
+        width: 145px;
         margin-top: -40px;
-        margin-right:170px;
-        border-right: 0px;
-        border-left: 0px;
+        margin-right:152px;
+        border-left: 0px solid #d10000;
+        border-right: 3px solid #d10000;
         float: right;
+        /*background: pink;*/
     }
     .menu ul li:nth-last-child(2){
-        width: 147px;
+        width: 135px;
         margin-top: -40px;
-        margin-left: -1px;
-        border-right: 0px;
+        margin-left: 5px;
+        border-right: 3px solid #d10000;
         border-left: 0px;
         float: right;
     }
     .menu ul li:nth-last-child(3){
+        /*background: green;*/
         margin-top: 60px;
-        border-right: 0px;
-        border-left: 0px;
-        margin-left: 3px;
+        /*border-right: 3px solid #d10000;*/
+        border-left: 3px solid #d10000;
+        margin-left: 0px;
+        /*margin-right: -3px;*/
         float: none;
     }
     .menu ul li:nth-last-child(4){
@@ -688,7 +704,7 @@ input[type=submit].deleteButton:hover{
     .gplus {
         float: right;
     }
-    #footer {
+    .footer {
         grid-row-start: 5;
     }      
 }
@@ -710,7 +726,11 @@ input[type=submit].deleteButton:hover{
     #left {
         width:319px;
 
-        margin: 0;
+        /*margin-left: -20px;*/
+    }
+    table{
+        width: 114%;
+        margin-left: -20px;
     }
     table td {
         padding: 3px 5px 3px 5px;
@@ -809,7 +829,7 @@ input[type=submit].deleteButton:hover{
         /*margin-right: 30px;*/
         float: left;
     }
-    #footer {
+    .footer {
         width:319px;
         margin: 0;
     }
