@@ -71,7 +71,7 @@ p {
     margin: auto;
 }
 
-#left {
+aside {
     margin: 110px 15px 30px 30px;
     width: 300px;    
     background: #f4e1e5;
@@ -188,7 +188,7 @@ p {
 .frDestination2 a:hover{
     text-decoration: underline;
 }
-#right {
+section {
     margin: 110px 30px 30px 15px;
     padding: 10px 60px 18px 60px;
     font-size: 12px;
@@ -200,9 +200,10 @@ p {
     grid-row-start: 2;
 }
 
-#footer {
+footer {
     clear: both;
     margin: 0 auto;
+    margin-bottom: -4px;
     padding: 6px 0 6px 0px;
     width: 100%;
     background: #000;
@@ -210,16 +211,16 @@ p {
     grid-column: 1 / span 2;
     grid-row-start: 4;
 }
-#footer p {		
+footer p {		
     color: #8C594C;
 }
-#footer a {
+footer a {
     color: #8C594C;
 }
-#footer a:hover {
+footer a:hover {
     color: #DFCEB6;
 }
-.menu{ 
+nav{ 
     width: 100%;
     padding: 22px 0;
     background: black;
@@ -231,7 +232,7 @@ p {
     grid-column-end: span 2;
     z-index: 100;
 }
-.menu ul{
+nav ul{
     padding: 0;
     margin: 0;
     list-style-type: none;
@@ -240,46 +241,46 @@ p {
     line-height: 200%;
     display: inline-block;
 }
-.menu ul a{
+nav ul a{
     color: #AB7859;
     text-decoration: none;
     display: block;
 }
-.menu ul li{
+nav ul li{
     float: left;
     width: 149px;
     height: 40px;
     border-left: 3px solid #d10000;
 }
-.menu ul li:nth-last-child(2){
+nav ul li:nth-last-child(2){
     border-left: 0px solid #d10000;
     background: #d10000;
     margin-left: 8px;
     margin-right: 8px;
 }
-.menu ul li:nth-last-child(2) a {
+nav ul li:nth-last-child(2) a {
     color:black; 
     font-weight: bold;
 }
-.menu ul li:hover:nth-last-child(2){
+nav ul li:hover:nth-last-child(2){
     background: #ff3a41;
 
 }
-.menu ul li:nth-last-child(3){
+nav ul li:nth-last-child(3){
     border-right: 3px solid #d10000;
 }
-.menu ul li:last-child{
+nav ul li:last-child{
     border-left: 3px solid #d10000;
     border-right: 3px solid #d10000;
 }
-.menu ul li:hover
+nav ul li:hover
 {
     background: #202020; 
 }
-.menu ul li:hover a{
+nav ul li:hover a{
     /*    color: #451717;*/
 }
-.menu ul li ul{
+nav ul li ul{
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -289,10 +290,10 @@ p {
     line-height: 200%;
     display: none;
 }
-.menu ul li:hover ul{
+nav ul li:hover ul{
     display: block;
 }
-.menu ul li ul li{
+nav ul li ul li{
     background: #000;
     position: relative;
     z-index: 100;
@@ -303,36 +304,36 @@ p {
     border-left: 0px;
     margin-left: -40px;
 }
-.menu ul li ul li:hover{
+nav ul li ul li:hover{
     background: #202020; 
 }
-.menu ul li ul li:hover a{
+nav ul li ul li:hover a{
     color: #AB7859;
 }
-.menu ul li ul li:nth-last-child(2){
+nav ul li ul li:nth-last-child(2){
     background: #000;
     margin-left: -40px;
     /*margin-right: 0px;*/
 }
-.menu ul li ul li:nth-last-child(2) a {
+nav ul li ul li:nth-last-child(2) a {
     font-weight: normal;
     color: #AB7859;
 }
-.menu ul li ul li:nth-last-child(3){
+nav ul li ul li:nth-last-child(3){
     border-right: 0px solid #d10000;
 }
-.menu ul li ul li:hover:nth-last-child(2){
+nav ul li ul li:hover:nth-last-child(2){
     background: #202020; 
 }
-.menu ul li ul li:last-child{
+nav ul li ul li:last-child{
     border-left: 0px solid #751b1b;
     border-right: 0px solid #751b1b;
 }
-.menu ul li ul li:nth-last-child(6){
+nav ul li ul li:nth-last-child(6){
     margin-top: 8px;
     border-top: 0px solid #751b1b;
 }
-.menu ul li ol{
+nav ul li ol{
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -342,10 +343,10 @@ p {
     line-height: 200%;
     display: none;
 }
-.menu ul li:hover ol{
+nav ul li:hover ol{
     display: inline-block;
 }
-.menu ul li ol li{
+nav ul li ol li{
     background: #000;
     position: relative;
     z-index: 100;
@@ -356,28 +357,28 @@ p {
     border-left: 0px;
     margin-left: 0px;
 }
-.menu ul li ol li:hover{
+nav ul li ol li:hover{
     background: #202020; 
 }
-.menu ul li ol li:hover a{
+nav ul li ol li:hover a{
     color: #AB7859;
 }
 
-.menu ul li ol li:nth-last-child(2) a {
+nav ul li ol li:nth-last-child(2) a {
     font-weight: normal;
     color: #AB7859;
 }
-.menu ul li ol li:hover:nth-last-child(2){
+nav ul li ol li:hover:nth-last-child(2){
     background: #202020; 
 }
 /*TU EDYTOWAĆ W PRZYPADKU ZWIĘKSZAJĄCEJ SIĘ LICZBY PODSTRON W MENU "WIĘCEJ" -> nth-last-child(x+1) */
-.menu ul li ol li:nth-last-child(2) {
+nav ul li ol li:nth-last-child(2) {
     background: #000;
     margin-top: 8px;
     border-top: 0px solid #751b1b;
     margin-left: 0px;
 }
-.menu ul li ol li:nth-last-child(1) {
+nav ul li ol li:nth-last-child(1) {
     border-left: 0px solid #751b1b;
     border-right: 0px solid #751b1b;
 }
@@ -523,12 +524,11 @@ input[type=submit]:hover{
     margin-bottom: 10px;
 }
 table{
-    /*background-image: url("../images/stone.png");*/
     background: #c6c7c7;
     color: #331104;
     border-collapse: collapse; /*powoduje że nie ma przestrzeni miedzy komórkami tabeli */
     border: solid 20px #f4e1e5;
-    margin: 10px -20px 0px -20px;
+    /*margin: 10px 0px 0px -20px;*/
 }
 table th{
     /*    vertical-align: top; */
@@ -537,20 +537,18 @@ table th{
     border: 12px solid #f4e1e5;
 }
 table td{
-    /*    background-color: #ffff33;*/
     vertical-align: top; 
     padding-top: 20px;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 20px;
-    /*    color: #000;*/
     color: #331104;
     /*border: 3px solid #7956af;*/
     border: 3px solid #f4e1e5;
     font-size: 13px;
 }
 
-table input[type=submit]{
+/*table input[type=submit]{
     width: 150px;
     padding:10px;
     background: #d10000;
@@ -559,11 +557,10 @@ table input[type=submit]{
     cursor: pointer;
     outline: none;
     letter-spacing: 1px;
-    /*    color: #423b3b;*/
     font-weight: bold;
     font-size:15px;
 
-}
+}*/
 table input[type=submit]:hover{
     background: #dd1a20;
 
@@ -584,14 +581,27 @@ input[type=submit].deleteButton:hover{
     color: red;
     border: 3px solid red;
 }
-.allegImage{
-    transition: 1s ease-in-out;
-    /*position: relative;*/
-/*    right: 0;*/
-}
 
+.allegImage {
+    transition: 1s ease-in-out;
+    position: relative;
+    margin-top: 5px;
+    width: 300px;
+    height: 150px;
+    float: right;
+    padding-left: 10px;
+}
+.allegImage .icon-search{
+    position: absolute;
+    top: 34%;
+    left: 36%;
+    opacity: 0.5;
+}
+.allegImage:hover .icon-search{
+    display: none;
+}
 .allegImage:hover{
-    transform: scale(3);
+    transform: scale(1.7);
 }
 
 @media only screen and (max-width: 1020px) {
@@ -599,75 +609,81 @@ input[type=submit].deleteButton:hover{
         grid-template-columns: 100%;
         grid-template-rows: auto auto auto auto auto;
     }
-    .menu{
+    nav{
         height: 101px;
         background: #000;
         position: static;
     }
-    #left {
-        margin: 30px 15px 30px 30px;
+    aside {
+        /*margin: 30px 50px 30px 50px;*/
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width:86%;
+        margin: auto;
         grid-row-start: 3;
-        width: 350px;
-        justify-self: center;
+        grid-column: 1 / span 2;
     }
-    #right {
+    section {
         margin: 30px 30px 10px 15px;
         grid-column-start: 1;
         grid-row-start: 2;
         padding: 20px;
         margin: 0;
     }   
-    .menu ul li:nth-last-child(1){
-        width: 140px;
+    nav ul li:nth-last-child(1){
+        width: 145px;
         margin-top: -40px;
-        margin-right:170px;
-        border-right: 0px;
+        margin-right:152px;
+        border-left: 0px solid #d10000;
+        border-right: 3px solid #d10000;
+        float: right;
+        /*background: pink;*/
+    }
+    nav ul li:nth-last-child(2){
+        width: 135px;
+        margin-top: -40px;
+        margin-left: 5px;
+        border-right: 3px solid #d10000;
         border-left: 0px;
         float: right;
     }
-    .menu ul li:nth-last-child(2){
-        width: 147px;
-        margin-top: -40px;
-        margin-left: -1px;
-        border-right: 0px;
-        border-left: 0px;
-        float: right;
-    }
-    .menu ul li:nth-last-child(3){
+    nav ul li:nth-last-child(3){
+        /*background: green;*/
         margin-top: 60px;
-        border-right: 0px;
-        border-left: 0px;
-        margin-left: 3px;
+        /*border-right: 3px solid #d10000;*/
+        border-left: 3px solid #d10000;
+        margin-left: 0px;
+        /*margin-right: -3px;*/
         float: none;
     }
-    .menu ul li:nth-last-child(4){
+    nav ul li:nth-last-child(4){
         border-right: 3px solid #d10000;
     }
-    .menu ul li ul li:nth-last-child(4){
+    nav ul li ul li:nth-last-child(4){
         border-right: 0px;
     }
-    .menu ul li ul li:nth-last-child(3){
+    nav ul li ul li:nth-last-child(3){
         margin-top: 0px;
         float: left;
         margin-left: -40px;
     }
-    .menu ul li ul li:nth-last-child(2){
+    nav ul li ul li:nth-last-child(2){
         margin-top: 0px;
         float: left;
         width: 230px;
     }
-    .menu ul li ul li:nth-last-child(1){
+    nav ul li ul li:nth-last-child(1){
         margin-top: 0px;
         float: left;
         width: 230px;
     }
-    .menu ul li ol li:nth-last-child(2) {
+    nav ul li ol li:nth-last-child(2) {
         float: left;
         margin-top: 8px;
         width:150px;
 
     }
-    .menu ul li ol li:nth-last-child(1) {
+    nav ul li ol li:nth-last-child(1) {
         float: left;
         margin-top: 0px;
         width:150px;
@@ -688,7 +704,7 @@ input[type=submit].deleteButton:hover{
     .gplus {
         float: right;
     }
-    #footer {
+    footer {
         grid-row-start: 5;
     }      
 }
@@ -707,10 +723,9 @@ input[type=submit].deleteButton:hover{
     {
         float: none;
     }
-    #left {
-        width:319px;
-
-        margin: 0;
+    table{
+        width: 114%;
+        margin-left: -20px;
     }
     table td {
         padding: 3px 5px 3px 5px;
@@ -736,55 +751,51 @@ input[type=submit].deleteButton:hover{
         margin-left:-10px;
         transform:scale(0.82);
     }
-    #right {        
+    section {        
         width:279px;
-/*        padding-left: 10px;
-        padding-right:10px;*/
     }
-    #left {
+    aside {
         width:319px;
-        margin-left: -31px;
-        padding-left: 0;
-        padding-right:0;
+        margin: 25px 0px 25px 0px;
     }    
-    .menu{
+    nav {
         height: 132px;
         background: #000;
         position: static;
         width:319px;
     }
-    .menu ul li ul li {        
+    nav ul li ul li {        
         margin-left: -67px;
     }
-    .menu ul li ul li:nth-last-child(2) {        
+    nav ul li ul li:nth-last-child(2) {        
         margin-left: -67px;
         border-right: 0px;
     }
-    .menu ul li ul li:nth-last-child(1) {        
+    nav ul li ul li:nth-last-child(1) {        
         margin-left: -67px;
     }
-    .menu ul li ul li:nth-last-child(3) {        
+    nav ul li ul li:nth-last-child(3) {        
         margin-left: -67px;
     }
-    .menu ul li ul li:nth-last-child(5) {        
+    nav ul li ul li:nth-last-child(5) {        
         border-right: 0px;
     }
-    .menu ul li ul li:nth-last-child(4) {        
+    nav ul li ul li:nth-last-child(4) {        
         margin-top:-2px;
     }
-    .menu ul li ol li:nth-last-child(2) {        
+    nav ul li ol li:nth-last-child(2) {        
         border-right: 0px;
     }
-    .menu ul li:nth-last-child(5) {
+    nav ul li:nth-last-child(5) {
         border-right: 3px solid #d10000; 
     }
-    .menu ul li:nth-last-child(4) {
+    nav ul li:nth-last-child(4) {
         margin-top: 6px;  
         margin-right: -3px;
         border-right: 3px solid #000; 
         border-left: 3px solid #000;
     }
-    .menu ul li:nth-last-child(1) { /* settings button */
+    nav ul li:nth-last-child(1) { /* settings button */
         width: 149px;
         margin-top: -40px;
         margin-right:170px;
@@ -794,7 +805,7 @@ input[type=submit].deleteButton:hover{
         border-left: 3px solid #d10000; 
         float: left;
     }
-    .menu ul li:nth-last-child(2) { /* login button */
+    nav ul li:nth-last-child(2) { /* login button */
         width: 133px;
         margin-top: -86px;
         margin-right: 29px;
@@ -802,14 +813,14 @@ input[type=submit].deleteButton:hover{
         border-left: 0px solid #d10000; 
         float: right;
     }
-    .menu ul li:nth-last-child(3) { /* more button */
+    nav ul li:nth-last-child(3) { /* more button */
         margin-top: 52px;
         border-right: 3px solid #d10000; 
         border-left: 0px solid #d10000; 
         /*margin-right: 30px;*/
         float: left;
     }
-    #footer {
+    footer {
         width:319px;
         margin: 0;
     }

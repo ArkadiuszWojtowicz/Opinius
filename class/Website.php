@@ -55,7 +55,7 @@ class Website {
         if ($this->log == TRUE && $status == 1) {
             ?>
 
-            <div class="menu">
+            <nav>
                 <ul>
                     <li> <a href="?site=index">Opinie</a> </li>
                     <li> <a href="#">Kategorie <i class="icon-down-open"></i></a> 
@@ -73,12 +73,12 @@ class Website {
                     <li> <a href="scripts/Login.php?akcja=wyloguj">Wyloguj</a> </li>
                     <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>                          
                 </ul>
-            </div>
+            </nav>
             <?php
         } else if ($this->log == TRUE && $status == 2) {
             ?>
 
-            <div class="menu">
+            <nav>
                 <ul>
                     <li> <a href="?site=index">Opinie</a> </li>
                     <li> <a href="#">Kategorie <i class="icon-down-open"></i></a> 
@@ -96,12 +96,12 @@ class Website {
                     <li> <a href="scripts/Login.php?akcja=wyloguj">Wyloguj</a> </li>
                     <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>                          
                 </ul>
-            </div>
+            </nav>
             <?php
         } else {
             ?>
 
-            <div class="menu">
+            <nav>
                 <ul>
                     <li> <a href="?site=index">Opinie</a> </li>
                     <li> <a href="#">Kategorie <i class="icon-down-open"></i></a> 
@@ -119,23 +119,16 @@ class Website {
                     <li> <a href="?site=Login">Logowanie</a> </li>
                     <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>
                 </ul>
-            </div>
+            </nav>
             <?php
         }
     }
-
+    
     public function left_menu() {
         ?>
 
-        <div id="left">
+        <aside>
             <a href="?site=index" style="text-decoration: none;">
-<!--                <div id="logo">
-                    <div class="opinius"><span style="color:red">O</span>pinius</div>
-                    <div class="logoText">Łatwiejsze wybory z każdym dniem</div>
-                    <div class="star">
-                        <i class="icon-star-filled"></i><i class="icon-star-filled"></i><i class="icon-star-filled"></i><i class="icon-star-filled"></i><i class="icon-star"></i>
-                    </div>
-                </div>-->
                 <div id="slideLogo">
                     <div id='logo'>
                         <div class="opinius"><span style="color:red">O</span>pinius</div>
@@ -216,7 +209,7 @@ class Website {
                     <a href="index.php?site=Accessories"><img src="images/accessories.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
                 </div>
             </div>
-        </div>
+        </aside>
 
         <?php
     }
@@ -269,18 +262,19 @@ class Website {
                     <div style="clear:both"></div>
                 </div>
             </div>
+            
             <?php
         }
 
         public function footer() {
-            echo '<div id="footer"><p>Copyright © www.opinius.pl</p></div>';
+            echo '<footer><p>Copyright © www.opinius.pl</p></footer>';
         }
 
         public function content() {
 
             $this->menu();
             $this->left_menu();
-            echo '<div id="right">';
+            echo '<section>';
             $db = new Database("localhost", "root", "", "opinius");
             $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
             if ($this->log == True && $status == 1) {
@@ -290,7 +284,7 @@ class Website {
             } else {
                 echo $this->content;
             }
-            echo "</div>";
+            echo "</section>";
             $this->socials();
             $this->footer();
 

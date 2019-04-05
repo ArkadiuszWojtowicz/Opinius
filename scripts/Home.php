@@ -33,7 +33,7 @@ if (isset($_SESSION['added']) && $status == 1) { // info o dodaniu opinii
 }
 
 $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
-                    <br>
+                    
                     <div id="slideshow">
                         <img src="images/home1.jpg" alt="home1" class="active">
                         <img src="images/home2.jpg" alt="home2" >
@@ -76,7 +76,7 @@ if (isset($_SESSION['rem']) && $status == 2) { // info o usunięciu opinii
 }
 $contentAdmin .= '                        
                     <h2> Tutaj możesz dodać opinię </h2>
-                    <br>
+                    
                     <div id="slideshow">
                         <img src="images/home1.jpg" alt="home1" class="active">
                         <img src="images/home2.jpg" alt="home2" >
@@ -103,13 +103,13 @@ $contentAdmin .= '
                     </form> 
                 ' . $opinieAdmin;
 
-$content .= "          
+$content .= '         
                 <h2>Aby dodać opinię musisz się zalogować!</h2>  
-                <br>
-                <div id='slideshow'>
-                    <img src='images/home1.jpg' alt='home1' class='active'>
-                    <img src='images/home2.jpg' alt='home2' >
-                    <img src='images/home3.jpg' alt='home3' >
+                
+                <div id="slideshow">
+                    <img src="images/home1.jpg" alt="home1" class="active">
+                    <img src="images/home2.jpg" alt="home2" >
+                    <img src="images/home3.jpg" alt="home3" >
                 </div>
             <br><br>
-            " . $opinie;
+            ' . $opinie;
