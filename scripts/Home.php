@@ -103,13 +103,13 @@ $contentAdmin .= '
                     </form> 
                 ' . $opinieAdmin;
 
-$content .= "          
+$content .= '         
                 <h2>Aby dodać opinię musisz się zalogować!</h2>  
                 
-                <div id='slideshow'>
-                    <img src='images/home1.jpg' alt='home1' class='active'>
-                    <img src='images/home2.jpg' alt='home2' >
-                    <img src='images/home3.jpg' alt='home3' >
+                <div id="slideshow">
+                    <img src="images/home1.jpg" alt="home1" class="active">
+                    <img src="images/home2.jpg" alt="home2" >
+                    <img src="images/home3.jpg" alt="home3" >
                 </div>
             <br><br>
-            " . $opinie;
+            ' . $opinie;
