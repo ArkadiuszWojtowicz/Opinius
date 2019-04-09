@@ -65,7 +65,7 @@ class Website {
                             <li> <a href="?site=Phones">Telefony i smartfony</a> </li>
                             <li> <a href="?site=Peripherals">Urządzenia peryferyjne</a> </li>
                             <li> <a href="?site=Components">Podzespoły</a> </li>
-                            <li> <a href="?site=Accessories">Akcesoria</a> </li>
+                            <li> <a href="?site=Cameras">Aparaty i kamery</a> </li>
                         </ul>
                     </li> 
                     <li> <a href="?site=OurGoal">Nasz cel</a> </li>
@@ -88,7 +88,7 @@ class Website {
                             <li> <a href="?site=Phones">Telefony i smartfony</a> </li>
                             <li> <a href="?site=Peripherals">Urządzenia peryferyjne</a> </li>
                             <li> <a href="?site=Components">Podzespoły</a> </li>
-                            <li> <a href="?site=Accessories">Akcesoria</a> </li>
+                            <li> <a href="?site=Cameras">Aparaty i kamery</a> </li>
                         </ul>
                     </li> 
                     <li> <a href="?site=OurGoal">Nasz cel</a> </li>
@@ -111,7 +111,7 @@ class Website {
                             <li> <a href="?site=Phones">Telefony i smartfony</a> </li>
                             <li> <a href="?site=Peripherals">Urządzenia peryferyjne</a> </li>
                             <li> <a href="?site=Components">Podzespoły</a> </li>
-                            <li> <a href="?site=Accessories">Akcesoria</a> </li>
+                            <li> <a href="?site=Cameras">Aparaty i kamery</a> </li>
                         </ul>
                     </li> 
                     <li> <a href="?site=OurGoal">Nasz cel</a> </li>
@@ -200,13 +200,13 @@ class Website {
             </div>
             <div class="fakeReviews">                                      
                 <div class="frLink">
-                    <a href="index.php?site=Accessories">Akcesoria</a><br>
+                    <a href="index.php?site=Cameras">Aparaty i kamery</a><br>
                 </div>
                 <div class="frDestination">
-                    <a href="index.php?site=Accessories">Dowiedz się więcej <i class="icon-right"></i></a>
+                    <a href="index.php?site=Cameras">Dowiedz się więcej <i class="icon-right"></i></a>
                 </div>
                 <div class="frPhoto">
-                    <a href="index.php?site=Accessories"><img src="images/accessories.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
+                    <a href="index.php?site=Cameras"><img src="images/cameras.jpg" alt="Brak zdjęcia" width="100%" height="175px"></img></a>
                 </div>
             </div>
         </aside>

@@ -37,7 +37,7 @@ class Database {
     public function displayReviews($sql, $pola) { // ODPOWIADA ZA WYSWIETLANIE TABELI Z OPINIAMI NA STRONIE GLOWNEJ
         if ($result = $this->mysqli->query($sql)) {         
             
-            $tresc = "<table width='100%' class='table'><tbody>"; 
+            $tresc = "<table  class='table'><tbody>"; 
 
             while ($row = $result->fetch_object()) {
                 $p0 = $pola[0];
@@ -83,11 +83,12 @@ class Database {
                 $p3 = $pola[3];
                 $p4 = $pola[4];
 
-                $IdComment = $row->$p0;
+                $IdComment = $row->$p0;// <th rowspan='3' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $IdComment . "' class='rem' name='rem'> </form></th>
+//                $y=$db->DELETE("DELETE FROM items WHERE (`id-item` = '$IdComment')");
                 $tresc .= "
                             <tr> 
-                              <th rowspan='3' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $IdComment . "' class='rem' name='rem'> </form></th>
-                              <th height='40'>" . $row->$p2 . "</th>   
+                              <th rowspan='3' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $IdComment . "' class='rem' name='rem'> </form></th>"
+                        . "   <th height='40'>" . $row->$p2 . "</th>   
                             </tr>
                             <tr>    
                               <th height='40'>" . $row->$p3 . "</th>    
@@ -153,7 +154,6 @@ class Database {
     public function selectUser($login, $passwd, $table) {
         $ret = -1;
         $hashedpass = hash('ripemd160', $passwd);
-        echo "SELECT * FROM $table WHERE userName='$login' AND passwd='$hashedpass' LIMIT 1";
         if ($result = $this->mysqli->query("SELECT * FROM $table WHERE userName='$login' AND passwd='$hashedpass' LIMIT 1")) {
             if (mysqli_num_rows($result) > 0) {
                 $row = $result->fetch_object();

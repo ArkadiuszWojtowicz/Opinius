@@ -264,7 +264,6 @@ nav ul li:nth-last-child(2) a {
 }
 nav ul li:hover:nth-last-child(2){
     background: #ff3a41;
-
 }
 nav ul li:nth-last-child(3){
     border-right: 3px solid #d10000;
@@ -276,9 +275,6 @@ nav ul li:last-child{
 nav ul li:hover
 {
     background: #202020; 
-}
-nav ul li:hover a{
-    /*    color: #451717;*/
 }
 nav ul li ul{
     list-style-type: none;
@@ -313,7 +309,6 @@ nav ul li ul li:hover a{
 nav ul li ul li:nth-last-child(2){
     background: #000;
     margin-left: -40px;
-    /*margin-right: 0px;*/
 }
 nav ul li ul li:nth-last-child(2) a {
     font-weight: normal;
@@ -454,11 +449,18 @@ input[type=submit].textLeft{
     margin: 20px 0px 20px 0px;
     text-align: center;
 }
+input[type=submit].rem{
+    background: #ff0000;
+    color: #fff;
+    border: 0px;
+    padding: 5px 5px;
+    width: 150px;
+}
 input[type=submit].rem:hover{
     background: #ff3333;
     color: #fff;
     border: 0px;
-    padding: 10px 10px;
+    padding: 5px 5px;
 }
 input[type=passoword].secondPassword{
     width: 300px;
@@ -616,8 +618,8 @@ input[type=submit].deleteButton:hover{
     }
     aside {
         /*margin: 30px 50px 30px 50px;*/
-        margin-top: 30px;
-        margin-bottom: 30px;
+        margin-top: 300px;
+        margin-bottom: 300px;
         width:86%;
         margin: auto;
         grid-row-start: 3;
@@ -709,7 +711,7 @@ input[type=submit].deleteButton:hover{
     }      
 }
 /*smartfony pionowo*/
-@media only screen and (max-width: 340px) {
+@media only screen and (max-width: 415px) {
     .fb {
         float: none;
     }
@@ -724,7 +726,7 @@ input[type=submit].deleteButton:hover{
         float: none;
     }
     table{
-        width: 114%;
+        width: 112%;
         margin-left: -20px;
     }
     table td {
@@ -748,21 +750,21 @@ input[type=submit].deleteButton:hover{
         width: 250px;
     }
     .captcha {
-        margin-left:-10px;
+        margin-left:8px;
         transform:scale(0.82);
     }
     section {        
-        width:279px;
+        width:320px;
     }
     aside {
-        width:319px;
+        width:360px;
         margin: 25px 0px 25px 0px;
     }    
     nav {
         height: 132px;
         background: #000;
         position: static;
-        width:319px;
+        width:360px;
     }
     nav ul li ul li {        
         margin-left: -67px;
@@ -776,22 +778,34 @@ input[type=submit].deleteButton:hover{
     }
     nav ul li ul li:nth-last-child(3) {        
         margin-left: -67px;
+        width: 230px;
     }
     nav ul li ul li:nth-last-child(5) {        
         border-right: 0px;
     }
     nav ul li ul li:nth-last-child(4) {        
         margin-top:-2px;
+        margin-left: -67px;
+        width: 227px;
+    }
+    nav ul li ul li:nth-last-child(6) {        
+        margin-left: -67px;
+        border-right: 0px;
     }
     nav ul li ol li:nth-last-child(2) {        
         border-right: 0px;
     }
+    nav ul li:nth-last-child(6) {
+        border-right: 3px solid #d10000; 
+        margin-left: 26px;
+    }
     nav ul li:nth-last-child(5) {
+        border-left: 0px;
         border-right: 3px solid #d10000; 
     }
     nav ul li:nth-last-child(4) {
         margin-top: 6px;  
-        margin-right: -3px;
+        margin-left: 26px;
         border-right: 3px solid #000; 
         border-left: 3px solid #000;
     }
@@ -799,7 +813,7 @@ input[type=submit].deleteButton:hover{
         width: 149px;
         margin-top: -40px;
         margin-right:170px;
-        margin-left:0px;
+        margin-left:26px;
         /*background: blue;*/
         border-right: 3px solid #d10000; 
         border-left: 3px solid #d10000; 
@@ -808,33 +822,40 @@ input[type=submit].deleteButton:hover{
     nav ul li:nth-last-child(2) { /* login button */
         width: 133px;
         margin-top: -86px;
-        margin-right: 29px;
+        margin-right: 38px;
         border-right: 0px solid #d10000; 
         border-left: 0px solid #d10000; 
         float: right;
     }
-    nav ul li:nth-last-child(3) { /* more button */
+    nav ul li:nth-last-child(3) { /* contact button */
+        width: 149px;
         margin-top: 52px;
         border-right: 3px solid #d10000; 
-        border-left: 0px solid #d10000; 
+        border-left: 0px; 
         /*margin-right: 30px;*/
         float: left;
     }
     footer {
-        width:319px;
+        width:100%;
         margin: 0;
     }
     .socials {
-        width:319px;
+        width:360px;
     }
     table th {
         width:50px;
+    }
+    table td{
+        padding: 10px;
     }
     input[type=submit].emailChange {
         font-size: 17px;
     }
     .allegImage{
         width:100%;
+    }
+    input[type=submit].rem{
+        width: 80px;
     }
 }
 /* resize textarea */

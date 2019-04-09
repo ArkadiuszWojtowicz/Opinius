@@ -26,7 +26,7 @@ if (isset($_GET['site'])) {
             break;
         case 'Components':$site = 'Components';
             break;
-        case 'Accessories':$site = 'Accessories';
+        case 'Cameras':$site = 'Cameras';
             break;
         case 'BritishCouncil':$site = 'BritishCouncil';
             break;
