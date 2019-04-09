@@ -42,3 +42,9 @@ $(function () {
 //    setInterval("setTimeout(function(){ $('.icon-star-filled').fadeOut(1000); }, 1000)", 6000);
     setInterval("$('.icon-star-filled').fadeOut(1000)", 7000);
 });
+//    include_once "scripts/class/database.php";
+//
+//function removeOpinion($x, $y){
+//    $db = new Database("localhost", "root", "", "opinius");
+//    $db->DELETE("DELETE FROM items WHERE (`id-item` = '$x')");
+//}

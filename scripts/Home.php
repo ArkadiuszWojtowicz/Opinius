@@ -51,7 +51,7 @@ $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                                 <option>Telefony i smartfony</option>
                                 <option>Urządzenia peryferyjne</option>
                                 <option>Podzespoły</option>
-                                <option>Akcesoria</option>    
+                                <option>Aparaty i kamery</option>    
                             </select><br>
                             <p>Twoja opinia:<p>
                             <textarea rows="9" name="review" class="textLeft" required></textarea><br>
@@ -94,7 +94,7 @@ $contentAdmin .= '
                                 <option>Telefony i smartfony</option>
                                 <option>Urządzenia peryferyjne</option>
                                 <option>Podzespoły</option>
-                                <option>Akcesoria</option>    
+                                <option>Aparaty i kamery</option>    
                             </select><br>
                             <p>Twoja opinia:<p>
                             <textarea rows="9" name="review" class="textLeft" required></textarea><br>
