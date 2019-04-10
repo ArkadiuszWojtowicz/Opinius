@@ -7,7 +7,7 @@ session_start();
 include_once 'class/database.php';
 include_once 'class/userManager.php';
 
-$db = new Database("serwer1980150.home.pl", "30402744_opinius", "Waldek84!", "30402744_opinius");
+$db = new Database("localhost", "root", "", "opinius");
 $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
 
 $adres = 'admin@opinius.com.pl';
