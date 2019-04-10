@@ -16,7 +16,7 @@ if (isset($_SESSION['sendEmail']) && $status == 1) {
     unset($_SESSION['sendEmail']);
 }
 $contentLOG .= '           
-                        <h2> Kontakt </h2>
+                        <h2>Kontakt</h2>
                         <p>Masz pytanie? Napisz do admina.</p>                       
                         <p>Odpowiem najszybciej jak to możliwe ;)</p><br>
                     <form action="scripts/sendMail.php" method="post" class="textCenter"> 
