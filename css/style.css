@@ -668,8 +668,10 @@ input[type=submit].deleteButton:hover{
         margin-top: 0px;
         float: left;
         margin-left: -40px;
+        border-left: 0px;
     }
     nav ul li ul li:nth-last-child(2){
+        border-right: 0px;
         margin-top: 0px;
         float: left;
         width: 230px;
@@ -711,7 +713,7 @@ input[type=submit].deleteButton:hover{
     }      
 }
 /*smartfony pionowo*/
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 480px) {
     .fb {
         float: none;
     }
