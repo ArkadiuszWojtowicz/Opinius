@@ -11,7 +11,13 @@ Przykładowy login i hasło:<br>
 Login: michal90 <br>
 Hasło: michal90
 
-Również można posiadać konto jako admin. Admin ma możliwość usuwania opiń, przyznawania statusu admina innemu użytkownikowi lub jego odbierania.
-
 # Konto admina
 
+Również można posiadać konto jako admin. Admin ma możliwość usuwania opiń, przyznawania statusu admina innemu użytkownikowi lub jego odbierania.
+
+# Użyte technologie
+
+Frontend: HTML, CSS, JavaScript, jQuery
+Backend: PHP
+Bazy danych: mySQL
+Responsywność: CSS grid
