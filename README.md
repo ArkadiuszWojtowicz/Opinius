@@ -7,7 +7,7 @@ Strona opinius, zrzeszająca opinie na temat sprzętu elektronicznego. Ponadto u
 # Logowanie
 
 Aby dodać opinię należy się zarejestrować lub po udanym procesie rejestracji - zalogować.
-Przykładowy login i hasło:<br>
+Przykładowy login i hasło: <br><br>
 Login: michal90 <br>
 Hasło: michal90
 
@@ -17,7 +17,9 @@ Również można posiadać konto jako admin. Admin ma możliwość usuwania opi�
 <br>
 ### Usuwanie opiń
 ![adminReview](https://user-images.githubusercontent.com/47980159/55991350-5c0c0c80-5caa-11e9-8b3f-b76df1ff2cd5.jpg)
-
+<br>
+### Przyznawanie i odbieranie statusu admina
+![adminStatus](https://user-images.githubusercontent.com/47980159/55992210-4f88b380-5cac-11e9-9de0-25ad56d2547c.jpg)
 
 # Użyte technologie
 
