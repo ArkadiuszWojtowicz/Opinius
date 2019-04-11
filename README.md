@@ -15,7 +15,7 @@ Hasło: michal90
 
 Również można posiadać konto jako admin. Admin ma możliwość usuwania opiń, przyznawania statusu admina innemu użytkownikowi lub jego odbierania.
 <br>
-### Usuwanie opiń
+### Usuwanie opinii
 ![adminReview](https://user-images.githubusercontent.com/47980159/55991350-5c0c0c80-5caa-11e9-8b3f-b76df1ff2cd5.jpg)
 <br>
 ### Przyznawanie i odbieranie statusu admina
