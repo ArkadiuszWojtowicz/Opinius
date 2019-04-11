@@ -25,6 +25,9 @@ Również można posiadać konto jako admin. Admin ma dodatkowe przywileje m.in.
 ### Przyznawanie i odbieranie statusu admina
 ![adminStatus](https://user-images.githubusercontent.com/47980159/55992210-4f88b380-5cac-11e9-9de0-25ad56d2547c.jpg)
 
+# Serwis jest w pełni responsywny
+![responsive](https://user-images.githubusercontent.com/47980159/55993301-06862e80-5caf-11e9-9085-8722392d3d32.jpg)
+
 # Użyte technologie
 
 Frontend: HTML, CSS, JavaScript, jQuery <br>
