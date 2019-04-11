@@ -14,10 +14,12 @@ Hasło: michal90
 # Konto admina
 
 Również można posiadać konto jako admin. Admin ma możliwość usuwania opiń, przyznawania statusu admina innemu użytkownikowi lub jego odbierania.
+<br>
+
 
 # Użyte technologie
 
-Frontend: HTML, CSS, JavaScript, jQuery
-Backend: PHP
-Bazy danych: mySQL
+Frontend: HTML, CSS, JavaScript, jQuery <br>
+Backend: PHP <br>
+Bazy danych: mySQL <br>
 Responsywność: CSS grid
