@@ -10,10 +10,14 @@ Aby dodać opinię należy się zarejestrować lub po udanym procesie rejestracj
 Przykładowy login i hasło: <br><br>
 Login: michal90 <br>
 Hasło: michal90
+<br>
+### Dodawanie opinii po zalogowaniu
+![addReview](https://user-images.githubusercontent.com/47980159/55992535-1b61c280-5cad-11e9-98ba-8f57368e69c6.jpg)
+
 
 # Konto admina
 
-Również można posiadać konto jako admin. Admin ma możliwość usuwania opiń, przyznawania statusu admina innemu użytkownikowi lub jego odbierania.
+Również można posiadać konto jako admin. Admin ma dodatkowe przywileje m.in. usuwania opiń, przyznawania statusu admina innemu użytkownikowi lub jego odbierania.
 <br>
 ### Usuwanie opinii
 ![adminReview](https://user-images.githubusercontent.com/47980159/55991350-5c0c0c80-5caa-11e9-8b3f-b76df1ff2cd5.jpg)
