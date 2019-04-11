@@ -1,4 +1,4 @@
-# PHP service
+# Serwis internetowy - Opinius
 
 http://opinius.com.pl
 
@@ -10,3 +10,6 @@ Login: michal90 <br>
 Hasło: michal90
 
 Również można posiadać konto jako admin. Admin ma możliwość usuwania opiń, przyznawania statusu admina innemu użytkownikowi lub jego odbierania.
+
+# Konto admina
+
