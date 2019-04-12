@@ -47,12 +47,12 @@ if (filter_input(INPUT_POST, "zaloguj")) {
     $content .='<h2>Chcesz dodać opinię? Zaloguj się!</h2>
                 <form action="scripts/Login.php" method="post"> 
                 <input type="text" name="userName" placeholder="Login" onfocus="this.placeholder=" onblur="this.placeholder=login"><br>
-                <input type="password" name="passwd" placeholder="Hasło" onfocus="this.placeholder=" onblur="this.placeholder=hasło" ><br>';
+                <input type="password" name="passwd" placeholder="Hasło" onfocus="this.placeholder=" onblur="this.placeholder=hasło" ><br>
+                <a href="index.php?site=PasswordReminder">Zapomniałeś hasła?</a><br>';
                 if (isset($_SESSION['wrongLogin'])) {
                     $content .= '<div class="error">' . $_SESSION['wrongLogin'] . '</div>';
                     unset($_SESSION['wrongLogin']);
                 }
-                //<a href="index.php?site=PasswordReminder">Zapomniałeś hasła?</a>
     $content .='<input type="submit" value="Zaloguj się" name="zaloguj">
                 </form>
                 

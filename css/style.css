@@ -12,7 +12,7 @@ body {
     width: 100%;
     text-align: left;
     display: inline-grid;
-    grid-template-columns:350px 1fr;
+    grid-template-columns: 350px 1fr;
     grid-template-rows: auto auto auto auto;
 }
 h1 {
@@ -211,7 +211,7 @@ footer {
     grid-column: 1 / span 2;
     grid-row-start: 4;
 }
-footer p {		
+footer p {    	
     color: #8C594C;
 }
 footer a {
@@ -668,11 +668,13 @@ input[type=submit].deleteButton:hover{
         margin-top: 0px;
         float: left;
         margin-left: -40px;
+        border-left: 0;
     }
     nav ul li ul li:nth-last-child(2){
         margin-top: 0px;
         float: left;
         width: 230px;
+        border-right: 0;
     }
     nav ul li ul li:nth-last-child(1){
         margin-top: 0px;
@@ -683,7 +685,7 @@ input[type=submit].deleteButton:hover{
         float: left;
         margin-top: 8px;
         width:150px;
-
+    
     }
     nav ul li ol li:nth-last-child(1) {
         float: left;
@@ -711,7 +713,7 @@ input[type=submit].deleteButton:hover{
     }      
 }
 /*smartfony pionowo*/
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 480px) {
     .fb {
         float: none;
     }
@@ -792,9 +794,6 @@ input[type=submit].deleteButton:hover{
         margin-left: -67px;
         border-right: 0px;
     }
-    nav ul li ol li:nth-last-child(2) {        
-        border-right: 0px;
-    }
     nav ul li:nth-last-child(6) {
         border-right: 3px solid #d10000; 
         margin-left: 26px;
@@ -823,15 +822,15 @@ input[type=submit].deleteButton:hover{
         width: 133px;
         margin-top: -86px;
         margin-right: 38px;
-        border-right: 0px solid #d10000; 
-        border-left: 0px solid #d10000; 
+        border-right: 0; 
+        border-left: 0; 
         float: right;
     }
     nav ul li:nth-last-child(3) { /* contact button */
         width: 149px;
         margin-top: 52px;
         border-right: 3px solid #d10000; 
-        border-left: 0px; 
+        border-left: 0; 
         /*margin-right: 30px;*/
         float: left;
     }
