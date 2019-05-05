@@ -23,7 +23,7 @@ if (isset($_SESSION['logged']) && $status == 1) { // info o zalogowaniu
     $contentLOG .= '<div class="textCenter">' . $_SESSION['logged'] . '</div>';
     unset($_SESSION['logged']);
 }
-if (isset($_SESSION['loggedOut'])) { // info o wylogowaniu
+if (isset($_SESSION['loggedOut']) && $status !=1 && status !=2) { // info o wylogowaniu
     $content .= '<div class="textCenter">' . $_SESSION['loggedOut'] . '</div>';
     unset($_SESSION['loggedOut']);
 }

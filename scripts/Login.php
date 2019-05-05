@@ -15,10 +15,8 @@ $um = new UserManager();
 if (filter_input(INPUT_GET, "akcja") == "wyloguj") {
     $um->logout($db);
     $_SESSION['log'] = FALSE;
-    $_SESSION['loggedOut'] = '<span style="color:green; font-size:16px;">Wylogowano pomyślnie!</span>'; // NIE DZIALA
+    $_SESSION['loggedOut'] = '<span style="color:green; font-size:16px;">Wylogowano pomyślnie!</span>'; 
     header("location:../index.php?site=index"); // PRZEKIEROWANIE PO WYLOGOWANIU
-    //$_SESSION['logged'] = '<span style="color:green; font-size:16px;">Logowanie poprawne!</span>';
-    
 }
 if (filter_input(INPUT_POST, "zaloguj")) {
     $userId = $um->login($db);
@@ -44,13 +42,14 @@ if (filter_input(INPUT_POST, "zaloguj")) {
                     $content .= $_SESSION['registration'];
                     unset($_SESSION['registration']);
                 }
+                
     $content .='<h2>Chcesz dodać opinię? Zaloguj się!</h2>
                 <form action="scripts/Login.php" method="post"> 
-                <input type="text" name="userName" placeholder="Login" onfocus="this.placeholder=" onblur="this.placeholder=login"><br>
-                <input type="password" name="passwd" placeholder="Hasło" onfocus="this.placeholder=" onblur="this.placeholder=hasło" ><br>
-                <a href="index.php?site=PasswordReminder">Zapomniałeś hasła?</a><br>';
+                <input type="text" name="userName" placeholder="Login" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Login\'"><br>
+                <input type="password" name="passwd" placeholder="Hasło" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Hasło\'" ><br>
+                <div style="margin-top:5px;"><a href="index.php?site=PasswordReminder" >Zapomniałeś hasła?</a><br></div>';
                 if (isset($_SESSION['wrongLogin'])) {
-                    $content .= '<div class="error">' . $_SESSION['wrongLogin'] . '</div>';
+                    $content .= '<div style="margin-top:15px;color:red;">' . $_SESSION['wrongLogin'] . '</div>';
                     unset($_SESSION['wrongLogin']);
                 }
     $content .='<input type="submit" value="Zaloguj się" name="zaloguj">
@@ -58,32 +57,32 @@ if (filter_input(INPUT_POST, "zaloguj")) {
                 
                 <h3>Pierwszy raz w serwisie? Zarejestruj się!</h3>    
                 <form action="scripts/Registration.php" method="post">
-                <input type="text" name="userName" placeholder="Nazwa użytkownika" onfocus="this.placeholder=" onblur="this.placeholder=nazwa użytkownika" ><br>';
+                <input type="text" name="userName" placeholder="Nazwa użytkownika" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Nazwa użytkownika\'" ><br>';
                 if (isset($_SESSION['error_nick'])) {
                     $content .= '<div class="error">' . $_SESSION['error_nick'] . '</div>';
                     unset($_SESSION['error_nick']);
                 }
-    $content .= '<input type="text" name="firstName" placeholder="Imię" onfocus="this.placeholder=" onblur="this.placeholder=imię"/><br>';
+    $content .= '<input type="text" name="firstName" placeholder="Imię" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Imię\'"/><br>';
                 if (isset($_SESSION['error_imie'])) {
                     $content .= '<div class="error">' . $_SESSION['error_imie'] . '</div>';
                     unset($_SESSION['error_imie']);
                 }
-    $content .= '<input type="text" name="surname" placeholder="Nazwisko" onfocus="this.placeholder=" onblur="this.placeholder=nazwisko"/><br>';
+    $content .= '<input type="text" name="surname" placeholder="Nazwisko" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Nazwisko\'"/><br>';
                 if (isset($_SESSION['error_surname'])) {
                     $content .= '<div class="error">' . $_SESSION['error_surname'] . '</div>';
                     unset($_SESSION['error_surname']);
                 }
-    $content .= '<input type="password" name="passwd" placeholder="Hasło" onfocus="this.placeholder=" onblur="this.placeholder=hasło"/><br>';
+    $content .= '<input type="password" name="passwd" placeholder="Hasło" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Hasło\'"/><br>';
                 if (isset($_SESSION['error_password'])) {
                     $content .= '<div class="error">' . $_SESSION['error_password'] . '</div>';
                     unset($_SESSION['error_password']);
                 }
-    $content .= '<input type="password" name="passwd2" placeholder="Powtórz hasło" onfocus="this.placeholder=" onblur="this.placeholder=powtórz hasło" /><br>';   
+    $content .= '<input type="password" name="passwd2" placeholder="Powtórz hasło" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Powtórz hasło\'" /><br>';   
                 if (isset($_SESSION['error_password2'])) {
                     $content .= '<div class="error">' . $_SESSION['error_password2'] . '</div>';
                     unset($_SESSION['error_password2']);
                 }
-    $content .= '<input type="email" name="email" placeholder="E-mail" onfocus="this.placeholder=" onblur="this.placeholder=e-mail"/>';
+    $content .= '<input type="email" name="email" placeholder="E-mail" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'E-mail\'"/>';
                 if (isset($_SESSION['error_email'])) {
                     $content .= '<div class="error">' . $_SESSION['error_email'] . '</div>';
                     unset($_SESSION['error_email']);

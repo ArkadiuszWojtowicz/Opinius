@@ -288,7 +288,6 @@ class Website {
             $this->socials();
             $this->footer();
 
-
             echo '</body></html>';
         }
 
