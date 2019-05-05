@@ -50,6 +50,7 @@ p {
     font-size: 14px;
 
 }
+
 .textCenter{
     margin: auto;
     text-align: center;
@@ -685,7 +686,7 @@ input[type=submit].deleteButton:hover{
         float: left;
         margin-top: 8px;
         width:150px;
-    
+
     }
     nav ul li ol li:nth-last-child(1) {
         float: left;
@@ -740,8 +741,6 @@ input[type=submit].deleteButton:hover{
     input[type=submit].textLeft,
     input[type=submit]{
         width: 250px;
-        margin-left:15px;
-
     }
     input[type=text],
     input[type=password],
