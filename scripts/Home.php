@@ -11,7 +11,7 @@ include_once 'class/userManager.php';
 
 $db = new Database("localhost", "root", "", "opinius");
 
-$opinie = $db->displayReviews("SELECT `id-item`, nick, name, category, review from items ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "review"));
+$opinie = $db->displayReviews("SELECT `id-item`, nick, name, category, review, star from items ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "review", "star"));
 $opinieAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, review from items ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "review"));
 $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
 
@@ -53,6 +53,14 @@ $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                                 <option>Podzespoły</option>
                                 <option>Aparaty i kamery</option>    
                             </select><br>
+                            <p>Twoja ocena:</p>
+                            <div class="rating" id="stars">
+                                <label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>
+                                <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>
+                                <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>
+                                <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" name="button"></i></label>
+                                <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" name="button"></i></label>
+                            </div>
                             <p>Twoja opinia:<p>
                             <textarea rows="9" name="review" class="textLeft" required></textarea><br>
                             <input type="submit" value="Dodaj opinię" class="textLeft"><br>                                                

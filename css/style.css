@@ -122,6 +122,21 @@ aside {
     background: #202020; 
     padding: 5px 0px;
 }
+
+.rating {
+  color: #515754;
+  direction: rtl;
+}
+.rating i:hover
+ {
+   color: yellow;
+   transition: 0.2s;
+}
+label:hover ~ label {
+    color: yellow;
+    transition: 0.2s;
+}
+
 .examples {
     padding: 25px 19px 16px 19px;
     text-align: center;

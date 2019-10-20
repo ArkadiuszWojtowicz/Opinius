@@ -9,8 +9,9 @@ $nick = $db->select("SELECT userName from users u JOIN logged_in_users l ON u.id
 $name = $_POST['name'];
 $category = $_POST['category'];
 $review = $_POST['review'];
+$rating = $_POST['button'];
 
-$db->INSERT("INSERT INTO items Values(NULL,'$name','$category','$nick','$review')");
+$db->INSERT("INSERT INTO items Values(NULL,'$name','$category','$nick','$review','$rating')");
 
 if (isset($_POST['review'])) {
     $_SESSION['added'] = '<span style="color:green; text-align: center; font-size:16px;">Opinia została dodana!</span>';

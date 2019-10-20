@@ -57,7 +57,9 @@
  
 
 .icon-search:before { content: '\e804'; font-size:60px;} /* '' */
-.icon-star-filled:before { content: '\e802'; font-size:35px;} /* '' */
+.icon-star-filled:before { content: '\e802'; font-size:40px;} /* '' */
+.icon-star-filled-slide:before { content: '\e802'; font-size:35px;} /* '' */
+.icon-star-filled-display:before { content: '\e802'; font-size:30px;} /* '' */
 .icon-star:before { content: '\e803'; font-size:35px;} /* '' */
 .icon-cog-alt:before { content: '\e800'; font-size:40px;} /* '' */
 .icon-twitter:before { content: '\f099'; font-size:72px;margin-top:45px;} /* '' */
