@@ -134,11 +134,11 @@ class Website {
                         <div class="opinius"><span style="color:red">O</span>pinius</div>
                         <div class="logoText">Łatwiejsze wybory z każdym dniem</div>
                         <div class="star">
-                            <i class="icon-star-filled s1"></i>
-                            <i class="icon-star-filled s2"></i>
-                            <i class="icon-star-filled s3"></i>
-                            <i class="icon-star-filled s4"></i>
-                            <i class="icon-star-filled s5"></i>
+                            <i class="icon-star-filled-slide s1"></i>
+                            <i class="icon-star-filled-slide s2"></i>
+                            <i class="icon-star-filled-slide s3"></i>
+                            <i class="icon-star-filled-slide s4"></i>
+                            <i class="icon-star-filled-slide s5"></i>
                         </div>
                     </div>
                 </div>

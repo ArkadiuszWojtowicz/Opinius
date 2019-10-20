@@ -37,7 +37,7 @@ class Database {
     public function displayReviews($sql, $pola) { // ODPOWIADA ZA WYSWIETLANIE TABELI Z OPINIAMI NA STRONIE GLOWNEJ
         if ($result = $this->mysqli->query($sql)) {         
             
-            $tresc = "<table  class='table'><tbody>"; 
+            $tresc = "<table width='100%' class='table'><tbody>"; 
 
             while ($row = $result->fetch_object()) {
                 $p0 = $pola[0];
@@ -45,14 +45,33 @@ class Database {
                 $p2 = $pola[2];
                 $p3 = $pola[3];
                 $p4 = $pola[4];
+                $p5 = $pola[5];
+                if($row->$p5==1){
+                    $new = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($row->$p5==2){
+                    $new = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($row->$p5==3){
+                    $new = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($row->$p5==4){
+                    $new = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($row->$p5==5){
+                    $new = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
                 
                 $tresc .= "
                             <tr> 
-                              <th rowspan='3' height='275' width='170'><br>Użytkownik:<br><br>" . $row->$p1 . "<br><br><br><br><br><br>ID opinii: " . $row->$p0 . "</th>
+                              <th rowspan='4' height='275' width='170'><br>Użytkownik:<br><br>" . $row->$p1 . "<br><br><br><br><br><br>ID opinii: " . $row->$p0 . "</th>
                               <th height='40'>" . $row->$p2 . "</th>   
                             </tr>
                             <tr>    
                               <th height='40'>" . $row->$p3 . "</th>    
+                            </tr>       
+                            <tr>    
+                              <th height='40'>" . $new . "</th>    
                             </tr>
                             <tr>    
                               <td>" . $row->$p4 . "</td>    

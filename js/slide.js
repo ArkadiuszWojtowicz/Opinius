@@ -33,14 +33,14 @@ function showStar5() {
 }
 
 $(function () {
-    setTimeout(function(){ $('.icon-star-filled').fadeOut(1000); }, 1000);
+    setTimeout(function(){ $('.icon-star-filled-slide').fadeOut(1000); }, 1000);
     setInterval("showStar1()", 1000);
     setInterval("showStar2()", 1000);
     setInterval("showStar3()", 1000);
     setInterval("showStar4()", 1000);
     setInterval("showStar5()", 1000);
-//    setInterval("setTimeout(function(){ $('.icon-star-filled').fadeOut(1000); }, 1000)", 6000);
-    setInterval("$('.icon-star-filled').fadeOut(1000)", 7000);
+//    setInterval("setTimeout(function(){ $('.icon-star-filled-slide').fadeOut(1000); }, 1000)", 6000);
+    setInterval("$('.icon-star-filled-slide').fadeOut(1000)", 7000);
 });
 //    include_once "scripts/class/database.php";
 //
@@ -48,3 +48,41 @@ $(function () {
 //    $db = new Database("localhost", "root", "", "opinius");
 //    $db->DELETE("DELETE FROM items WHERE (`id-item` = '$x')");
 //}
+
+
+
+function changeColor1star(){
+    document.getElementById("stars").innerHTML =          '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                        + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                        + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                        + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                        + ' <label><input type="radio" style="display:none" value="1" name="button" checked="checked" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow" name="button"></i></label>';
+    }
+    function changeColor2star(){
+        document.getElementById("stars").innerHTML =   '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="2" name="button" checked="checked" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+    }
+    function changeColor3star(){
+        document.getElementById("stars").innerHTML =   '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="3" name="button" checked="checked" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+    }
+    function changeColor4star(){
+        document.getElementById("stars").innerHTML =   '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="4" name="button" checked="checked" onclick="changeColor4star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+    }
+    function changeColor5star(){
+        document.getElementById("stars").innerHTML =   '<label><input type="radio" style="display:none" value="5" name="button" checked="checked" onclick="changeColor5star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+                                                                + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+    }
