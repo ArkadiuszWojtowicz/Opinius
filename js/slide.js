@@ -33,7 +33,9 @@ function showStar5() {
 }
 
 $(function () {
-    setTimeout(function(){ $('.icon-star-filled-slide').fadeOut(1000); }, 1000);
+    setTimeout(function () {
+        $('.icon-star-filled-slide').fadeOut(1000);
+    }, 1000);
     setInterval("showStar1()", 1000);
     setInterval("showStar2()", 1000);
     setInterval("showStar3()", 1000);
@@ -51,38 +53,108 @@ $(function () {
 
 
 
-function changeColor1star(){
-    document.getElementById("stars").innerHTML =          '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                        + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                        + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                        + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                        + ' <label><input type="radio" style="display:none" value="1" name="button" checked="checked" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow" name="button"></i></label>';
+function changeColor1star() {
+    document.getElementById("stars").innerHTML = '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="1" name="button" checked="checked" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow" name="button"></i></label>';
+}
+function changeColor2star() {
+    document.getElementById("stars").innerHTML = '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="2" name="button" checked="checked" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+}
+function changeColor3star() {
+    document.getElementById("stars").innerHTML = '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="3" name="button" checked="checked" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+}
+function changeColor4star() {
+    document.getElementById("stars").innerHTML = '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="4" name="button" checked="checked" onclick="changeColor4star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+}
+function changeColor5star() {
+    document.getElementById("stars").innerHTML = '<label><input type="radio" style="display:none" value="5" name="button" checked="checked" onclick="changeColor5star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
+            + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+}
+
+function change($number) {
+    if ($number === "Telewizory") {
+        document.getElementById("brand").innerHTML = '<p>Marka:</p>'
+                + '<select name="brand" class="textLeft">'
+                + '<option>Samsung</option>'
+                + '<option>LG</option>'
+                + '<option>Panasonic</option>'
+                + '<option>Toshiba</option>'
+                + '<option>Philips</option>'
+                + '<option>Manta</option> '
+                + '</select><br>';
     }
-    function changeColor2star(){
-        document.getElementById("stars").innerHTML =   '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="2" name="button" checked="checked" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+    if ($number === "Komputery i laptopy") {
+        document.getElementById("brand").innerHTML = '<p>Marka:</p>'
+                + '<select name="brand" class="textLeft">'
+                + '<option>Lenovo</option>'
+                + '<option>LG</option>'
+                + '<option>Panasonic</option>'
+                + '<option>Toshiba</option>'
+                + '<option>Philips</option>'
+                + '<option>Manta</option> '
+                + '</select><br>';
     }
-    function changeColor3star(){
-        document.getElementById("stars").innerHTML =   '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="3" name="button" checked="checked" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+    if ($number === "Telefony i smartfony") {
+        document.getElementById("brand").innerHTML = '<p>Marka:</p>'
+                + '<select name="brand" class="textLeft">'
+                + '<option>Xiaomi</option>'
+                + '<option>LG</option>'
+                + '<option>Panasonic</option>'
+                + '<option>Toshiba</option>'
+                + '<option>Philips</option>'
+                + '<option>Manta</option> '
+                + '</select><br>';
     }
-    function changeColor4star(){
-        document.getElementById("stars").innerHTML =   '<label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="4" name="button" checked="checked" onclick="changeColor4star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+    if ($number === "Urządzenia peryferyjne") {
+        document.getElementById("brand").innerHTML = '<p>Marka:</p>'
+                + '<select name="brand" class="textLeft">'
+                + '<option>Peryferyjne</option>'
+                + '<option>LG</option>'
+                + '<option>Panasonic</option>'
+                + '<option>Toshiba</option>'
+                + '<option>Philips</option>'
+                + '<option>Manta</option> '
+                + '</select><br>';
     }
-    function changeColor5star(){
-        document.getElementById("stars").innerHTML =   '<label><input type="radio" style="display:none" value="5" name="button" checked="checked" onclick="changeColor5star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>'
-                                                                + ' <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" style="color:yellow;" name="button"></i></label>';
+    if ($number === "Podzespoły") {
+        document.getElementById("brand").innerHTML = '<p>Marka:</p>'
+                + '<select name="brand" class="textLeft">'
+                + '<option>Intel</option>'
+                + '<option>LG</option>'
+                + '<option>Panasonic</option>'
+                + '<option>Toshiba</option>'
+                + '<option>Philips</option>'
+                + '<option>Manta</option> '
+                + '</select><br>';
     }
+    if ($number === "Aparaty i kamery") {
+        document.getElementById("brand").innerHTML = '<p>Marka:</p>'
+                + '<select name="brand" class="textLeft">'
+                + '<option>Canon</option>'
+                + '<option>LG</option>'
+                + '<option>Panasonic</option>'
+                + '<option>Toshiba</option>'
+                + '<option>Philips</option>'
+                + '<option>Manta</option> '
+                + '</select><br>';
+    }
+
+}
