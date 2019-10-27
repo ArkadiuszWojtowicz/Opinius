@@ -16,6 +16,8 @@ $opinieAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, 
 $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
 $sortBest = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `star` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
 $sortWorst = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `star`", array("id-item", "nick", "name", "category", "brand", "review", "star"));
+$sortBestAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `star` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
+$sortWorstAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `star`", array("id-item", "nick", "name", "category", "brand", "review", "star"));
 
 $contentAdmin = '';
 $contentLOG = '';
@@ -71,13 +73,10 @@ $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                             <textarea rows="9" name="review" class="textLeft" required></textarea><br>
                             <input type="submit" value="Dodaj opinię" class="textLeft"><br>                                                
                         </div>
-                        <div class="textRight">
-                         
-                        </div>
                     </form>   
                       
                     <div class="textRight">   
-                            <form method="post">
+                        <form method="post">
                             <select name="sort" class="sortSelect" onchange="this.form.submit()">
                                 <option selected disabled hidden>Sortuj opinie:</option>
                                 <option value="Najnowsze">Najnowsze</option>
@@ -85,18 +84,20 @@ $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                                 <option value="Rosnąco">Od najgorszej</option>                                                    
                             </select>
                         </form> 
-                        </div>'; 
+                    </div>';
 
-if(isset($_POST['sort']) && $_POST['sort'] === 'Malejąco') { // sortowanie opinii
+if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco' && $status == 1) { // sortowanie opinii
     $contentLOG .= $sortBest;
 }
-if(isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco') { 
+if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 1) {
     $contentLOG .= $sortWorst;
 }
-else{
+if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 1) {
     $contentLOG .= $opinie;
 }
-
+if (!isset($_POST['sort']) && $status == 1) {
+    $contentLOG .= $opinie;
+}
 
 if (isset($_SESSION['logged']) && $status == 2) { // info o zalogowaniu
     $contentAdmin .= '<div class="textCenter">' . $_SESSION['logged'] . '</div>';
@@ -123,30 +124,56 @@ $contentAdmin .= '
                         <div class="textLeft">
                             <p>Nazwa przedmiotu:</p>
                             <input type="text" name="name" class="textLeft" required><br>
-                            <p>Kategoria:</p>
-                            <select name="category" class="textLeft" onchange="tvBrand()">
-                                <option onclick="tvBrand()">Telewizory</option>
-                                <option>Komputery i laptopy</option>
-                                <option>Telefony i smartfony</option>
-                                <option>Urządzenia peryferyjne</option>
-                                <option>Podzespoły</option>
-                                <option>Aparaty i kamery</option>    
-                            </select><br>
-                            <div id="brand"></div>
+                            <div style="display:inline-block">
+                                <p>Kategoria:</p>
+                                <select name="category" class="textLeft" onchange="change(value)">
+                                    <option selected disabled hidden>Wybierz kategorię</option>
+                                    <option value="Telewizory">Telewizory</option>
+                                    <option value="Komputery i laptopy">Komputery i laptopy</option>
+                                    <option value="Telefony i smartfony">Telefony i smartfony</option>
+                                    <option value="Urządzenia peryferyjne">Urządzenia peryferyjne</option>
+                                    <option value="Podzespoły">Podzespoły</option>
+                                    <option value="Aparaty i kamery">Aparaty i kamery</option>    
+                                </select>
+                            </div>
+                            <div style="display:inline-block; margin-left: 20px;" id="brand"></div>
                             <p>Twoja ocena:</p>
-                            <div class="rating" id="stars">
-                                <label><input type="radio" style="display:none" value="5" name="button" onclick="tvBrand()"><i class="icon-star-filled" name="button"></i></label>
-                                <label><input type="radio" style="display:none" value="4" name="button" onclick="tvBrand()"><i class="icon-star-filled" name="button"></i></label>
-                                <label><input type="radio" style="display:none" value="3" name="button" onclick="tvBrand()"><i class="icon-star-filled" name="button"></i></label>
-                                <label><input type="radio" style="display:none" value="2" name="button" onclick="tvBrand()"><i class="icon-star-filled" name="button"></i></label>
-                                <label><input type="radio" style="display:none" value="1" name="button" onclick="tvBrand()"><i class="icon-star-filled" name="button"></i></label>
+                            <div class="rating" id="stars" name="stars">
+                                <label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>
+                                <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>
+                                <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>
+                                <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" name="button"></i></label>
+                                <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" name="button"></i></label>
                             </div>
                             <p>Twoja opinia:<p>
                             <textarea rows="9" name="review" class="textLeft" required></textarea><br>
                             <input type="submit" value="Dodaj opinię" class="textLeft"><br>                                                
                         </div>
-                    </form> 
-                ' . $opinieAdmin;
+                    </form>   
+                      
+                    <div class="textRight">   
+                        <form method="post">
+                            <select name="sort" class="sortSelect" onchange="this.form.submit()">
+                                <option selected disabled hidden>Sortuj opinie:</option>
+                                <option value="Najnowsze">Najnowsze</option>
+                                <option value="Malejąco">Od najlepszej</option>
+                                <option value="Rosnąco">Od najgorszej</option>                                                    
+                            </select>
+                        </form> 
+                    </div>';
+
+if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco' && $status == 2) { // sortowanie opinii
+    $contentAdmin .= $sortBestAdmin;
+}
+if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 2) {
+    $contentAdmin .= $sortWorstAdmin;
+}
+if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 2) {
+    $contentAdmin .= $opinieAdmin;
+}
+if (!isset($_POST['sort']) && $status == 2) {
+    $contentAdmin .= $opinieAdmin;
+}
 
 $content .= '         
                 <h2>Aby dodać opinię musisz się zalogować!</h2>  
@@ -157,4 +184,26 @@ $content .= '
                     <img src="images/home3.jpg" alt="home3" >
                 </div>
             <br><br>
-            ' . $opinie;
+            <div class="textRight">   
+                        <form method="post">
+                            <select name="sort" class="sortSelect" onchange="this.form.submit()">
+                                <option selected disabled hidden>Sortuj opinie:</option>
+                                <option value="Najnowsze">Najnowsze</option>
+                                <option value="Malejąco">Od najlepszej</option>
+                                <option value="Rosnąco">Od najgorszej</option>                                                    
+                            </select>
+                        </form> 
+                    </div>';
+
+if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco') { // sortowanie opinii
+    $content .= $sortBest;
+}
+if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco') {
+    $content .= $sortWorst;
+}
+if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze') {
+    $content .= $opinie;
+}
+if (!isset($_POST['sort'])) {
+    $content .= $opinie;
+}

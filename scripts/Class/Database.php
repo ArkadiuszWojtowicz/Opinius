@@ -37,7 +37,7 @@ class Database {
     public function displayReviews($sql, $pola) { // ODPOWIADA ZA WYSWIETLANIE TABELI Z OPINIAMI NA STRONIE GLOWNEJ
         if ($result = $this->mysqli->query($sql)) {         
             
-            $tresc = "<table width='100%' class='table'><tbody>"; 
+            $tresc = "<table class='table'><tbody>"; 
             $stars = "";
             
             while ($row = $result->fetch_object()) {
@@ -66,7 +66,7 @@ class Database {
                 
                 $tresc .= "
                             <tr width='50%'> 
-                              <th rowspan='4' height='275' width='170'><br>Użytkownik:<br><br>" . $row->$p1 . "<br><br><br><br><br><br>ID opinii: " . $row->$p0 . "</th>
+                              <th rowspan='4' height='275' width='170' style='border-left: none;margin-left:0'><br>Użytkownik:<br><br>" . $row->$p1 . "<br><br><br><br><br><br>ID opinii: " . $row->$p0 . "</th>
                               <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Nazwa przedmiotu: </th>   
                               <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
                             </tr>
@@ -110,40 +110,45 @@ class Database {
                 $p3 = $pola[3];
                 $p4 = $pola[4];
                 $p5 = $pola[5];
-                if($row->$p5==1){
+                $p6 = $pola[6];
+                if($row->$p6==1){
                     $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
                 }
-                if($row->$p5==2){
+                if($row->$p6==2){
                     $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
                 }
-                if($row->$p5==3){
+                if($row->$p6==3){
                     $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
                 }
-                if($row->$p5==4){
+                if($row->$p6==4){
                     $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
                 }
-                if($row->$p5==5){
+                if($row->$p6==5){
                     $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
                 }
-                $IdComment = $row->$p0;// <th rowspan='3' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $IdComment . "' class='rem' name='rem'> </form></th>
-//                $y=$db->DELETE("DELETE FROM items WHERE (`id-item` = '$IdComment')");
+                $IdComment = $row->$p0;
                 $tresc .= "
-                            <tr> 
-                              <th rowspan='4' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $IdComment . "' class='rem' name='rem'> </form></th>"
-                        . "   <th height='40'>" . $row->$p2 . "</th>   
+                            <tr width='50%'> 
+			      <th rowspan='4' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $IdComment . "' class='rem' name='rem'> </form></th>"
+                        . "   <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Nazwa przedmiotu: </th>   
+                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>   
+                            </tr>
+                            <tr width='50%'>    
+                              <th height='40' width='2%' style='border-right: none; text-align:left'>Kategoria:</th>
+                              <th height='40' width='55%' style='border-left: none; text-align:right'>" . $row->$p3 . "</th>
+                              <th height='40' width='10%' style='border-right: none; text-align:left'>Marka:</th>
+                              <th height='40' width='44%' style='border-left: none; text-align:right'>" . $row->$p4 . "</th>    
+                            </tr>       
+                            <tr>    
+                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Ocena:</th>
+                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40'>" . $row->$p3 . "</th>    
+                              <td colspan='4'>" . $row->$p5 . "</td>    
                             </tr>
                             <tr>    
-                              <th height='40'>" . $stars . "</th>    
-                            </tr>
-                            <tr>    
-                              <td>" . $row->$p4 . "</td>    
-                            </tr>
-                            <tr>    
-                               <td width='580' colspan='2' class='reviewSpace'></td>    
-                            </tr>                                 
+                               <td colspan='5' class='reviewSpace'></td>    
+                            </tr>      
                         ";
             }
         } else {

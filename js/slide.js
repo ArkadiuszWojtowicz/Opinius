@@ -97,6 +97,7 @@ function change($number) {
                 + '<option>LG</option>'
                 + '<option>Panasonic</option>'
                 + '<option>Toshiba</option>'
+                + '<option>Thomson</option>'
                 + '<option>Philips</option>'
                 + '<option>Manta</option> '
                 + '</select><br>';
@@ -105,11 +106,12 @@ function change($number) {
         document.getElementById("brand").innerHTML = '<p>Marka:</p>'
                 + '<select name="brand" class="textLeft">'
                 + '<option>Lenovo</option>'
-                + '<option>LG</option>'
-                + '<option>Panasonic</option>'
-                + '<option>Toshiba</option>'
-                + '<option>Philips</option>'
-                + '<option>Manta</option> '
+                + '<option>HP</option>'
+                + '<option>MSI</option>'
+                + '<option>Acer</option>'
+                + '<option>Asus</option>'
+                + '<option>Dell</option> '
+                + '<option>Apple</option> '
                 + '</select><br>';
     }
     if ($number === "Telefony i smartfony") {
@@ -117,43 +119,39 @@ function change($number) {
                 + '<select name="brand" class="textLeft">'
                 + '<option>Xiaomi</option>'
                 + '<option>LG</option>'
-                + '<option>Panasonic</option>'
-                + '<option>Toshiba</option>'
-                + '<option>Philips</option>'
-                + '<option>Manta</option> '
+                + '<option>Apple</option>'
+                + '<option>Samsung</option>'
+                + '<option>Huawei</option>'
+                + '<option>Nokia</option> '
                 + '</select><br>';
     }
     if ($number === "Urządzenia peryferyjne") {
         document.getElementById("brand").innerHTML = '<p>Marka:</p>'
                 + '<select name="brand" class="textLeft">'
-                + '<option>Peryferyjne</option>'
-                + '<option>LG</option>'
-                + '<option>Panasonic</option>'
-                + '<option>Toshiba</option>'
+                + '<option>Canon</option>'
+                + '<option>Logitech</option>'
+                + '<option>Rival</option>'
+                + '<option>Media-Tech</option>'
                 + '<option>Philips</option>'
-                + '<option>Manta</option> '
+                + '<option>DeskJet</option> '
                 + '</select><br>';
     }
     if ($number === "Podzespoły") {
         document.getElementById("brand").innerHTML = '<p>Marka:</p>'
                 + '<select name="brand" class="textLeft">'
                 + '<option>Intel</option>'
-                + '<option>LG</option>'
-                + '<option>Panasonic</option>'
-                + '<option>Toshiba</option>'
-                + '<option>Philips</option>'
-                + '<option>Manta</option> '
+                + '<option>AMD</option>'
+                + '<option>MSI</option>'
+                + '<option>GeForce</option>'
+                + '<option>GTX</option>'
                 + '</select><br>';
     }
     if ($number === "Aparaty i kamery") {
         document.getElementById("brand").innerHTML = '<p>Marka:</p>'
                 + '<select name="brand" class="textLeft">'
                 + '<option>Canon</option>'
-                + '<option>LG</option>'
-                + '<option>Panasonic</option>'
-                + '<option>Toshiba</option>'
-                + '<option>Philips</option>'
-                + '<option>Manta</option> '
+                + '<option>Nicon</option>'
+                + '<option>Sony</option>'
                 + '</select><br>';
     }
 

@@ -5,7 +5,7 @@
 body {
     font: 12px/17px Verdana, Geneva, Arial, Helvetica, sans-serif;
     /*text-align: center;*/
-    color: #DFCEB6;
+    /*color: #DFCEB6;*/
     background: #fff;
     /*margin: 0 !important;*/
     margin: 0 auto;
@@ -78,10 +78,11 @@ p {
 aside {
     margin: 110px 15px 30px 30px;
     width: 300px;    
-    background: #f4e1e5;
+    /*background: #f4e1e5;*/
+    background: #fff;
     grid-column-start: 1;
     grid-row-start: 2;
-    height: 2232px;
+    /*height: 2390px;*/
 }
 
 #logo {
@@ -127,42 +128,29 @@ aside {
 }
 
 .rating {
-  color: #515754;
-  direction: rtl;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  margin-left: -9px;
+    color: #515754;
+    direction: rtl;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: -9px;
 }
 .rating i:hover
- {
-   color: yellow;
-   /*transition: 0.2s;*/
+{
+    color: yellow;
+    /*transition: 0.2s;*/
 }
 label:hover ~ label {
     color: yellow;
     /*transition: 0.2s;*/
 }
-
-.examples {
-    padding: 25px 19px 16px 19px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    border-top: 20px solid #fff;
-    line-height: 1.5;
-    color: #444;    
-    font-weight: bold;
-}
-.examples2 {
-    padding: 0px 20px 25px 20px;
-    text-align: center;
-    color: #444;
-}
 .icon-down {
     padding: 20px 10px 0px 10px;
 }
 .fakeReviews {
-    border-top: 25px solid #fff;
+    /*border-top: 25px solid #fff;*/
+    background: #f4e1e5;
+    margin-top: 25px;
+    padding: 1px 0 1px 0;
     height: 320px;
 }
 .frLink {
@@ -170,6 +158,7 @@ label:hover ~ label {
     font-size: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid #a8a4ab;
+
 }
 
 .frDestination {
@@ -183,6 +172,9 @@ label:hover ~ label {
 }
 .frLink a{
     text-decoration: none;  
+}
+.frLink input[type=radio]{
+    text-decoration: underline;
 }
 .frDestination a{ 
     text-decoration: none;  
@@ -552,7 +544,8 @@ table{
     color: #331104;
     border-collapse: collapse; /*powoduje że nie ma przestrzeni miedzy komórkami tabeli */
     border: solid 20px #f4e1e5;
-    /*margin: 10px 0px 0px -20px;*/
+    width:104.5%;
+    margin-left:-19px;
 }
 table th{
     /*    vertical-align: top; */
@@ -561,8 +554,8 @@ table th{
     border: 12px solid #f4e1e5;
     padding-left:15px;
     padding-right:15px;
-    padding-top:5px;
-    padding-bottom:5px;
+    padding-top:0px;
+    padding-bottom:0px;
 }
 table td{
     vertical-align: top; 
@@ -601,7 +594,11 @@ table button:hover{
     border: 0px;
     background: #f4e1e5;
     height:50px;
-
+}
+.reviewSpace:last-child{
+    border: 0px;
+    background: #f4e1e5;
+    height:0px;
 }
 input[type=submit].deleteButton{
     background: red;
