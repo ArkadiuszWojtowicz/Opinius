@@ -1,20 +1,20 @@
 <?php
 
-$title = "Telefony i smartfony";
+$title = "Urządzenia peryferyjne DeskJet";
 
 include_once 'class/database.php';
 $db = new Database("localhost", "root", "", "opinius");
 
-$opinie = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Telefony i smartfony' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category", "brand","review", "star"));
-$opinieAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Telefony i smartfony' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category", "brand","review", "star"));
+$opinie = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Urządzenia peryferyjne' AND brand = 'DeskJet' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category", "brand","review", "star"));
+$opinieAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Urządzenia peryferyjne' AND brand = 'DeskJet' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category", "brand","review", "star"));
 $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
-$sortBest = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Telefony i smartfony' ORDER BY `star` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
-$sortWorst = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Telefony i smartfony' ORDER BY `star`", array("id-item", "nick", "name", "category", "brand", "review", "star"));
-$sortBestAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Telefony i smartfony' ORDER BY `star` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
-$sortWorstAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Telefony i smartfony' ORDER BY `star`", array("id-item", "nick", "name", "category", "brand", "review", "star"));
+$sortBest = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Urządzenia peryferyjne' AND brand = 'DeskJet' ORDER BY `star` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
+$sortWorst = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Urządzenia peryferyjne' AND brand = 'DeskJet' ORDER BY `star`", array("id-item", "nick", "name", "category", "brand", "review", "star"));
+$sortBestAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Urządzenia peryferyjne' AND brand = 'DeskJet' ORDER BY `star` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
+$sortWorstAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Urządzenia peryferyjne' AND brand = 'DeskJet' ORDER BY `star`", array("id-item", "nick", "name", "category", "brand", "review", "star"));
 
 $contentLOG = '                       
-                        <h2>Telefony i smartfony</h2><br>                       
+                        <h2>Urządzenia peryferyjne</h2><br>                       
                         <div class="textRight">   
                         <form method="post">
                             <select name="sort" class="sortSelect" onchange="this.form.submit()">
@@ -38,7 +38,7 @@ if (!isset($_POST['sort']) && $status == 1) {
     $contentLOG .= $opinie;
 }
 $content = '
-                        <h2>Telefony i smartfony</h2><br>                     
+                        <h2>Urządzenia peryferyjne</h2><br>                     
                         <div class="textRight">   
                         <form method="post">
                             <select name="sort" class="sortSelect" onchange="this.form.submit()">
@@ -63,7 +63,7 @@ if (!isset($_POST['sort'])) {
 }
                         
 $contentAdmin = '                       
-                        <h2>Telefony i smartfony</h2><br>                       
+                        <h2>Urządzenia peryferyjne</h2><br>                       
                         <div class="textRight">   
                         <form method="post">
                             <select name="sort" class="sortSelect" onchange="this.form.submit()">
