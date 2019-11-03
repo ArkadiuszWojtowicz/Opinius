@@ -7,6 +7,12 @@ include_once 'class/userManager.php'; // potrzebne do wylogowania po usunięciu 
 $db = new Database("localhost", "root", "", "opinius");
 $um = new UserManager(); // potrzebne do wylogowania po usunięciu konta
 
+//$idLogged = $db->select("SELECT id from users u JOIN logged_in_users l ON u.id = l.userId", array("userName"));
+//$image = $_FILES['image'];
+//if (isset($_POST['image'])) {
+//    $db->INSERT("INSERT INTO items Values $image WHERE id = $idLogged");
+//}
+
 //ZMIANA ADRESU EMAIL
 $email = $_POST['email'];
 $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -84,3 +90,4 @@ if (isset($_POST['removeE'])) {
         header("location: ../index.php?site=Settings");
     }
 }
+

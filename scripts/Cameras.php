@@ -5,8 +5,8 @@ $title = "Aparaty i kamery";
 include_once 'class/database.php';
 $db = new Database("localhost", "root", "", "opinius");
 
-$opinie = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Aparaty i kamery' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category", "brand","review", "star"));
-$opinieAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Aparaty i kamery' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category", "brand","review", "star"));
+$reviews = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Aparaty i kamery' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category", "brand","review", "star"));
+$reviewsAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Aparaty i kamery' ORDER BY `id-item` DESC"  , array("id-item","nick","name","category", "brand","review", "star"));
 $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
 $sortBest = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Aparaty i kamery' ORDER BY `star` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
 $sortWorst = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items WHERE category= 'Aparaty i kamery' ORDER BY `star`", array("id-item", "nick", "name", "category", "brand", "review", "star"));
@@ -32,10 +32,10 @@ if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 1) {
     $contentLOG .= $sortWorst;
 }
 if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 1) {
-    $contentLOG .= $opinie;
+    $contentLOG .= $reviews;
 }
 if (!isset($_POST['sort']) && $status == 1) {
-    $contentLOG .= $opinie;
+    $contentLOG .= $reviews;
 }
 $content = '
                         <h2>Aparaty i kamery</h2><br>                     
@@ -56,10 +56,10 @@ if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco') {
     $content .= $sortWorst;
 }
 if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze') {
-    $content .= $opinie;
+    $content .= $reviews;
 }
 if (!isset($_POST['sort'])) {
-    $content .= $opinie;
+    $content .= $reviews;
 }
                         
 $contentAdmin = '                     
@@ -81,8 +81,8 @@ if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 2) {
     $contentAdmin .= $sortWorstAdmin;
 }
 if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 2) {
-    $contentAdmin .= $opinieAdmin;
+    $contentAdmin .= $reviewsAdmin;
 }
 if (!isset($_POST['sort']) && $status == 2) {
-    $contentAdmin .= $opinieAdmin;
+    $contentAdmin .= $reviewsAdmin;
 }
