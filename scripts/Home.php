@@ -11,8 +11,8 @@ include_once 'class/userManager.php';
 
 $db = new Database("localhost", "root", "", "opinius");
 
-$opinie = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
-$opinieAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
+$reviews = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star2, star, starDetailed3, starDetailed4 from items ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star2", "star", "starDetailed3", "starDetailed4"));
+$reviewsAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
 $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
 $sortBest = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `star` DESC", array("id-item", "nick", "name", "category", "brand", "review", "star"));
 $sortWorst = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star from items ORDER BY `star`", array("id-item", "nick", "name", "category", "brand", "review", "star"));
@@ -36,6 +36,15 @@ if (isset($_SESSION['added']) && $status == 1) { // info o dodaniu opinii
     unset($_SESSION['added']);
 }
 
+//<p>Ogólna ocena:</p>
+//                            <div class="rating" id="stars" name="stars">
+//                                <label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>
+//                                <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>
+//                                <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>
+//                                <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" name="button"></i></label>
+//                                <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" name="button"></i></label>
+//                            </div>
+
 $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                     
                     <div id="slideshow">
@@ -46,7 +55,7 @@ $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                     <br><br>
                     <form action="scripts/addOpinion.php" method="post"> 
                         <div class="textLeft">
-                            <p>Nazwa przedmiotu:</p>
+                            <p>Model:</p>
                             <input type="text" name="name" class="textLeft" required><br>
                             <div style="display:inline-block">
                                 <p>Kategoria:</p>
@@ -61,14 +70,40 @@ $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                                 </select>
                             </div>
                             <div style="display:inline-block; margin-left: 20px;" id="brand"></div>
-                            <p>Twoja ocena:</p>
-                            <div class="rating" id="stars" name="stars">
-                                <label><input type="radio" style="display:none" value="5" name="button" onclick="changeColor5star()"><i class="icon-star-filled" name="button"></i></label>
-                                <label><input type="radio" style="display:none" value="4" name="button" onclick="changeColor4star()"><i class="icon-star-filled" name="button"></i></label>
-                                <label><input type="radio" style="display:none" value="3" name="button" onclick="changeColor3star()"><i class="icon-star-filled" name="button"></i></label>
-                                <label><input type="radio" style="display:none" value="2" name="button" onclick="changeColor2star()"><i class="icon-star-filled" name="button"></i></label>
-                                <label><input type="radio" style="display:none" value="1" name="button" onclick="changeColor1star()"><i class="icon-star-filled" name="button"></i></label>
+                            
+                            <div id="detailedStars1"><p><br></p></div>
+                            <div class="rating" id="stars1" name="stars">
+                                <label><input type="radio" style="display:none" value="5" name="detailedButton1" onclick="changeColor5starDetailed1()"><i class="icon-star-filled-detailed" name="detailedButton1"></i></label>
+                                <label><input type="radio" style="display:none" value="4" name="detailedButton1" onclick="changeColor4starDetailed1()"><i class="icon-star-filled-detailed" name="detailedButton1"></i></label>
+                                <label><input type="radio" style="display:none" value="3" name="detailedButton1" onclick="changeColor3starDetailed1()"><i class="icon-star-filled-detailed" name="detailedButton1"></i></label>
+                                <label><input type="radio" style="display:none" value="2" name="detailedButton1" onclick="changeColor2starDetailed1()"><i class="icon-star-filled-detailed" name="detailedButton1"></i></label>
+                                <label><input type="radio" style="display:none" value="1" name="detailedButton1" onclick="changeColor1starDetailed1()"><i class="icon-star-filled-detailed" name="detailedButton1"></i></label>
                             </div>
+                            <div id="detailedStars2"><p><br></p></div>
+                            <div class="rating" id="stars2" name="stars">
+                                <label><input type="radio" style="display:none" value="5" name="detailedButton2" onclick="changeColor5starDetailed2()"><i class="icon-star-filled-detailed" name="detailedButton2"></i></label>
+                                <label><input type="radio" style="display:none" value="4" name="detailedButton2" onclick="changeColor4starDetailed2()"><i class="icon-star-filled-detailed" name="detailedButton2"></i></label>
+                                <label><input type="radio" style="display:none" value="3" name="detailedButton2" onclick="changeColor3starDetailed2()"><i class="icon-star-filled-detailed" name="detailedButton2"></i></label>
+                                <label><input type="radio" style="display:none" value="2" name="detailedButton2" onclick="changeColor2starDetailed2()"><i class="icon-star-filled-detailed" name="detailedButton2"></i></label>
+                                <label><input type="radio" style="display:none" value="1" name="detailedButton2" onclick="changeColor1starDetailed2()"><i class="icon-star-filled-detailed" name="detailedButton2"></i></label>
+                            </div>
+                            <div id="detailedStars3"><p><br></p></div>
+                            <div class="rating" id="stars3" name="stars">
+                                <label><input type="radio" style="display:none" value="5" name="detailedButton3" onclick="changeColor5starDetailed3()"><i class="icon-star-filled-detailed" name="detailedButton3"></i></label>
+                                <label><input type="radio" style="display:none" value="4" name="detailedButton3" onclick="changeColor4starDetailed3()"><i class="icon-star-filled-detailed" name="detailedButton3"></i></label>
+                                <label><input type="radio" style="display:none" value="3" name="detailedButton3" onclick="changeColor3starDetailed3()"><i class="icon-star-filled-detailed" name="detailedButton3"></i></label>
+                                <label><input type="radio" style="display:none" value="2" name="detailedButton3" onclick="changeColor2starDetailed3()"><i class="icon-star-filled-detailed" name="detailedButton3"></i></label>
+                                <label><input type="radio" style="display:none" value="1" name="detailedButton3" onclick="changeColor1starDetailed3()"><i class="icon-star-filled-detailed" name="detailedButton3"></i></label>
+                            </div>
+                            <div id="detailedStars4"><p><br></p></div>
+                            <div class="rating" id="stars4" name="stars">
+                                <label><input type="radio" style="display:none" value="5" name="detailedButton4" onclick="changeColor5starDetailed4()"><i class="icon-star-filled-detailed" name="detailedButton4"></i></label>
+                                <label><input type="radio" style="display:none" value="4" name="detailedButton4" onclick="changeColor4starDetailed4()"><i class="icon-star-filled-detailed" name="detailedButton4"></i></label>
+                                <label><input type="radio" style="display:none" value="3" name="detailedButton4" onclick="changeColor3starDetailed4()"><i class="icon-star-filled-detailed" name="detailedButton4"></i></label>
+                                <label><input type="radio" style="display:none" value="2" name="detailedButton4" onclick="changeColor2starDetailed4()"><i class="icon-star-filled-detailed" name="detailedButton4"></i></label>
+                                <label><input type="radio" style="display:none" value="1" name="detailedButton4" onclick="changeColor1starDetailed4()"><i class="icon-star-filled-detailed" name="detailedButton4"></i></label>
+                            </div>
+                            <br>
                             <p>Twoja opinia:<p>
                             <textarea rows="9" name="review" class="textLeft" required></textarea><br>
                             <input type="submit" value="Dodaj opinię" class="textLeft"><br>                                                
@@ -93,10 +128,10 @@ if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 1) {
     $contentLOG .= $sortWorst;
 }
 if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 1) {
-    $contentLOG .= $opinie;
+    $contentLOG .= $reviews;
 }
 if (!isset($_POST['sort']) && $status == 1) {
-    $contentLOG .= $opinie;
+    $contentLOG .= $reviews;
 }
 
 if (isset($_SESSION['logged']) && $status == 2) { // info o zalogowaniu
@@ -122,7 +157,7 @@ $contentAdmin .= '
                     <br><br>
                     <form action="scripts/addOpinion.php" method="post"> 
                         <div class="textLeft">
-                            <p>Nazwa przedmiotu:</p>
+                            <p>Model:</p>
                             <input type="text" name="name" class="textLeft" required><br>
                             <div style="display:inline-block">
                                 <p>Kategoria:</p>
@@ -169,10 +204,10 @@ if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 2) {
     $contentAdmin .= $sortWorstAdmin;
 }
 if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 2) {
-    $contentAdmin .= $opinieAdmin;
+    $contentAdmin .= $reviewsAdmin;
 }
 if (!isset($_POST['sort']) && $status == 2) {
-    $contentAdmin .= $opinieAdmin;
+    $contentAdmin .= $reviewsAdmin;
 }
 
 $content .= '         
@@ -202,8 +237,8 @@ if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco') {
     $content .= $sortWorst;
 }
 if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze') {
-    $content .= $opinie;
+    $content .= $reviews;
 }
 if (!isset($_POST['sort'])) {
-    $content .= $opinie;
+    $content .= $reviews;
 }

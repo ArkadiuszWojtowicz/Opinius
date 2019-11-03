@@ -4,10 +4,7 @@
 }
 body {
     font: 12px/17px Verdana, Geneva, Arial, Helvetica, sans-serif;
-    /*text-align: center;*/
-    /*color: #DFCEB6;*/
     background: #fff;
-    /*margin: 0 !important;*/
     margin: 0 auto;
     width: 100%;
     text-align: left;
@@ -37,11 +34,8 @@ h3 {
     font-size: 20px;
     color: #444;
 }
-h4 {
-    margin-top: 15px;
-    padding: 30px 0 20px 30px;
-    font: bold 14px Verdana, Geneva, Arial, Helvetica, sans-serif;
-    color: #000;    
+h4{
+    color: #444;
 }
 p {
     padding: 5px 0;
@@ -78,11 +72,9 @@ p {
 aside {
     margin: 110px 15px 30px 30px;
     width: 300px;    
-    /*background: #f4e1e5;*/
     background: #fff;
     grid-column-start: 1;
     grid-row-start: 2;
-    /*height: 2390px;*/
 }
 
 #logo {
@@ -139,6 +131,18 @@ aside {
     color: yellow;
     /*transition: 0.2s;*/
 }
+/*.ratingDetailed {
+    color: #515754;
+    direction: rtl;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: -9px;
+}
+.ratingDetailed i:hover
+{
+    color: yellow;
+    transition: 0.2s;
+}*/
 label:hover ~ label {
     color: yellow;
     /*transition: 0.2s;*/
@@ -146,46 +150,46 @@ label:hover ~ label {
 .icon-down {
     padding: 20px 10px 0px 10px;
 }
-.fakeReviews {
-    /*border-top: 25px solid #fff;*/
+.userLogged{
+    background: #f4e1e5;
+    padding: 15px 10px 15px 10px;
+    margin-top: 25px;
+    text-align: center;
+}
+.brand {
     background: #f4e1e5;
     margin-top: 25px;
-    padding: 1px 0 1px 0;
-    height: 320px;
+    padding: 0px 0 22px 0;
 }
-.frLink {
-    margin: 25px 30px 0px 20px;
+.category {
+    background: #f4e1e5;
+    margin-top: 25px;
+    padding: 0px 0 22px 0;
+}
+.categoryLink {
+    margin: 0px 30px 0px 20px;
     font-size: 20px;
-    padding-bottom: 20px;
+    padding: 20px 0 20px 0;
     border-bottom: 1px solid #a8a4ab;
-
 }
-
-.frDestination {
+.categoryDestination {
     margin: 0px 30px 20px 20px;
     font-size: 20px;
     padding-top: 20px;
 }
-.frDestination2 {
-    margin: 30px 30px 30px 20px;
-    font-size: 20px;
-}
-.frLink a{
+.categoryLink a{
     text-decoration: none;  
 }
-.frLink input[type=radio]{
-    text-decoration: underline;
-}
-.frDestination a{ 
+.categoryDestination a{ 
     text-decoration: none;  
 }
-.frLink a:hover{
+.categoryLink a:hover{
     text-decoration: underline;
 }
-.frDestination a:hover{
+.categoryDestination a:hover{
     text-decoration: underline;
 }
-.frPhoto{
+.categoryPhoto{
     margin: 0px 20px 0px 20px;
     padding:0;
 }
@@ -195,12 +199,6 @@ label:hover ~ label {
     font-size: 18px;
     font-weight: bold;
     margin: 20px 30px -12px 20px;
-}
-.frDestination2 a{ 
-    text-decoration: none;  
-}
-.frDestination2 a:hover{
-    text-decoration: underline;
 }
 section {
     margin: 110px 30px 30px 15px;
@@ -213,7 +211,6 @@ section {
     grid-column-end: span 2;
     grid-row-start: 2;
 }
-
 footer {
     clear: both;
     margin: 0 auto;
@@ -443,7 +440,6 @@ input[type=email],
 select{
     width: 300px;
     background: #efefef;
-    /*background: yellow;*/
     color: #666;
     border: 2px solid #ddd;
     border-radius: 5px;
@@ -463,22 +459,23 @@ input[type=submit].textLeft{
     margin: 20px 0px 20px 0px;
     text-align: center;
 }
-input[type=submit].rem{
+button[type=submit].rem{
     background: #ff0000;
     color: #fff;
     border: 0px;
     padding: 5px 5px;
     width: 150px;
+    border: 3px solid red;
+    border-radius: 4px;
+
 }
-input[type=submit].rem:hover{
-    background: #ff3333;
-    color: #fff;
-    border: 0px;
-    padding: 5px 5px;
+button[type=submit].rem:hover{
+    background: #f4e1e5;
+    color: red;
+    border: 3px solid red;
 }
 input[type=passoword].secondPassword{
     width: 300px;
-    /*background: #efefef;*/
     background: yellow;
     color: #666;
     border: 2px solid #ddd;
@@ -488,7 +485,6 @@ input[type=passoword].secondPassword{
     box-sizing: border-box;
     outline: none;
     margin: 10px;
-    /*margin-left: 5px;  dodane bo jest krzywe pole z mailem */
 }
 textarea{
     padding:18px;
@@ -524,7 +520,6 @@ input[type=submit]{
     outline: none;
 }
 input[type=submit]:hover{
-    /*background: #1cce2e;*/ 
     background: #f4e1e5;
     color: #36b03c;
     border: 3px solid #36b03c;
@@ -548,9 +543,7 @@ table{
     margin-left:-19px;
 }
 table th{
-    /*    vertical-align: top; */
     text-align:center;
-    /*border: 3px solid #7956af;*/
     border: 12px solid #f4e1e5;
     padding-left:15px;
     padding-right:15px;
@@ -564,7 +557,6 @@ table td{
     padding-right: 30px;
     padding-bottom: 20px;
     color: #331104;
-    /*border: 3px solid #7956af;*/
     border: 3px solid #f4e1e5;
     font-size: 13px;
     height:200px;

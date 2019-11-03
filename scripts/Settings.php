@@ -33,7 +33,14 @@ if (isset($_SESSION['remove']) && $status==1) {
     $contentLOG .= '<div class="error">' . $_SESSION['remove'] . '</div>';
     unset($_SESSION['remove']);
 }
-$contentLOG .= '                       
+//<form action="scripts/changeSettings.php" method="post" class="textCenter">
+//                        <h3>Dodaj zdjęcie profilowe:</h3>
+//                        Załaduj swoje zdjęcie:<br><br>
+//                        <input type="file" name="image"><br>
+//                        <input type="submit" value="Dodaj zdjęcie" class="emailChange">      
+//                    </form>
+$contentLOG .= '      
+                    
                     <form action="scripts/changeSettings.php" method="post" class="textCenter"> 
                         <h3>Zmień mój adres e-mail:</h3>
                         Podaj swój aktualny adres e-mail:<br>

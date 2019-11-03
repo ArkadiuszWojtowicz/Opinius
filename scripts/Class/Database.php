@@ -38,7 +38,18 @@ class Database {
         if ($result = $this->mysqli->query($sql)) {         
             
             $tresc = "<table class='table'><tbody>"; 
-            $stars = "";
+            $stars1 = "";
+            $stars2 = "";
+            $stars3 = "";
+            $stars4 = "";
+            $detailedStars1 = "";
+            $detailedStars2 = "";
+            $detailedStars3 = "";
+            $detailedStars4 = "";
+            $average1=1;
+            $average2=2;
+            $average3=3;
+            $average4=4;
             
             while ($row = $result->fetch_object()) {
                 $p0 = $pola[0];
@@ -47,27 +58,138 @@ class Database {
                 $p3 = $pola[3];
                 $p4 = $pola[4];
                 $p5 = $pola[5];
-                $p6 = $pola[6];
-                if($row->$p6==1){
-                    $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                
+                if(isset($pola[6])){
+                    $p6 = $pola[6];
+                    $detailedStars1 = $row->$p6;
+                    $average1 = $row->$p6;
                 }
-                if($row->$p6==2){
-                    $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                if(isset($pola[7])){
+                    $p7 = $pola[7];
+                    $detailedStars2 = $row->$p7;
+                    $average2 = $row->$p7;
                 }
-                if($row->$p6==3){
-                    $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                if(isset($pola[8])){
+                    $p8 = $pola[8];
+                    $detailedStars3 = $row->$p8;
+                    $average3 = $row->$p8;
                 }
-                if($row->$p6==4){
-                    $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                if(isset($pola[9])){
+                    $p9 = $pola[9];
+                    $detailedStars4 = $row->$p9;
+                    $average4 = $row->$p9;
                 }
-                if($row->$p6==5){
-                    $stars = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                
+
+                $average = ($average1 + $average2 + $average3 + $average4) / 4;
+                
+                if($detailedStars1==1){
+                    $stars1 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars1==2){
+                    $stars1 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars1==3){
+                    $stars1 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars1==4){
+                    $stars1 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars1==5){
+                    $stars1 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars2==1){
+                    $stars2 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars2==2){
+                    $stars2 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars2==3){
+                    $stars2 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars2==4){
+                    $stars2 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars2==5){
+                    $stars2 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars3==1){
+                    $stars3 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars3==2){
+                    $stars3 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars3==3){
+                    $stars3 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars3==4){
+                    $stars3 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars3==5){
+                    $stars3 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars4==1){
+                    $stars4 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars4==2){
+                    $stars4 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars4==3){
+                    $stars4 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars4==4){
+                    $stars4 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                if($detailedStars4==5){
+                    $stars4 = "<i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i><i class='icon-star-filled-display' style='color:yellow' name='button'></i>";
+                }
+                
+                $detail1 = "";
+                $detail2 = "";
+                $detail3 = "";
+                $detail4 = "";
+                
+                if($row->$p3 === "Telewizory"){
+                    $detail1 = "Obraz:";
+                    $detail2 = "Dźwięk:";
+                    $detail3 = "Funkcje dodatkowe:";
+                    $detail4 = "Wygląd:";
+                }
+                if($row->$p3 === "Komputery i laptopy"){
+                    $detail1 = "Prędkość:";
+                    $detail2 = "Dźwięk:";
+                    $detail3 = "Podzespoły:";
+                    $detail4 = "Klawiatura i obudowa:";
+                }
+                if($row->$p3 === "Telefony i smartfony"){
+                    $detail1 = "Aparat:";
+                    $detail2 = "Bateria:";
+                    $detail3 = "Funkcje telefonu:";
+                    $detail4 = "Wygląd:";
+                }
+                if($row->$p3 === "Urządzenia peryferyjne"){
+                    $detail1 = "-:";
+                    $detail2 = "Dźwięk:";
+                    $detail3 = "Funkcje dodatkowe:";
+                    $detail4 = "Wygląd:";
+                }
+                if($row->$p3 === "Podzespoły"){
+                    $detail1 = "Prędkość:";
+                    $detail2 = "Temperatura:";
+                    $detail3 = "Kompatybilność:";
+                    $detail4 = "Dodatkowe technologie:";
+                }
+                if($row->$p3 === "Aparaty i kamery"){
+                    $detail1 = "Rozdzielczość:";
+                    $detail2 = "Kontrola ekspozycji:";
+                    $detail3 = "Przybliżenie optyczne:";
+                    $detail4 = "Matryca:";
                 }
                 
                 $tresc .= "
                             <tr width='50%'> 
-                              <th rowspan='4' height='275' width='170' style='border-left: none;margin-left:0'><br>Użytkownik:<br><br>" . $row->$p1 . "<br><br><br><br><br><br>ID opinii: " . $row->$p0 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Nazwa przedmiotu: </th>   
+                              <th rowspan='8' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
+                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Model: </th>   
                               <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
                             </tr>
                             <tr width='50%'>    
@@ -77,8 +199,24 @@ class Database {
                               <th height='40' width='44%' style='border-left: none; text-align:right'>" . $row->$p4 . "</th>    
                             </tr>       
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Ocena:</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars . "</th>    
+                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Średnia ocena:</th>
+                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $average . "</th>    
+                            </tr>
+                            <tr>    
+                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail1 . "</th>
+                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars1 . "</th>    
+                            </tr>
+                            <tr>    
+                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail2 . "</th>
+                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars2 . "</th>    
+                            </tr>
+                            <tr>    
+                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail3 . "</th>
+                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars3 . "</th>    
+                            </tr>
+                            <tr>    
+                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail4 . "</th>
+                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars4 . "</th>    
                             </tr>
                             <tr>    
                               <td colspan='4'>" . $row->$p5 . "</td>    
@@ -129,7 +267,7 @@ class Database {
                 $IdComment = $row->$p0;
                 $tresc .= "
                             <tr width='50%'> 
-			      <th rowspan='4' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><br><br><form action ='scripts/removeOpinion.php' method='post'>Usuń komentarz:<br><input type='submit' value='" . $IdComment . "' class='rem' name='rem'> </form></th>"
+			      <th rowspan='4' height='275' width='150'>ID opinii: " . $row->$p0 . "<br><br>Użytkownik:<br>" . $row->$p1 . "<br><br><br><br><form action ='scripts/removeOpinion.php' method='post'><br><button type='submit' value='" . $IdComment . "' class='rem' name='rem'>Usuń opinię</button> </form></th>"
                         . "   <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Nazwa przedmiotu: </th>   
                               <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>   
                             </tr>
