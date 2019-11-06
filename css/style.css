@@ -922,8 +922,15 @@ input[type=submit].deleteButton:hover{
 }
 
 .sortSelect{
-    width: 163px;
+    width: 370px;
     margin-right: 0px;
     margin-top: 0px;
     padding: 2px 0px 2px 3px;
 }
+.sortSelectShort{
+    width: 150px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding: 2px 0px 2px 3px;
+}
+
