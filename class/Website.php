@@ -69,7 +69,7 @@ class Website {
                             <li> <a href="?site=Cameras">Aparaty i kamery</a> </li>
                         </ul>
                     </li> 
-                    <li> <a href="?site=OurGoal">Nasz cel</a> </li>
+                    <li> <a href="?site=OurGoal">Moje opinie</a> </li>
                     <li> <a href="?site=Contact">Kontakt</a> </li>           
                     <li> <a href="scripts/Login.php?akcja=wyloguj">Wyloguj</a> </li>
                     <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>                          
@@ -92,7 +92,7 @@ class Website {
                             <li> <a href="?site=Cameras">Aparaty i kamery</a> </li>
                         </ul>
                     </li> 
-                    <li> <a href="?site=OurGoal">Nasz cel</a> </li>
+                    <li> <a href="?site=OurGoal">Moje opinie</a> </li>
                     <li> <a href="?site=Contact">Prawa admina</a> </li>           
                     <li> <a href="scripts/Login.php?akcja=wyloguj">Wyloguj</a> </li>
                     <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>                          
@@ -115,7 +115,7 @@ class Website {
                             <li> <a href="?site=Cameras">Aparaty i kamery</a> </li>
                         </ul>
                     </li> 
-                    <li> <a href="?site=OurGoal">Nasz cel</a> </li>
+                    <li> <a href="?site=OurGoal">Moje opinie</a> </li>
                     <li> <a href="?site=Contact">Kontakt</a> </li>
                     <li> <a href="?site=Login">Logowanie</a> </li>
                     <li> <a href="?site=Settings"><i class="icon-cog-alt"></i></a> </li>

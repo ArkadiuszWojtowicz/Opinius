@@ -19,9 +19,6 @@ $sortWorst = $db->displayReviews("SELECT `id-item`, nick, name, category, brand,
 $sortBestAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items ORDER BY (star+star2+star3+star4)/4 DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
 $sortWorstAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items ORDER BY (star+star2+star3+star4)/4", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
 
-//$star1 = $db->displayReviews("SELECT (star + star2 + star3 + star4)/4 from items"  , array("star", "star2", "star3", "star4"));
-
-
 $contentAdmin = '';
 $contentLOG = '';
 $content = '';
@@ -29,10 +26,6 @@ $content = '';
 if (isset($_SESSION['logged']) && $status == 1) { // info o zalogowaniu
     $contentLOG .= '<div class="textCenter">' . $_SESSION['logged'] . '</div>';
     unset($_SESSION['logged']);
-}
-if (isset($_SESSION['loggedOut']) && $status != 1 && status != 2) { // info o wylogowaniu
-    $content .= '<div class="textCenter">' . $_SESSION['loggedOut'] . '</div>';
-    unset($_SESSION['loggedOut']);
 }
 if (isset($_SESSION['added']) && $status == 1) { // info o dodaniu opinii
     $contentLOG .= '<div class="textCenter">' . $_SESSION['added'] . '</div>';
