@@ -7,12 +7,6 @@ include_once 'class/userManager.php'; // potrzebne do wylogowania po usunięciu 
 $db = new Database("localhost", "root", "", "opinius");
 $um = new UserManager(); // potrzebne do wylogowania po usunięciu konta
 
-//$idLogged = $db->select("SELECT id from users u JOIN logged_in_users l ON u.id = l.userId", array("userName"));
-//$image = $_FILES['image'];
-//if (isset($_POST['image'])) {
-//    $db->INSERT("INSERT INTO items Values $image WHERE id = $idLogged");
-//}
-
 //ZMIANA ADRESU EMAIL
 $email = $_POST['email'];
 $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -33,12 +27,12 @@ if (isset($_POST['email'])) {
 //ZMIANA NICKU
 $nick = $_POST['nick'];
 $nickN = $_POST['nickN'];
-$nickLogged = $db->select("SELECT userName from users u JOIN logged_in_users l ON u.id = l.userId", array("userName"));
+$nickLogged = $db->select("SELECT nick from users u JOIN logged_in_users l ON u.id = l.userId", array("nick"));
 
 if (isset($_POST['nick'])) {
     if ($nick == $nickLogged && ((strlen($nickN) >= 3) && (strlen($nickN) <= 20))) {
         $_SESSION['nick'] = '<span style="color:green">Twój nick został zmieniony</span>';
-        $db->UPDATE("UPDATE users SET userName='$nickN' WHERE userName = '$nick'");
+        $db->UPDATE("UPDATE users SET nick='$nickN' WHERE nick = '$nick'");
         header("location: ../index.php?site=Settings");
     } else {
         $_SESSION['nick'] = '<span style="color:red">Niepoprawny nick!</span>';

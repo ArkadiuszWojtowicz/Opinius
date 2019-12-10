@@ -12,14 +12,14 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
     session_start();
     if (isset($_POST['email'])) {
 
-        $nick = $_POST['userName'];
+        $nick = $_POST['nick'];
         $checkNick = '/^[0-9A-Za-ząęłńśćźżó_-]{2,25}$/';
         if ((preg_match($checkNick, $nick))==false) {
             $correct = false;
             $_SESSION['error_nick'] = "Nick musi zawierać 2-20 znaków!";
         }
 
-        $nickBusy = $db->select("SELECT userName from users WHERE userName='$nick'", array("userName"));
+        $nickBusy = $db->select("SELECT nick from users WHERE nick='$nick'", array("nick"));
         if ($nick == $nickBusy && $nick != '') {
             $correct = false;
             $_SESSION['error_nick'] = "Nick jest już zajęty!";

@@ -4,12 +4,12 @@ class UserManager {
 
     function login($db) {
         $args = [
-            'userName' => FILTER_SANITIZE_MAGIC_QUOTES,
+            'nick' => FILTER_SANITIZE_MAGIC_QUOTES,
             'passwd' => FILTER_SANITIZE_MAGIC_QUOTES
         ];
         $dane = filter_input_array(INPUT_POST, $args);
 
-        $login = $dane['userName'];
+        $login = $dane['nick'];
         $passwd = $dane['passwd'];
         $userId = $db->selectUser($login, $passwd, "users");
         if ($userId >= 0) {

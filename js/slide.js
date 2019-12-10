@@ -34,15 +34,15 @@ function showStar5() {
 
 $(function () {
     setTimeout(function () {
-        $('.icon-star-filled-slide').fadeOut(1000);
+        $('.icon-star-slide').fadeOut(1000);
     }, 1000);
     setInterval("showStar1()", 1000);
     setInterval("showStar2()", 1000);
     setInterval("showStar3()", 1000);
     setInterval("showStar4()", 1000);
     setInterval("showStar5()", 1000);
-//    setInterval("setTimeout(function(){ $('.icon-star-filled-slide').fadeOut(1000); }, 1000)", 6000);
-    setInterval("$('.icon-star-filled-slide').fadeOut(1000)", 7000);
+//    setInterval("setTimeout(function(){ $('.icon-star-slide').fadeOut(1000); }, 1000)", 6000);
+    setInterval("$('.icon-star-slide').fadeOut(1000)", 7000);
 });
 //    include_once "scripts/class/database.php";
 //

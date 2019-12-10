@@ -2,11 +2,11 @@
 
 require_once("class/website.php");
 $site_akt = new Website();
-
+//decuduje która strona ma być wyświetlana
 if (isset($_GET['site'])) {
     $site = $_GET['site'];
     switch ($site) {
-        case 'OurGoal':$site = 'OurGoal';
+        case 'MyReviews':$site = 'MyReviews';
             break;
         case 'PasswordReminder':$site = 'PasswordReminder';
             break;
@@ -103,13 +103,19 @@ if (isset($_GET['site'])) {
 } else {
     $site = "Home";
 }
-
 $plik = "scripts/" . $site . ".php";
 if (file_exists($plik)) {
     require_once($plik);
+    //przekazuje tytuł strony do klasy Website
     $site_akt->set_title($title);
+    //przekazuje zawartość strony do klasy Website
     $site_akt->set_content($content);
+    //przekazuje zawartość strony do klasy Website
+    //dla użytkownika zalogowanego
     $site_akt->set_contentLOG($contentLOG);
+    //przekazuje zawartość strony do klasy Website
+    //dla administratora
     $site_akt->set_contentAdmin($contentAdmin);
+    //wyświetla zawartość strony
     $site_akt->display();
 }
