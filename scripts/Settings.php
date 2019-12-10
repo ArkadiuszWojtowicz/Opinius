@@ -33,14 +33,14 @@ if (isset($_SESSION['remove']) && $status==1) {
     $contentLOG .= '<div class="error">' . $_SESSION['remove'] . '</div>';
     unset($_SESSION['remove']);
 }
-//<form action="scripts/changeSettings.php" method="post" class="textCenter">
-//                        <h3>Dodaj zdjęcie profilowe:</h3>
-//                        Załaduj swoje zdjęcie:<br><br>
-//                        <input type="file" name="image"><br>
-//                        <input type="submit" value="Dodaj zdjęcie" class="emailChange">      
-//                    </form>
+
 $contentLOG .= '      
-                    
+                    <form action="scripts/setImage.php" method="post" enctype="multipart/form-data" class="textCenter"> 
+                        <h3>Ustaw moje zdjęcie:</h3>
+                        Wybierz zdjęcie:<br><br>
+                        <input type="file" name="file"><br>
+                        <input type="submit" value="Zatwierdź" class="emailChange">      
+                    </form>
                     <form action="scripts/changeSettings.php" method="post" class="textCenter"> 
                         <h3>Zmień mój adres e-mail:</h3>
                         Podaj swój aktualny adres e-mail:<br>
@@ -76,8 +76,11 @@ $contentLOG .= '
                         <input class="deleteButton" type="submit" value="Usuń moje konto">
                         
                     </form>   
-                    </div>
                 ';
+
+//if (isset($_POST['file'])) {
+//    $db->UPDATE("UPDATE users SET image = $file WHERE id = $idLogged");
+//}
 
 $contentAdmin = '
                     <div class="textCenter"> 
@@ -135,7 +138,7 @@ $contentAdmin .= '
                         <input type="password" name="removeH"><br>
                         <input class="deleteButton" type="submit" value="Usuń moje konto">       
                     </form>   
-                    </div>
+             
                 ';
 
 

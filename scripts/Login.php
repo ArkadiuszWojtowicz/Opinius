@@ -45,9 +45,9 @@ if (filter_input(INPUT_POST, "zaloguj")) {
                 
     $content .='<h2>Chcesz dodać opinię? Zaloguj się!</h2>
                 <form action="scripts/Login.php" method="post"> 
-                <input type="text" name="userName" placeholder="Login" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Login\'"><br>
+                <input type="text" name="nick" placeholder="Login" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Login\'"><br>
                 <input type="password" name="passwd" placeholder="Hasło" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Hasło\'" ><br>
-                <div style="margin-top:5px;"><a href="index.php?site=PasswordReminder" >Zapomniałeś hasła?</a><br></div>';
+                <div style="margin-top:5px;"><a class="passwordReminder" style="text-decoration:none" href="index.php?site=PasswordReminder" >Zapomniałeś/aś hasła?</a><br></div>';
                 if (isset($_SESSION['wrongLogin'])) {
                     $content .= '<div style="margin-top:15px;color:red;">' . $_SESSION['wrongLogin'] . '</div>';
                     unset($_SESSION['wrongLogin']);
@@ -57,7 +57,7 @@ if (filter_input(INPUT_POST, "zaloguj")) {
                 
                 <h3>Pierwszy raz w serwisie? Zarejestruj się!</h3>    
                 <form action="scripts/Registration.php" method="post">
-                <input type="text" name="userName" placeholder="Nazwa użytkownika" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Nazwa użytkownika\'" ><br>';
+                <input type="text" name="nick" placeholder="Nazwa użytkownika" onfocus="this.placeholder=\'\'" onblur="this.placeholder=\'Nazwa użytkownika\'" ><br>';
                 if (isset($_SESSION['error_nick'])) {
                     $content .= '<div class="error">' . $_SESSION['error_nick'] . '</div>';
                     unset($_SESSION['error_nick']);
@@ -89,7 +89,7 @@ if (filter_input(INPUT_POST, "zaloguj")) {
                 }
     $content .= '<br>
                 <label>
-                    <input type="checkbox" name="regulamin" value="regulamin" >  Oświadczam, że znam i akceptuję postanowienia <a href="images/Regulamin_Opinius.pdf" download>Regulaminu Opinius</a>.
+                    <input type="checkbox" name="regulamin" value="regulamin" >  Oświadczam, że znam i akceptuję postanowienia <a style="text-decoration:none" href="images/Regulamin_Opinius.pdf" download>Regulaminu Opinius</a>.
                 </label><br><br>';
                 if (isset($_SESSION['error_regulamin'])) {
                     $content .= '<div class="error">' . $_SESSION['error_regulamin'] . '</div><br>';

@@ -5,28 +5,28 @@ $title = "Telewizory";
 include_once 'class/database.php';
 $db = new Database("localhost", "root", "", "opinius");
 
-$reviews = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$reviewsAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY `id-item` DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
+$reviews = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY r.`id-reviews`  DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$reviewsAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY r.`id-reviews`  DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
 $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
-$sortBest = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY (star+star2+star3+star4)/4 DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortWorst = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY (star+star2+star3+star4)/4", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortBestAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY (star+star2+star3+star4)/4 DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortWorstAdmin = $db->selectAdmin("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY (star+star2+star3+star4)/4", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortBestImage = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY star DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortWorstImage = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY star", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortBestVoice = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY star2 DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortWorstVoice = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY star2", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortBestFunction = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY star3 DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortWorstFunction = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY star3", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortBestLook = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY star4 DESC", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
-$sortWorstLook = $db->displayReviews("SELECT `id-item`, nick, name, category, brand, review, star, star2, star3, star4 from items WHERE category= 'Telewizory' ORDER BY star4", array("id-item", "nick", "name", "category", "brand", "review",  "star", "star2", "star3", "star4"));
+$sortBest = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY (star+star2+star3+star4)/4 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortWorst = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY (star+star2+star3+star4)/4", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortBestAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY (star+star2+star3+star4)/4 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortWorstAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY (star+star2+star3+star4)/4", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortBestImage = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY star DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortWorstImage = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY star", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortBestVoice = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY star2 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortWorstVoice = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY star2", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortBestFunction = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY star3 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortWorstFunction = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY star3", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortBestLook = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY star4 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
+$sortWorstLook = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' ORDER BY star4", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
 
 $contentLOG = '                       
                         <h2>Telewizory</h2><br>                       
                         
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortImage" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortImage" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po obrazie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -35,7 +35,7 @@ $contentLOG = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortVoice" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortVoice" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po dźwięku:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -45,8 +45,8 @@ $contentLOG = '
             
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortFunction" class="sortSelect" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po funkcjach:</option>
+                                <select name="sortFunction" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po funkcjonalności:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
                                 </select>
@@ -54,7 +54,7 @@ $contentLOG = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortLook" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortLook" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po wyglądzie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -114,7 +114,7 @@ $content = '
                         
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortImage" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortImage" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po obrazie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -123,7 +123,7 @@ $content = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortVoice" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortVoice" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po dźwięku:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -133,8 +133,8 @@ $content = '
          
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortFunction" class="sortSelect" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po funkcjach:</option>
+                                <select name="sortFunction" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po funkcjonalności:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
                                 </select>
@@ -142,7 +142,7 @@ $content = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortLook" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortLook" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po wyglądzie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -202,7 +202,7 @@ $contentAdmin = '
                         
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortImage" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortImage" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po obrazie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -211,7 +211,7 @@ $contentAdmin = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortVoice" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortVoice" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po dźwięku:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -221,8 +221,8 @@ $contentAdmin = '
                 
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortFunction" class="sortSelect" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po funkcjach:</option>
+                                <select name="sortFunction" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po funkcjonalności:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
                                 </select>
@@ -230,7 +230,7 @@ $contentAdmin = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortLook" class="sortSelect" onchange="this.form.submit()">
+                                <select name="sortLook" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po wyglądzie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
