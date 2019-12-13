@@ -1,13 +1,26 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+$log = '';
+if (isset($_SESSION['log'])) {
+    $log = $_SESSION['log'];
+}
+$sesId = session_id();
 
 $title = "Telewizory Samsung";
 
 include_once 'class/database.php';
 $db = new Database("localhost", "root", "", "opinius");
 
+$userIdSession = $db->select('SELECT userId FROM logged_in_users WHERE sessionId = "'.$sesId.'"', array("userId"));
 $reviews = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' AND brand = 'Samsung' ORDER BY r.`id-reviews`  DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
 $reviewsAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' AND brand = 'Samsung' ORDER BY r.`id-reviews`  DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
-$status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
+if ($log == True) {
+    $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId WHERE id = " . $userIdSession . "", array("status"));
+} else {
+    $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
+} // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
 $sortBest = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' AND brand = 'Samsung' ORDER BY (star+star2+star3+star4)/4 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
 $sortWorst = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' AND brand = 'Samsung' ORDER BY (star+star2+star3+star4)/4", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
 $sortBestAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' AND brand = 'Samsung' ORDER BY (star+star2+star3+star4)/4 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
@@ -31,10 +44,27 @@ $sortWorstLookAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, b
 
 $contentLOG = '                       
                         <h2>Telewizory - Samsung</h2><br>                       
-                        
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortCamera" class="sortSelectPhones" onchange="this.form.submit()">
+                                <select name="sort1" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po obrazie:</option>
+                                    <option value="Malejąco">Od najlepszej</option>
+                                    <option value="Rosnąco">Od najgorszej</option>                                                    
+                                </select>
+                            </form> 
+                        </div>
+                        <div class="textLeft" >   
+                            <form method="post">
+                                <select name="sort2" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po dźwięku:</option>
+                                    <option value="Malejąco">Od najlepszej</option>
+                                    <option value="Rosnąco">Od najgorszej</option>                                                    
+                                </select>
+                            </form> 
+                        </div>
+                        <div class="textLeft" >   
+                            <form method="post">
+                                <select name="sort3" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po funkcjonalności:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -43,27 +73,8 @@ $contentLOG = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortBattery" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po baterii:</option>
-                                    <option value="Malejąco">Od najlepszej</option>
-                                    <option value="Rosnąco">Od najgorszej</option>                                                    
-                                </select>
-                            </form> 
-                        </div>
-                
-                        <div class="textLeft" >   
-                            <form method="post">
-                                <select name="sortFunction" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po zdjęciach:</option>
-                                    <option value="Malejąco">Od najlepszej</option>
-                                    <option value="Rosnąco">Od najgorszej</option>                                                    
-                                </select>
-                            </form> 
-                        </div>
-                        <div class="textLeft" >   
-                            <form method="post">
-                                <select name="sortLook" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po wyświetlaczu:</option>
+                                <select name="sort4" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po wyglądzie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
                                 </select>
@@ -88,54 +99,71 @@ $contentLOG = '
                             </form> 
                         </div>';
 
-if (isset($_POST['search']) && !isset($_POST['sort']) && $status == 1 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook'])) {
-    $search = $_POST['search'];
+if (isset(filter_input_array(INPUT_POST)['search']) && !isset(filter_input_array(INPUT_POST)['sort']) && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4'])) {
+    $search = filter_input_array(INPUT_POST)['search'];
     $sortSearch = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' AND brand = 'Samsung' AND name LIKE '%$search%'", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
     $contentLOG .= $sortSearch;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco' && $status == 1 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) { // sortowanie opinii
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Malejąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) { // sortowanie opinii
     $contentLOG .= $sortBest;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 1 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Rosnąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortWorst;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 1 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Najnowsze' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $reviews;
 }
-if (!isset($_POST['sort']) && $status == 1 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (!isset(filter_input_array(INPUT_POST)['sort']) && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $reviews;
 }
-if (isset($_POST['sortCamera']) && $_POST['sortCamera'] === 'Malejąco' && $status == 1 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort1']) && filter_input_array(INPUT_POST)['sort1'] === 'Malejąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortBestCamera;
 }
-if (isset($_POST['sortCamera']) && $_POST['sortCamera'] === 'Rosnąco' && $status == 1 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort1']) && filter_input_array(INPUT_POST)['sort1'] === 'Rosnąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortWorstCamera;
 }
-if (isset($_POST['sortBattery']) && $_POST['sortBattery'] === 'Malejąco' && $status == 1 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort2']) && filter_input_array(INPUT_POST)['sort2'] === 'Malejąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortBestBattery;
 }
-if (isset($_POST['sortBattery']) && $_POST['sortBattery'] === 'Rosnąco' && $status == 1 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort2']) && filter_input_array(INPUT_POST)['sort2'] === 'Rosnąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortWorstBattery;
 }
-if (isset($_POST['sortFunction']) && $_POST['sortFunction'] === 'Malejąco' && $status == 1 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort3']) && filter_input_array(INPUT_POST)['sort3'] === 'Malejąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortBestFunction;
 }
-if (isset($_POST['sortFunction']) && $_POST['sortFunction'] === 'Rosnąco' && $status == 1 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort3']) && filter_input_array(INPUT_POST)['sort3'] === 'Rosnąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortWorstFunction;
 }
-if (isset($_POST['sortLook']) && $_POST['sortLook'] === 'Malejąco' && $status == 1 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort4']) && filter_input_array(INPUT_POST)['sort4'] === 'Malejąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortBestLook;
 }
-if (isset($_POST['sortLook']) && $_POST['sortLook'] === 'Rosnąco' && $status == 1 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort4']) && filter_input_array(INPUT_POST)['sort4'] === 'Rosnąco' && $status == 1 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentLOG .= $sortWorstLook;
 }
 
 $content = '
                         <h2>Telewizory - Samsung</h2><br>                     
-                        
-                    <div class="textLeft" >   
+                        <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortCamera" class="sortSelectPhones" onchange="this.form.submit()">
+                                <select name="sort1" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po obrazie:</option>
+                                    <option value="Malejąco">Od najlepszej</option>
+                                    <option value="Rosnąco">Od najgorszej</option>                                                    
+                                </select>
+                            </form> 
+                        </div>
+                        <div class="textLeft" >   
+                            <form method="post">
+                                <select name="sort2" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po dźwięku:</option>
+                                    <option value="Malejąco">Od najlepszej</option>
+                                    <option value="Rosnąco">Od najgorszej</option>                                                    
+                                </select>
+                            </form> 
+                        </div>
+                        <div class="textLeft" >   
+                            <form method="post">
+                                <select name="sort3" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po funkcjonalności:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -144,27 +172,8 @@ $content = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortBattery" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po baterii:</option>
-                                    <option value="Malejąco">Od najlepszej</option>
-                                    <option value="Rosnąco">Od najgorszej</option>                                                    
-                                </select>
-                            </form> 
-                        </div>
-                     
-                        <div class="textLeft" >   
-                            <form method="post">
-                                <select name="sortFunction" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po zdjęciach:</option>
-                                    <option value="Malejąco">Od najlepszej</option>
-                                    <option value="Rosnąco">Od najgorszej</option>                                                    
-                                </select>
-                            </form> 
-                        </div>
-                        <div class="textLeft" >   
-                            <form method="post">
-                                <select name="sortLook" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po wyświetlaczu:</option>
+                                <select name="sort4" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po wyglądzie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
                                 </select>
@@ -188,54 +197,71 @@ $content = '
                                 </button>
                             </form> 
                         </div>';
-if (isset($_POST['search']) && !isset($_POST['sort']) && $status != 1 && $status != 2 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook'])) {
-    $search = $_POST['search'];
+if (isset(filter_input_array(INPUT_POST)['search']) && !isset(filter_input_array(INPUT_POST)['sort']) && $status != 1 && $status != 2 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4'])) {
+    $search = filter_input_array(INPUT_POST)['search'];
     $sortSearch = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' AND brand = 'Samsung' AND name LIKE '%$search%'", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
     $content .= $sortSearch;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco' && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) { // sortowanie opinii
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Malejąco' && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) { // sortowanie opinii
     $content .= $sortBest;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Rosnąco' && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortWorst;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Najnowsze' && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $reviews;
 }
-if (!isset($_POST['sort']) && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (!isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $reviews;
 }
-if (isset($_POST['sortCamera']) && $_POST['sortCamera'] === 'Malejąco' && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort1']) && filter_input_array(INPUT_POST)['sort1'] === 'Malejąco' && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortBestCamera;
 }
-if (isset($_POST['sortCamera']) && $_POST['sortCamera'] === 'Rosnąco' && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort1']) && filter_input_array(INPUT_POST)['sort1'] === 'Rosnąco' && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortWorstCamera;
 }
-if (isset($_POST['sortBattery']) && $_POST['sortBattery'] === 'Malejąco' && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort2']) && filter_input_array(INPUT_POST)['sort2'] === 'Malejąco' && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortBestBattery;
 }
-if (isset($_POST['sortBattery']) && $_POST['sortBattery'] === 'Rosnąco' && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort2']) && filter_input_array(INPUT_POST)['sort2'] === 'Rosnąco' && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortWorstBattery;
 }
-if (isset($_POST['sortFunction']) && $_POST['sortFunction'] === 'Malejąco' && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort3']) && filter_input_array(INPUT_POST)['sort3'] === 'Malejąco' && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortBestFunction;
 }
-if (isset($_POST['sortFunction']) && $_POST['sortFunction'] === 'Rosnąco' && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort3']) && filter_input_array(INPUT_POST)['sort3'] === 'Rosnąco' && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortWorstFunction;
 }
-if (isset($_POST['sortLook']) && $_POST['sortLook'] === 'Malejąco' && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort4']) && filter_input_array(INPUT_POST)['sort4'] === 'Malejąco' && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortBestLook;
 }
-if (isset($_POST['sortLook']) && $_POST['sortLook'] === 'Rosnąco' && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort4']) && filter_input_array(INPUT_POST)['sort4'] === 'Rosnąco' && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $content .= $sortWorstLook;
 }
 
 $contentAdmin = '                       
                         <h2>Telewizory - Samsung</h2><br>                       
-                        
-                    <div class="textLeft" >   
+                        <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortCamera" class="sortSelectPhones" onchange="this.form.submit()">
+                                <select name="sort1" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po obrazie:</option>
+                                    <option value="Malejąco">Od najlepszej</option>
+                                    <option value="Rosnąco">Od najgorszej</option>                                                    
+                                </select>
+                            </form> 
+                        </div>
+                        <div class="textLeft" >   
+                            <form method="post">
+                                <select name="sort2" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po dźwięku:</option>
+                                    <option value="Malejąco">Od najlepszej</option>
+                                    <option value="Rosnąco">Od najgorszej</option>                                                    
+                                </select>
+                            </form> 
+                        </div>
+                        <div class="textLeft" >   
+                            <form method="post">
+                                <select name="sort3" class="sortSelectTvs" onchange="this.form.submit()">
                                     <option selected disabled hidden>Sortuj po funkcjonalności:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
@@ -244,27 +270,8 @@ $contentAdmin = '
                         </div>
                         <div class="textLeft" >   
                             <form method="post">
-                                <select name="sortBattery" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po baterii:</option>
-                                    <option value="Malejąco">Od najlepszej</option>
-                                    <option value="Rosnąco">Od najgorszej</option>                                                    
-                                </select>
-                            </form> 
-                        </div>
-                   
-                        <div class="textLeft" >   
-                            <form method="post">
-                                <select name="sortFunction" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po zdjęciach:</option>
-                                    <option value="Malejąco">Od najlepszej</option>
-                                    <option value="Rosnąco">Od najgorszej</option>                                                    
-                                </select>
-                            </form> 
-                        </div>
-                        <div class="textLeft" >   
-                            <form method="post">
-                                <select name="sortLook" class="sortSelectPhones" onchange="this.form.submit()">
-                                    <option selected disabled hidden>Sortuj po wyświetlaczu:</option>
+                                <select name="sort4" class="sortSelectTvs" onchange="this.form.submit()">
+                                    <option selected disabled hidden>Sortuj po wyglądzie:</option>
                                     <option value="Malejąco">Od najlepszej</option>
                                     <option value="Rosnąco">Od najgorszej</option>                                                    
                                 </select>
@@ -288,44 +295,44 @@ $contentAdmin = '
                                 </button>
                             </form> 
                         </div>';
-if (isset($_POST['search']) && !isset($_POST['sort']) && $status == 2 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook'])) {
-    $search = $_POST['search'];
+if (isset(filter_input_array(INPUT_POST)['search']) && !isset(filter_input_array(INPUT_POST)['sort']) && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4'])) {
+    $search = filter_input_array(INPUT_POST)['search'];
     $sortSearchAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` WHERE category= 'Telewizory' AND brand = 'Samsung' AND name LIKE '%$search%'", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
     $contentAdmin .= $sortSearchAdmin;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco' && $status == 2 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) { // sortowanie opinii
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Malejąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) { // sortowanie opinii
     $contentAdmin .= $sortBestAdmin;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 2 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Rosnąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortWorstAdmin;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 2 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Najnowsze' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $reviewsAdmin;
 }
-if (!isset($_POST['sort']) && $status == 2 && !isset($_POST['sortBattery']) && !isset($_POST['sortCamera']) && !isset($_POST['sortFunction']) && !isset($_POST['sortLook']) && !isset($_POST['search'])) {
+if (!isset(filter_input_array(INPUT_POST)['sort']) && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort2']) && !isset(filter_input_array(INPUT_POST)['sort1']) && !isset(filter_input_array(INPUT_POST)['sort3']) && !isset(filter_input_array(INPUT_POST)['sort4']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $reviewsAdmin;
 }
-if (isset($_POST['sortCamera']) && $_POST['sortCamera'] === 'Malejąco' && $status == 2 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort1']) && filter_input_array(INPUT_POST)['sort1'] === 'Malejąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortBestCameraAdmin;
 }
-if (isset($_POST['sortCamera']) && $_POST['sortCamera'] === 'Rosnąco' && $status == 2 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort1']) && filter_input_array(INPUT_POST)['sort1'] === 'Rosnąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortWorstCameraAdmin;
 }
-if (isset($_POST['sortBattery']) && $_POST['sortBattery'] === 'Malejąco' && $status == 2 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort2']) && filter_input_array(INPUT_POST)['sort2'] === 'Malejąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortBestBatteryAdmin;
 }
-if (isset($_POST['sortBattery']) && $_POST['sortBattery'] === 'Rosnąco' && $status == 2 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort2']) && filter_input_array(INPUT_POST)['sort2'] === 'Rosnąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortWorstBatteryAdmin;
 }
-if (isset($_POST['sortFunction']) && $_POST['sortFunction'] === 'Malejąco' && $status == 2 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort3']) && filter_input_array(INPUT_POST)['sort3'] === 'Malejąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortBestFunctionAdmin;
 }
-if (isset($_POST['sortFunction']) && $_POST['sortFunction'] === 'Rosnąco' && $status == 2 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort3']) && filter_input_array(INPUT_POST)['sort3'] === 'Rosnąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortWorstFunctionAdmin;
 }
-if (isset($_POST['sortLook']) && $_POST['sortLook'] === 'Malejąco' && $status == 2 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort4']) && filter_input_array(INPUT_POST)['sort4'] === 'Malejąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortBestLookAdmin;
 }
-if (isset($_POST['sortLook']) && $_POST['sortLook'] === 'Rosnąco' && $status == 2 && !isset($_POST['sort']) && !isset($_POST['search'])) {
+if (isset(filter_input_array(INPUT_POST)['sort4']) && filter_input_array(INPUT_POST)['sort4'] === 'Rosnąco' && $status == 2 && !isset(filter_input_array(INPUT_POST)['sort']) && !isset(filter_input_array(INPUT_POST)['search'])) {
     $contentAdmin .= $sortWorstLookAdmin;
 }

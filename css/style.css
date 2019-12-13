@@ -551,9 +551,10 @@ table{
     color: #331104;
     border-collapse: collapse; /*powoduje że nie ma przestrzeni miedzy komórkami tabeli */
     border: solid 20px #f4e1e5;
-    width:104.5%;
+    width:103%;
     margin-left:-19px;
 }
+
 table th{
     text-align:center;
     border: 12px solid #f4e1e5;
@@ -598,7 +599,7 @@ input[type=submit].deleteButton:hover{
 }
 
 
-@media only screen and (max-width: 1020px) {
+@media only screen and (max-width: 1220px) {
     #container {   
         grid-template-columns: 100%;
         grid-template-rows: auto auto auto auto auto;
@@ -703,6 +704,13 @@ input[type=submit].deleteButton:hover{
     footer {
         grid-row-start: 5;
     }      
+
+}
+@media only screen and (max-width: 720px) {
+    table th{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 }
 /*smartfony pionowo*/
 @media only screen and (max-width: 480px) {
@@ -720,7 +728,7 @@ input[type=submit].deleteButton:hover{
         float: none;
     }
     table{
-        width: 112%;
+        width: 100%;
         margin-left: -20px;
     }
     table td {
@@ -746,7 +754,8 @@ input[type=submit].deleteButton:hover{
         transform:scale(0.82);
     }
     section {        
-        width:320px;
+        /*width:320px;*/
+        width: 100%;
     }
     aside {
         width:360px;
@@ -832,10 +841,14 @@ input[type=submit].deleteButton:hover{
         width:360px;
     }
     table th {
-        width:50px;
+        /*width:100px;*/
+        padding-top: 10px;
+        padding-bottom: 10px;
+        /*display: inline-block;*/
     }
     table td{
         padding: 10px;
+        /*display: inline-block;*/
     }
     input[type=submit].emailChange {
         font-size: 17px;

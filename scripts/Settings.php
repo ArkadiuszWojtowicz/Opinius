@@ -3,6 +3,11 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$log = '';
+if (isset($_SESSION['log'])) {
+    $log = $_SESSION['log'];
+}
+$sesId = session_id();
 
 $title = 'Ustawienia';
 
@@ -11,8 +16,13 @@ include_once 'class/userManager.php';
 
 $db = new Database("localhost", "root", "", "opinius");
 $um = new UserManager();
-$status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
 
+$userIdSession = $db->select('SELECT userId FROM logged_in_users WHERE sessionId = "'.$sesId.'"', array("userId"));
+if ($log == True) {
+    $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId WHERE id = " . $userIdSession . "", array("status"));        
+} else {
+    $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
+}
 $contentLOG = '
                     <div class="textCenter"> 
                     <h2>Tutaj możesz zmienić ustawienia swojego konta</h2>
@@ -78,10 +88,6 @@ $contentLOG .= '
                     </form>   
                 ';
 
-//if (isset($_POST['file'])) {
-//    $db->UPDATE("UPDATE users SET image = $file WHERE id = $idLogged");
-//}
-
 $contentAdmin = '
                     <div class="textCenter"> 
                     <h2>Tutaj możesz zmienić ustawienia swojego konta</h2>
@@ -102,9 +108,14 @@ if (isset($_SESSION['remove']) && $status==2) {
     $contentAdmin .= '<div class="error">' . $_SESSION['remove'] . '</div>';
     unset($_SESSION['remove']);
 }
-$contentAdmin .= '                         
+$contentAdmin .= '       
+                    <form action="scripts/setImage.php" method="post" enctype="multipart/form-data" class="textCenter"> 
+                        <h3>Ustaw moje zdjęcie:</h3>
+                        Wybierz zdjęcie:<br><br>
+                        <input type="file" name="file"><br>
+                        <input type="submit" value="Zatwierdź" class="emailChange">      
+                    </form>
                     <form action="scripts/changeSettings.php" method="post" class="textCenter"> 
-                        
                         <h3>Zmień mój adres e-mail:</h3>
                         Podaj swój aktualny adres e-mail:<br>
                         <input type="text" name="email"><br>

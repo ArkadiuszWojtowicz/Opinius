@@ -2,7 +2,7 @@
 
 session_start();
 
-$adres = $_POST["email"];
+$adres = filter_input_array(INPUT_POST)["email"];
 $tytul = "Resetowanie hasła";
 $wiadomosc = "Witaj, dostaliśmy zgłoszenie o prośbie zresetowania hasła. Kliknij w link poniżej, a zostaniesz"
         . " przekierowany do formularza zmiany hasła. "

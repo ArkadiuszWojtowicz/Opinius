@@ -28,7 +28,7 @@ class UserManager {
     function logout($db) {
         session_start();
         $sesId = session_id();
-        if (isset($_COOKIE[session_name()])) {
+        if (isset(filter_input_array(INPUT_COOKIE)[session_name()])) {
             setcookie(session_name(), '', time() - 42000, '/');
         }
         session_destroy();

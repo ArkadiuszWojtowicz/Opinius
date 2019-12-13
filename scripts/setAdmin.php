@@ -5,10 +5,10 @@ include_once 'class/database.php';
 
 $db = new Database("localhost", "root", "", "opinius");
 
-$nick = $_POST['name'];
+$nick = filter_input_array(INPUT_POST)['name'];
 $nickSelect = $db->select("SELECT nick from users WHERE nick='$nick'", array("nick"));
 $statusSelect = $db->select("SELECT status from users WHERE nick='$nick'", array("status"));
-if (isset($_POST['name'])) {
+if (isset(filter_input_array(INPUT_POST)['name'])) {
     if ($nick == $nickSelect && $statusSelect==1) {
         $_SESSION['name'] = '<span style="color:green; text-align: center; font-size:16px;">Użytkownikowi ' . $nickSelect . ' przyznano status admina!</span>';
         $db->UPDATE("UPDATE users SET status=2 WHERE nick='$nick'");
@@ -23,10 +23,10 @@ if (isset($_POST['name'])) {
     }
 }
 
-$nick2 = $_POST['name2'];
+$nick2 = filter_input_array(INPUT_POST)['name2'];
 $nickSelect2 = $db->select("SELECT nick from users WHERE nick='$nick2'", array("nick"));
 $statusSelect2 = $db->select("SELECT status from users WHERE nick='$nick2'", array("status"));
-if (isset($_POST['name2'])) {
+if (isset(filter_input_array(INPUT_POST)['name2'])) {
     if ($nick2 == $nickSelect2 && $statusSelect2==2) {
         $_SESSION['downGradeStatus'] = '<span style="color:green; text-align: center; font-size:16px;">Użytkownikowi ' . $nickSelect2 . ' odebrano status admina!</span>';
         $db->UPDATE("UPDATE users SET status=1 WHERE nick='$nick2'");

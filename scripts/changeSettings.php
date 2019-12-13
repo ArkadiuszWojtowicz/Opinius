@@ -8,13 +8,13 @@ $db = new Database("localhost", "root", "", "opinius");
 $um = new UserManager(); // potrzebne do wylogowania po usunięciu konta
 
 //ZMIANA ADRESU EMAIL
-$email = $_POST['email'];
+$email = filter_input_array(INPUT_POST)['email'];
 $emailB = filter_var($email, FILTER_SANITIZE_EMAIL);
-$emailN = $_POST['emailN'];
+$emailN = filter_input_array(INPUT_POST)['emailN'];
 $emailLogged = $db->select("SELECT email from users u JOIN logged_in_users l ON u.id = l.userId", array("email"));
 
-if (isset($_POST['email'])) {
-    if ($email == $emailLogged && ((strlen($emailN) >= 3) && (strlen($emailN) <= 40)) ) { //&& (filter_var($emailB, FILTER_VALIDATE_EMAIL
+if (isset(filter_input_array(INPUT_POST)['email'])) {
+    if ($email == $emailLogged && ((strlen($emailN) >= 3) && (strlen($emailN) <= 40)) ) { 
         $_SESSION['email'] = '<span style="color:green">Twój e-mail został zmieniony</span>';
         $db->UPDATE("UPDATE users SET email='$emailN' WHERE email = '$email'");
         header("location: ../index.php?site=Settings");
@@ -25,11 +25,11 @@ if (isset($_POST['email'])) {
 }
 
 //ZMIANA NICKU
-$nick = $_POST['nick'];
-$nickN = $_POST['nickN'];
+$nick = filter_input_array(INPUT_POST)['nick'];
+$nickN = filter_input_array(INPUT_POST)['nickN'];
 $nickLogged = $db->select("SELECT nick from users u JOIN logged_in_users l ON u.id = l.userId", array("nick"));
 
-if (isset($_POST['nick'])) {
+if (isset(filter_input_array(INPUT_POST)['nick'])) {
     if ($nick == $nickLogged && ((strlen($nickN) >= 3) && (strlen($nickN) <= 20))) {
         $_SESSION['nick'] = '<span style="color:green">Twój nick został zmieniony</span>';
         $db->UPDATE("UPDATE users SET nick='$nickN' WHERE nick = '$nick'");
@@ -41,14 +41,14 @@ if (isset($_POST['nick'])) {
 }
 
 //ZMIANA HASŁA
-$password = $_POST['password'];
-$passwordN = $_POST['passwordN'];
-$passwordN2 = $_POST['passwordN2'];
+$password = filter_input_array(INPUT_POST)['password'];
+$passwordN = filter_input_array(INPUT_POST)['passwordN'];
+$passwordN2 = filter_input_array(INPUT_POST)['passwordN2'];
 $hashed = hash('ripemd160', $password);
 $hashedN = hash('ripemd160', $passwordN);
 $passwordLogged = $db->select("SELECT passwd from users u JOIN logged_in_users l ON u.id = l.userId", array("passwd"));
 
-if (isset($_POST['password'])) {
+if (isset(filter_input_array(INPUT_POST)['password'])) {
     if ($hashed == $passwordLogged && ((strlen($passwordN) >= 8) && (strlen($passwordN) <= 25)) && $passwordN==$passwordN2) {
         $_SESSION['password'] = '<span style="color:green">Twoje hasło zostało zmienione</span>';
         $db->UPDATE("UPDATE users SET passwd='$hashedN' WHERE passwd = '$hashed'");
@@ -64,14 +64,14 @@ if (isset($_POST['password'])) {
 }
 
 //USUNIĘCIE KONTA
-$removeE = $_POST['removeE'];
-$removeH = $_POST['removeH'];
+$removeE = filter_input_array(INPUT_POST)['removeE'];
+$removeH = filter_input_array(INPUT_POST)['removeH'];
 $hashedH = hash('ripemd160', $removeH);
 
 $emailLogged2 = $db->select("SELECT email from users u JOIN logged_in_users l ON u.id = l.userId", array("email"));
 $passwordLogged2 = $db->select("SELECT passwd from users u JOIN logged_in_users l ON u.id = l.userId", array("passwd"));
 
-if (isset($_POST['removeE'])) {
+if (isset(filter_input_array(INPUT_POST)['removeE'])) {
     if ($removeE == $emailLogged2 && $hashedH == $passwordLogged2) {
         $um->logout($db);
         $_SESSION['remove'] = '<span style="color:green">Twoje konto zostało usunięte</span>';

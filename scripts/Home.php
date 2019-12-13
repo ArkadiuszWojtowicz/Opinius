@@ -3,6 +3,11 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$log = '';
+if (isset($_SESSION['log'])) {
+    $log = $_SESSION['log'];
+}
+$sesId = session_id();
 
 $title = "Opinius";
 
@@ -10,10 +15,16 @@ include_once 'class/database.php';
 include_once 'class/userManager.php';
 
 $db = new Database("localhost", "root", "", "opinius");
+$userIdSession = $db->select('SELECT userId FROM logged_in_users WHERE sessionId = "' . $sesId . '"', array("userId"));
 
 $reviews = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` ORDER BY r.`id-reviews`  DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image", "image"));
 $reviewsAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` ORDER BY r.`id-reviews`  DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image", "star2", "star3", "star4"));
-$status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
+//$status2 = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
+if ($log == True) {
+    $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId WHERE id = " . $userIdSession . "", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
+} else {
+    $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
+}
 $sortBest = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` ORDER BY (star+star2+star3+star4)/4 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
 $sortWorst = $db->displayReviews("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` ORDER BY (star+star2+star3+star4)/4", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
 $sortBestAdmin = $db->selectAdmin("SELECT r.`id-reviews`, name, category, brand, nick, review , star, star2, star3, star4, image FROM `parameters-items` p JOIN reviews r ON `r`.`id-reviews` = p.`id-reviews` JOIN users u ON `u`.`id` = `r`.`id-users` JOIN items i ON `i`.`id-items` = `r`.`id-items` JOIN manufacturers m ON `m`.`id-manufacturers` = `i`.`id-manufacturers` JOIN categories c ON `c`.`id-categories` = `m`.`id-categories` ORDER BY (star+star2+star3+star4)/4 DESC", array("id-reviews", "nick", "name", "category", "brand", "review", "star", "star2", "star3", "star4", "image"));
@@ -33,7 +44,7 @@ if (isset($_SESSION['added']) && $status == 1) { // info o dodaniu opinii
 }
 
 
-$contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
+$contentLOG .= '    <h2>Tutaj możesz dodać opinię</h2>
                     <div id="slideshow">
                         <img src="images/home1.jpg" alt="home1" class="active">
                         <img src="images/home2.jpg" alt="home2" >
@@ -108,16 +119,16 @@ $contentLOG .= '    <h2> Tutaj możesz dodać opinię </h2>
                     </div>';
 
 
-if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco' && $status == 1) { // sortowanie opinii
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Malejąco' && $status == 1) { // sortowanie opinii
     $contentLOG .= $sortBest;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 1) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Rosnąco' && $status == 1) {
     $contentLOG .= $sortWorst;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 1) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Najnowsze' && $status == 1) {
     $contentLOG .= $reviews;
 }
-if (!isset($_POST['sort']) && $status == 1) {
+if (!isset(filter_input_array(INPUT_POST)['sort']) && $status == 1) {
     $contentLOG .= $reviews;
 }
 
@@ -135,7 +146,7 @@ if (isset($_SESSION['rem']) && $status == 2) { // info o usunięciu opinii
 }
 
 $contentAdmin .= '                        
-                    <h2> Tutaj możesz dodać opinię </h2>
+                    <h2>Tutaj możesz dodać opinię</h2>
                     
                     <div id="slideshow">
                         <img src="images/home1.jpg" alt="home1" class="active">
@@ -210,16 +221,16 @@ $contentAdmin .= '
                         </form> 
                     </div>';
 
-if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco' && $status == 2) { // sortowanie opinii
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Malejąco' && $status == 2) { // sortowanie opinii
     $contentAdmin .= $sortBestAdmin;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco' && $status == 2) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Rosnąco' && $status == 2) {
     $contentAdmin .= $sortWorstAdmin;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze' && $status == 2) {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Najnowsze' && $status == 2) {
     $contentAdmin .= $reviewsAdmin;
 }
-if (!isset($_POST['sort']) && $status == 2) {
+if (!isset(filter_input_array(INPUT_POST)['sort']) && $status == 2) {
     $contentAdmin .= $reviewsAdmin;
 }
 
@@ -243,15 +254,15 @@ $content .= '
                         </form> 
                     </div>';
 
-if (isset($_POST['sort']) && $_POST['sort'] === 'Malejąco') { // sortowanie opinii
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Malejąco') { // sortowanie opinii
     $content .= $sortBest;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Rosnąco') {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Rosnąco') {
     $content .= $sortWorst;
 }
-if (isset($_POST['sort']) && $_POST['sort'] === 'Najnowsze') {
+if (isset(filter_input_array(INPUT_POST)['sort']) && filter_input_array(INPUT_POST)['sort'] === 'Najnowsze') {
     $content .= $reviews;
 }
-if (!isset($_POST['sort'])) {
+if (!isset(filter_input_array(INPUT_POST)['sort'])) {
     $content .= $reviews;
 }

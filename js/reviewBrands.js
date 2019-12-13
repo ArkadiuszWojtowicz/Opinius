@@ -1,5 +1,6 @@
 function change($category) {
     if ($category === "Telefony i smartfony") {
+        //Wyświetla producentów dla wybranej kategorii
         document.getElementById("brand").innerHTML = '<p>Marka:</p>'
                 + '<select name="brand" class="textLeft">'
                 + '<option>Xiaomi</option>'
@@ -9,6 +10,7 @@ function change($category) {
                 + '<option>Huawei</option>'
                 + '<option>Nokia</option> '
                 + '</select><br>';
+        //Wyświetla 4 szczegółowe parametry oceny dla wybranej kategorii
         document.getElementById("detailedStars1").innerHTML = '<p>Funkcjonalność:</p>';
         document.getElementById("detailedStars2").innerHTML = '<p>Bateria:</p>';
         document.getElementById("detailedStars3").innerHTML = '<p>Zdjęcia:</p>';
@@ -53,7 +55,6 @@ function change($category) {
                 + '<option>AMD</option>'
                 + '<option>MSI</option>'
                 + '<option>GeForce</option>'
-                + '<option>GTX</option>'
                 + '</select><br>';
         document.getElementById("detailedStars1").innerHTML = '<p>Wydajność:</p>';
         document.getElementById("detailedStars2").innerHTML = '<p>Wykonanie:</p>';

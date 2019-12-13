@@ -7,15 +7,15 @@ include_once 'class/database.php';
 $db = new Database("localhost", "root", "", "opinius");
 
 //$nick = $db->select("SELECT userName from users u JOIN logged_in_users l ON u.id = l.userId", array("userName"));
-$name = $_POST['name'];
-$brand = $_POST['brand'];
-$category = $_POST['category'];
-$review = $_POST['review'];
-//$rating = $_POST['button'];
-$detailedButton1 = $_POST['detailedButton1'];
-$detailedButton2 = $_POST['detailedButton2'];
-$detailedButton3 = $_POST['detailedButton3'];
-$detailedButton4 = $_POST['detailedButton4'];
+$name = filter_input_array(INPUT_POST)['name'];
+$brand = filter_input_array(INPUT_POST)['brand'];
+$category = filter_input_array(INPUT_POST)['category'];
+$review = filter_input_array(INPUT_POST)['review'];
+//$rating = filter_input_array(INPUT_POST)['button'];
+$detailedButton1 = filter_input_array(INPUT_POST)['detailedButton1'];
+$detailedButton2 = filter_input_array(INPUT_POST)['detailedButton2'];
+$detailedButton3 = filter_input_array(INPUT_POST)['detailedButton3'];
+$detailedButton4 = filter_input_array(INPUT_POST)['detailedButton4'];
 
 //$db->INSERT("INSERT INTO items Values(NULL,'$itemsName','$category','$brand','$nick','$review','$detailedButton1','$detailedButton2','$detailedButton3','$detailedButton4')");
 
@@ -28,7 +28,7 @@ $idReviews = $db->select("SELECT `id-reviews` FROM reviews WHERE review = '$revi
 $db->INSERT("INSERT INTO `parameters-items` Values(NULL,'$detailedButton1','$detailedButton2','$detailedButton3','$detailedButton4','$idReviews')");
 
 
-if (isset($_POST['review'])) {
+if (isset(filter_input_array(INPUT_POST)['review'])) {
     $_SESSION['added'] = '<span style="color:green; text-align: center; font-size:16px;">Opinia została dodana!</span>';
     header("location: ../index.php");
 }
