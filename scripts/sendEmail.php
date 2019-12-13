@@ -3,9 +3,9 @@
 session_start();
 
 $adres = 'admin@opinius.com.pl';
-$email = $_POST["email"];
-$tytul = $_POST["name"];
-$wiadomosc = $_POST["review"] ."\n\nFrom: ". $email;
+$email = filter_input_array(INPUT_POST)["email"];
+$tytul = filter_input_array(INPUT_POST)["name"];
+$wiadomosc = filter_input_array(INPUT_POST)["review"] ."\n\nFrom: ". $email;
 
 //if(filter_var($adres, FILTER_SANITIZE_EMAIL)){
 // && (filter_var($email, FILTER_SANITIZE_EMAIL)) == TRUE

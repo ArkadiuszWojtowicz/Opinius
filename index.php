@@ -3,8 +3,8 @@
 require_once("class/website.php");
 $site_akt = new Website();
 //decuduje która strona ma być wyświetlana
-if (isset($_GET['site'])) {
-    $site = $_GET['site'];
+if (isset(filter_input_array(INPUT_GET)['site'])) {
+    $site = filter_input_array(INPUT_GET)['site'];
     switch ($site) {
         case 'MyReviews':$site = 'MyReviews';
             break;
@@ -71,8 +71,6 @@ if (isset($_GET['site'])) {
         case 'ComponentsMSI':$site = 'ComponentsMSI';
             break;
         case 'ComponentsGeForce':$site = 'ComponentsGeForce';
-            break;
-        case 'ComponentsGTX':$site = 'ComponentsGTX';
             break;
         case 'Cameras':$site = 'Cameras';
             break;

@@ -38,7 +38,7 @@ class Database {
     public function displayReviews($sql, $pola) { // ODPOWIADA ZA WYSWIETLANIE TABELI Z OPINIAMI NA STRONIE GLOWNEJ
         if ($result = $this->mysqli->query($sql)) {
 
-            $content = "<table class='table'><tbody>";
+            $content = "<table class='table' width='100%'><tbody>";
             $stars1 = "";
             $stars2 = "";
             $stars3 = "";
@@ -118,7 +118,7 @@ class Database {
                 }
                 if ($average == 3) {
                     $number = "<div style='display:inline-block'>3.0</div>";
-                    $average = "<i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i></div>";
+                    $average = "</i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i></div>";
                 }
                 if ($average == 2.75) {
                     $number = "<div style='display:inline-block'>2.75</div>";
@@ -256,39 +256,41 @@ class Database {
                     $image = base64_encode($row->$p10);
                 }
 
-                $content .= "
-                            <tr width='50%'> 
-                              <th rowspan='8' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . 
-                              "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px;'/>"
+                 $content .= "
+                            <tr > 
+                              <th rowspan='9' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . 
+                              "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px; min-width:150px; min-height:150px;'/>"
                               . "<br><br><br><br><br><br><br><br><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Model: </th>   
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>Model: </th>   
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
                             </tr>
-                            <tr width='50%'>    
-                              <th height='40' width='20%' style='border-right: none; text-align:left'>Kategoria:</th>
-                              <th height='40' width='30%' style='border-left: none; text-align:right'>" . $row->$p3 . "</th>
-                              <th height='40' width='0%' style='border-right: none; text-align:left'>Marka:</th>
-                              <th height='40' width='40%' style='border-left: none; text-align:right'>" . $row->$p4 . "</th>    
+                            <tr >    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>Kategoria:</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $row->$p3 . "</th>
+                            </tr>
+                            <tr>
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>Marka:</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $row->$p4 . "</th>    
                             </tr>       
-                            <tr width='50%'>    
-                              <th height='40' width='20%' colspan='2' style='border-right: none; text-align:left;'>Średnia ocena:</th>
-                              <th height='40' width='40%' colspan='2' style='border-left: none; text-align:right;'>" . $number . $average . "</</th>    
+                            <tr >    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left;'>Średnia ocena:</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right;'>" . $number . $average . "</</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail1 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars1 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail1 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars1 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail2 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars2 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail2 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars2 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail3 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars3 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail3 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars3 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail4 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars4 . "</th>    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>" . $detail4 . "</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $stars4 . "</th>    
                             </tr>
                             <tr>    
                               <td colspan='4'>" . $row->$p5 . "</td>  
@@ -389,7 +391,7 @@ class Database {
                 }
                 if ($average == 3) {
                     $number = "<div style='display:inline-block'>3.0</div>";
-                    $average = "<i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i></div>";
+                    $average = "<i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i></div>";
                 }
                 if ($average == 2.75) {
                     $number = "<div style='display:inline-block'>2.75</div>";
@@ -532,36 +534,38 @@ class Database {
      
 
                 $content .= "
-                            <tr width='50%'> 
-                              <th rowspan='8' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px;'/><br><br><br><br><button type='submit' class='edit' value='" . $IdComment . "' name='editID' onclick='editReview($IdComment)'>Edytuj</button><br><br><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
+                            <tr > 
+                              <th rowspan='9' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px;'/><br><br><br><br><button type='submit' class='edit' value='" . $IdComment . "' name='editID' onclick='editReview($IdComment)'>Edytuj</button><br><br><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
                               <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Model: </th>   
                               <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
                             </tr>
-                            <tr width='50%'>    
-                              <th height='40' width='2%' style='border-right: none; text-align:left'>Kategoria:</th>
-                              <th height='40' width='55%' style='border-left: none; text-align:right'>" . $row->$p3 . "</th>
-                              <th height='40' width='10%' style='border-right: none; text-align:left'>Marka:</th>
-                              <th height='40' width='44%' style='border-left: none; text-align:right'>" . $row->$p4 . "</th>    
+                            <tr >    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>Kategoria:</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $row->$p3 . "</th>
+                            </tr>
+                            <tr>
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>Marka:</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $row->$p4 . "</th>    
                             </tr>       
-                            <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Średnia ocena:</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $number . $average . "</th>    
+                            <tr >    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left;'>Średnia ocena:</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right;'>" . $number . $average . "</</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail1 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars1 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail1 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars1 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail2 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars2 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail2 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars2 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail3 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars3 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail3 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars3 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail4 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars4 . "</th>    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>" . $detail4 . "</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $stars4 . "</th>    
                             </tr>
                             <tr>    
                               <td colspan='4'>" . $row->$p5 . "</td>  
@@ -579,7 +583,7 @@ class Database {
         return $content;
     }
 //metoda wyświetlająca opinie dla administratora z możliwością usuwania
-    public function selectAdmin($sql, $pola) { // ODPOWIADA ZA WYSWIETLANIE TABELI Z OPINIAMI DLA ADMINA
+    public function selectAdmin($sql, $pola) { 
         if ($result = $this->mysqli->query($sql)) {
 
             $content = "<table class='table'><tbody>";
@@ -662,7 +666,7 @@ class Database {
                 }
                 if ($average == 3) {
                     $number = "<div style='display:inline-block'>3.0</div>";
-                    $average = "<i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i></div>";
+                    $average = "<i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i><i class='icon-star-display' style='color:yellow' name='button'></i></div>";
                 }
                 if ($average == 2.75) {
                     $number = "<div style='display:inline-block'>2.75</div>";
@@ -804,39 +808,41 @@ class Database {
                 $IdComment = $row->$p0;
 
                 $content .= "
-                            <tr width='50%'> 
-                              <th rowspan='8' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px;'/><br><br><br><br><form action ='scripts/removeOpinion.php' method='post'><br><button type='submit' value='" . $IdComment . "' class='rem' name='rem'>Usuń opinię</button></form><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
+                            <tr > 
+                              <th rowspan='9' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px;'/><br><br><br><br><form action ='scripts/removeOpinion.php' method='post'><br><button type='submit' value='" . $IdComment . "' class='rem' name='rem'>Usuń opinię</button></form><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
                               <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Model: </th>   
                               <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
                             </tr>
-                            <tr width='50%'>    
-                              <th height='40' width='2%' style='border-right: none; text-align:left'>Kategoria:</th>
-                              <th height='40' width='55%' style='border-left: none; text-align:right'>" . $row->$p3 . "</th>
-                              <th height='40' width='10%' style='border-right: none; text-align:left'>Marka:</th>
-                              <th height='40' width='44%' style='border-left: none; text-align:right'>" . $row->$p4 . "</th>    
+                            <tr >    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>Kategoria:</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $row->$p3 . "</th>
+                            </tr>
+                            <tr>
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>Marka:</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $row->$p4 . "</th>    
                             </tr>       
-                            <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Średnia ocena:</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $number . $average . "</th>    
+                            <tr >    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left;'>Średnia ocena:</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right;'>" . $number . $average . "</</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail1 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars1 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail1 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars1 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail2 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars2 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail2 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars2 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail3 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars3 . "</th>    
+                              <th height='40'  colspan='2' style='border-right: none; text-align:left'>" . $detail3 . "</th>
+                              <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $stars3 . "</th>    
                             </tr>
                             <tr>    
-                              <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>" . $detail4 . "</th>
-                              <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $stars4 . "</th>    
+                              <th height='40' colspan='2' style='border-right: none; text-align:left'>" . $detail4 . "</th>
+                              <th height='40' colspan='2' style='border-left: none; text-align:right'>" . $stars4 . "</th>    
                             </tr>
                             <tr>    
-                              <td colspan='4'>" . $row->$p5 . "</td>    
+                              <td colspan='4'>" . $row->$p5 . "</td>  
                             </tr>
                             <tr>    
                                <td colspan='5' class='reviewSpace'></td>    

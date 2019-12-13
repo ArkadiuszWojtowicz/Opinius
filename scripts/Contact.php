@@ -1,14 +1,25 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+$log = '';
+if (isset($_SESSION['log'])) {
+    $log = $_SESSION['log'];
+}
+$sesId = session_id();
 
 $title = "";
 
-session_start();
-
 include_once 'class/database.php';
 include_once 'class/userManager.php';
-
 $db = new Database("localhost", "root", "", "opinius");
-$status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
+
+$userIdSession = $db->select('SELECT userId FROM logged_in_users WHERE sessionId = "'.$sesId.'"', array("userId"));
+if ($log == True) {
+    $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId WHERE id = " . $userIdSession . "", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
+} else {
+    $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
+}
 
 $adres = 'admin@opinius.com.pl';
 

@@ -16,36 +16,56 @@ class Website {
     public function set_content($new_content) {
         $this->content = $new_content;
     }
+
     public function set_contentLOG($new_contentLOG) {
         $this->contentLOG = $new_contentLOG;
     }
+
     public function set_contentAdmin($new_contentAdmin) {
         $this->contentAdmin = $new_contentAdmin;
     }
+
 //metody modyfikujące fragmenty strony
     function set_title($new_title) {
         $this->title = $new_title;
     }
+
     public function set_keywords($new_slowa) {
         $this->keywords = $new_slowa;
     }
+
     public function set_style($url) {
         echo '<link rel="stylesheet" href=' . $url . ' type="text/css" />';
     }
+
 //metody wyświetlające fragmenty strony
     public function display() {
         $this->display_html();
         $this->content();
     }
+
     public function display_title() {
         echo "<title>$this->title</title>";
     }
+
     public function display_keywords() {
         echo "<meta name=\"keywords\" contents=\"$this->keywords\">";
     }
+
     public function menu() {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $sesId = session_id();
+        
         $db = new Database("localhost", "root", "", "opinius");
-        $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
+        
+        $userIdSession = $db->select('SELECT userId FROM logged_in_users WHERE sessionId = "' . $sesId . '"', array("userId"));
+        if ($this->log == True) {
+            $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId WHERE id = " . $userIdSession . "", array("status")); // dodane aby funkcja unset działała tylko na odpowiednim statusie użytkownika       
+        } else {
+            $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
+        }
         if ($this->log == TRUE && $status == 1) {
             ?>
 
@@ -105,15 +125,16 @@ class Website {
                             <li> <a href="?site=Cameras">Aparaty i kamery</a> </li>
                         </ul>
                     </li> 
-                   <li> <a href="?site=Login">Logowanie</a> </li>
+                    <li> <a href="?site=Login">Logowanie</a> </li>
                     <li> <a href="?site=Contact" >Kontakt</a> </li>
-                    
-                   
+
+
                 </ul>
             </nav>
             <?php
         }
     }
+
     public function logo() {
         ?>
 
@@ -135,6 +156,7 @@ class Website {
 
         <?php
     }
+
     public function brands() {
 
         if ($this->title == "Telewizory" || $this->title == "Telewizory Samsung" || $this->title == "Telewizory LG" || $this->title == "Telewizory Panasonic" || $this->title == "Telewizory Toshiba" || $this->title == "Telewizory Thomson" || $this->title == "Telewizory Philips" || $this->title == "Telewizory Manta") {
@@ -223,7 +245,7 @@ class Website {
             </div>
             <?php
         }
-        if ($this->title == "Podzespoły" || $this->title == "Podzespoły Intel" || $this->title == "Podzespoły AMD" || $this->title == "Podzespoły MSI" || $this->title == "Podzespoły GeForce" || $this->title == "Podzespoły GTX") {
+        if ($this->title == "Podzespoły" || $this->title == "Podzespoły Intel" || $this->title == "Podzespoły AMD" || $this->title == "Podzespoły MSI" || $this->title == "Podzespoły GeForce") {
             ?>
             <div class="brand">        
                 <form action="" method="post">
@@ -238,9 +260,6 @@ class Website {
                     </div>
                     <div class="categoryLink">
                         <a href="index.php?site=ComponentsGeForce">GeForce <i class="icon-right-thin"></i></a><br>
-                    </div>
-                    <div class="categoryLink">
-                        <a href="index.php?site=ComponentsGTX">GTX <i class="icon-right-thin"></i></a><br>
                     </div>
                 </form>
             </div>
@@ -264,22 +283,29 @@ class Website {
             <?php
         }
     }
+
     public function userLogged() { //
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $sesId = session_id();
         $db = new Database("localhost", "root", "", "opinius");
-        $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));      
-        $firstNameLoggedUser = $db->select("SELECT firstName from users u JOIN logged_in_users l ON u.id = l.userId", array("firstName"));
+        $userIdSession = $db->select('SELECT userId FROM logged_in_users WHERE sessionId = "' . $sesId . '"', array("userId"));
+        $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
         if ($this->log == TRUE && ($status == 1 || $status == 2)) {
+            $firstNameLoggedUser = $db->select("SELECT firstName from users u JOIN logged_in_users l ON u.id = l.userId WHERE id = " . $userIdSession . "", array("firstName"));
             echo '<div class="userLogged">
             <h4>Witaj w serwisie ' . $firstNameLoggedUser . '!</h4>
             </div>';
         }
     }
+
     public function left_menu() {
 
         $this->logo();
         $this->userLogged();
         $this->brands();
-        
+
         if ($this->title != "Telefony i smartfony" && $this->title != "Telefony i smartfony Xiaomi" && $this->title != "Telefony i smartfony LG" && $this->title != "Telefony i smartfony Apple" && $this->title != "Telefony i smartfony Samsung" && $this->title != "Telefony i smartfony Huawei" && $this->title != "Telefony i smartfony Nokia") {
             ?>
             <div class="category">                                      
@@ -325,8 +351,8 @@ class Website {
             </div>
             <?php
         }
-        
-        if ($this->title != "Podzespoły" && $this->title != "Podzespoły Intel" && $this->title != "Podzespoły AMD" && $this->title != "Podzespoły MSI" && $this->title != "Podzespoły GeForce" && $this->title != "Podzespoły GTX") {
+
+        if ($this->title != "Podzespoły" && $this->title != "Podzespoły Intel" && $this->title != "Podzespoły AMD" && $this->title != "Podzespoły MSI" && $this->title != "Podzespoły GeForce") {
             ?>
             <div class="category">                                      
                 <div class="categoryLink">
@@ -357,6 +383,7 @@ class Website {
             <?php
         }
     }
+
     public function socials() {
         ?>
         <div class="socials">
@@ -380,9 +407,11 @@ class Website {
 
         <?php
     }
+
     public function footer() {
         echo '<footer><p>Copyright © www.opinius.pl</p></footer>';
     }
+
     public function display_html() {
 
 
@@ -414,27 +443,36 @@ class Website {
         $this->display_title();
         echo '</head><body>';
     }
-//metoda wyświtlająca zawartość strony
-    public function content() {
 
-        $this->menu();
+//metoda wyświetlająca zawartość strony
+    public function content() {
+        $this->menu(); //menu górne
         echo '<aside>';
-        $this->left_menu();
+        $this->left_menu(); //menu boczne
         echo '</aside>';
-        echo '<section>';
+        echo '<section>'; //główna zawartość
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $sesId = session_id();
         $db = new Database("localhost", "root", "", "opinius");
-        $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId", array("status"));
-        if ($this->log == True && $status == 1) {
-            echo $this->contentLOG;
-        } else if ($this->log == True && $status == 2) {
-            echo $this->contentAdmin;
+        $userIdSession = $db->select('SELECT userId FROM logged_in_users WHERE sessionId = "' . $sesId . '"', array("userId"));
+
+        if ($this->log == True) { //użytkownik zalogowany
+            $status = $db->select("SELECT status from users u JOIN logged_in_users l ON u.id = l.userId WHERE id = " . $userIdSession . "", array("status"));
+            if ($status == 1) {
+                echo $this->contentLOG;
+            }
+            if ($status == 2) {
+                echo $this->contentAdmin;
+            }
         } else {
-            echo $this->content;
+            echo $this->content; //użytkownik niezalogowany
         }
         echo "</section>";
-        $this->socials();
-        $this->footer();
-
+        $this->socials(); //media społecznościowe
+        $this->footer(); //stopka
         echo '</body></html>';
     }
+
 }
