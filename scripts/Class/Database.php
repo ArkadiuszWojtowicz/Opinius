@@ -259,7 +259,7 @@ class Database {
                  $content .= "
                             <tr > 
                               <th rowspan='9' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . 
-                              "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px; min-width:150px; min-height:150px;'/>"
+                              "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='width: 100%'/>"//style='max-width: 150px; max-height:300px; min-width:150px; min-height:150px;'
                               . "<br><br><br><br><br><br><br><br><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
                               <th height='40'  colspan='2' style='border-right: none; text-align:left'>Model: </th>   
                               <th height='40'  colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
@@ -535,7 +535,7 @@ class Database {
 
                 $content .= "
                             <tr > 
-                              <th rowspan='9' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px;'/><br><br><br><br><button type='submit' class='edit' value='" . $IdComment . "' name='editID' onclick='editReview($IdComment)'>Edytuj</button><br><br><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
+                              <th rowspan='9' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='width: 100%'/><br><br><br><br><button type='submit' class='edit' value='" . $IdComment . "' name='editID' onclick='editReview($IdComment)'>Edytuj</button><br><br><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
                               <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Model: </th>   
                               <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
                             </tr>
@@ -809,7 +809,7 @@ class Database {
 
                 $content .= "
                             <tr > 
-                              <th rowspan='9' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='max-width: 150px; max-height:300px;'/><br><br><br><br><form action ='scripts/removeOpinion.php' method='post'><br><button type='submit' value='" . $IdComment . "' class='rem' name='rem'>Usuń opinię</button></form><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
+                              <th rowspan='9' height='275' width='170' style='border-left: none;margin-left:0'>ID opinii: " . $row->$p0 . "<br><br><br><br><br><br><br><br><img src='data:image/jpeg;base64," . $image . "' style='width: 100%'/><br><br><br><br><form action ='scripts/removeOpinion.php' method='post'><br><button type='submit' value='" . $IdComment . "' class='rem' name='rem'>Usuń opinię</button></form><br><br>Użytkownik:<br><br>" . $row->$p1 . "</th>
                               <th height='40' width='50%' colspan='2' style='border-right: none; text-align:left'>Model: </th>   
                               <th height='40' width='50%' colspan='2' style='border-left: none; text-align:right'>" . $row->$p2 . "</th>  
                             </tr>
