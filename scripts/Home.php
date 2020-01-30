@@ -52,10 +52,10 @@ $contentLOG .= '    <h2>Tutaj możesz dodać opinię</h2>
                     </div>
                     <br><br>
                     <form action="scripts/addOpinion.php" method="post"> 
-                        <div class="textLeft">
+                        <div class="reviewForm">
                             <p>Model:</p>
                             <input type="text" name="name" class="textLeft" required><br>
-                            <div style="display:inline-block">
+                            <div class="displayCategory">
                                 <p>Kategoria:</p>
                                 <select name="category" class="textLeft"  onchange="change(value)" required>
                                     <option selected disabled hidden value="">Wybierz kategorię</option>
@@ -66,7 +66,7 @@ $contentLOG .= '    <h2>Tutaj możesz dodać opinię</h2>
                                     <option value="Aparaty i kamery">Aparaty i kamery</option>    
                                 </select>
                             </div>
-                            <div style="display:inline-block; margin-left: 20px;" id="brand" name="brand"></div>
+                            <div class="displayBrand" id="brand" name="brand"></div>
                             
                             <div id="detailedStars1"><p><br></p></div>
                             <div class="rating" id="stars1" name="stars">

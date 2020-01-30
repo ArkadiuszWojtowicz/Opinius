@@ -332,7 +332,7 @@ nav ul li ul li:nth-last-child(5){
     margin-top: 8px;
     border-top: 0px solid #751b1b;
 }
-nav ul li ol{
+/*nav ul li ol{
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -370,7 +370,7 @@ nav ul li ol li:nth-last-child(2) a {
 nav ul li ol li:hover:nth-last-child(2){
     background: #202020; 
 }
-/*TU EDYTOWAĆ W PRZYPADKU ZWIĘKSZAJĄCEJ SIĘ LICZBY PODSTRON W MENU "WIĘCEJ" -> nth-last-child(x+1) */
+TU EDYTOWAĆ W PRZYPADKU ZWIĘKSZAJĄCEJ SIĘ LICZBY PODSTRON W MENU "WIĘCEJ" -> nth-last-child(x+1) 
 nav ul li ol li:nth-last-child(2) {
     background: #000;
     margin-top: 8px;
@@ -380,7 +380,7 @@ nav ul li ol li:nth-last-child(2) {
 nav ul li ol li:nth-last-child(1) {
     border-left: 0px solid #751b1b;
     border-right: 0px solid #751b1b;
-}
+}*/
 .socials { 
     clear: both;
     width:100%;
@@ -551,8 +551,8 @@ table{
     color: #331104;
     border-collapse: collapse; /*powoduje że nie ma przestrzeni miedzy komórkami tabeli */
     border: solid 20px #f4e1e5;
-    width:103%;
-    margin-left:-19px;
+    width:100%;
+    /*margin-left:-19px;*/
 }
 
 table th{
@@ -604,11 +604,11 @@ input[type=submit].deleteButton:hover{
         grid-template-columns: 100%;
         grid-template-rows: auto auto auto auto auto;
     }
-    nav{
-        height: 101px;
-        background: #000;
-        position: static;
-    }
+    /*    nav{
+            height: 101px;
+            background: #000;
+            position: static;
+        }*/
     aside {
         /*margin: 30px 50px 30px 50px;*/
         margin-top: 300px;
@@ -625,67 +625,67 @@ input[type=submit].deleteButton:hover{
         padding: 20px;
         margin: 0;
     }   
-    nav ul li:nth-last-child(1){
-        width: 145px;
-        margin-top: -40px;
-        margin-right:152px;
-        border-left: 0px solid #d10000;
-        border-right: 3px solid #d10000;
-        float: right;
-        /*background: pink;*/
-    }
-    nav ul li:nth-last-child(2){
-        width: 135px;
-        margin-top: -40px;
-        margin-left: 5px;
-        border-right: 3px solid #d10000;
-        border-left: 0px;
-        float: right;
-    }
-    nav ul li:nth-last-child(3){
-        /*background: green;*/
-        margin-top: 60px;
-        /*border-right: 3px solid #d10000;*/
-        border-left: 3px solid #d10000;
-        margin-left: 0px;
-        /*margin-right: -3px;*/
-        float: none;
-    }
-    nav ul li:nth-last-child(4){
-        border-right: 3px solid #d10000;
-    }
-    nav ul li ul li:nth-last-child(4){
-        border-right: 0px;
-    }
-    nav ul li ul li:nth-last-child(3){
-        margin-top: 0px;
-        float: left;
-        margin-left: -40px;
-        border-left: 0;
-    }
-    nav ul li ul li:nth-last-child(2){
-        margin-top: 0px;
-        float: left;
-        width: 230px;
-        border-right: 0;
-    }
-    nav ul li ul li:nth-last-child(1){
-        margin-top: 0px;
-        float: left;
-        width: 230px;
-    }
-    nav ul li ol li:nth-last-child(2) {
-        float: left;
-        margin-top: 8px;
-        width:150px;
-
-    }
-    nav ul li ol li:nth-last-child(1) {
-        float: left;
-        margin-top: 0px;
-        width:150px;
-
-    }
+    /*    nav ul li:nth-last-child(1){
+            width: 145px;
+            margin-top: -40px;
+            margin-right:152px;
+            border-left: 0px solid #d10000;
+            border-right: 3px solid #d10000;
+            float: right;
+            background: pink;
+        }
+        nav ul li:nth-last-child(2){
+            width: 135px;
+            margin-top: -40px;
+            margin-left: 5px;
+            border-right: 3px solid #d10000;
+            border-left: 0px;
+            float: right;
+        }
+        nav ul li:nth-last-child(3){
+            background: green;
+            margin-top: 60px;
+            border-right: 3px solid #d10000;
+            border-left: 3px solid #d10000;
+            margin-left: 0px;
+            margin-right: -3px;
+            float: none;
+        }
+        nav ul li:nth-last-child(4){
+            border-right: 3px solid #d10000;
+        }
+        nav ul li ul li:nth-last-child(4){
+            border-right: 0px;
+        }
+        nav ul li ul li:nth-last-child(3){
+            margin-top: 0px;
+            float: left;
+            margin-left: -40px;
+            border-left: 0;
+        }
+        nav ul li ul li:nth-last-child(2){
+            margin-top: 0px;
+            float: left;
+            width: 230px;
+            border-right: 0;
+        }
+        nav ul li ul li:nth-last-child(1){
+            margin-top: 0px;
+            float: left;
+            width: 230px;
+        }
+        nav ul li ol li:nth-last-child(2) {
+            float: left;
+            margin-top: 8px;
+            width:150px;
+    
+        }
+        nav ul li ol li:nth-last-child(1) {
+            float: left;
+            margin-top: 0px;
+            width:150px;
+    
+        }*/
     .socials{      
         grid-row-start: 4;
     }
@@ -706,11 +706,69 @@ input[type=submit].deleteButton:hover{
     }      
 
 }
-@media only screen and (max-width: 720px) {
+/* smartfony i tablety */
+@media only screen and (max-width: 960px) {
+    body{
+        overflow: hidden;
+    }
     table th{
         padding-top: 10px;
         padding-bottom: 10px;
     }
+    nav{
+        padding: 0;
+        position: static;
+    }
+    nav ul{
+        height: 100%;
+    }
+    nav ul li{
+        width: 100%;
+        margin: 5px 0;
+        border-right: 0;
+        border-left: 0;
+    }
+    nav ul li:nth-last-child(3){
+        border-left: 0;
+        border-right: 0;
+    }
+    nav ul li:nth-last-child(2){
+        margin-left: 0;
+        margin-right: 0;
+    }
+    nav ul li:nth-last-child(1){
+        border-left: 0;
+        border-right: 0;
+    }
+    nav ul li ul li{
+        width: 100%;
+        margin: 0;
+    }
+    nav ul li ul li:nth-last-child(2){
+        margin: 0;
+    }
+    section{//formularz na środek
+            //text-align: center;
+    }
+    section .reviewForm{
+        text-align: center;
+    }
+    .displayCategory{
+        display: block;
+    }
+    .displayBrand{
+        display: block;
+    }
+    
+}
+.reviewForm{
+    text-align: left;
+}
+.displayCategory{
+    display: inline-block;
+}
+.displayBrand{
+    display: inline-block;
 }
 /*smartfony pionowo*/
 @media only screen and (max-width: 480px) {
@@ -728,11 +786,18 @@ input[type=submit].deleteButton:hover{
         float: none;
     }
     table{
-        width: 100%;
-        margin-left: -20px;
+        /*width: 120%;*/
+        /*margin-left: -20px;*/
     }
     table td {
         padding: 3px 5px 3px 5px;
+    }
+    table th {
+        /*width:100px;*/
+        padding: 10px 4px 10px 4px;
+    }
+    table td{
+        padding: 10px;
     }
     textarea.textLeft {
         width: 240px;
@@ -749,112 +814,29 @@ input[type=submit].deleteButton:hover{
     input[type=email] {
         width: 250px;
     }
-    .captcha {
-        margin-left:8px;
-        transform:scale(0.82);
-    }
+    /*    .captcha {
+            margin-left:31px;
+            transform:scale(0.83);
+        }*/
     section {        
         /*width:320px;*/
-        width: 100%;
+        /*width: 100%;*/
+        padding-left: 5px;
+        padding-right: 5px;
     }
     aside {
-        width:360px;
+        width: 100%;
         margin: 25px 0px 25px 0px;
     }    
-    nav {
-        height: 132px;
-        background: #000;
-        position: static;
-        width:360px;
-    }
-    nav ul li ul li {        
-        margin-left: -67px;
-    }
-    nav ul li ul li:nth-last-child(2) {        
-        margin-left: -67px;
-        border-right: 0px;
-    }
-    nav ul li ul li:nth-last-child(1) {        
-        margin-left: -67px;
-    }
-    nav ul li ul li:nth-last-child(3) {        
-        margin-left: -67px;
-        width: 230px;
-    }
-    nav ul li ul li:nth-last-child(5) {        
-        border-right: 0px;
-    }
-    nav ul li ul li:nth-last-child(4) {        
-        margin-top:-2px;
-        margin-left: -67px;
-        width: 227px;
-    }
-    nav ul li ul li:nth-last-child(6) {        
-        margin-left: -67px;
-        border-right: 0px;
-    }
-    nav ul li:nth-last-child(6) {
-        border-right: 3px solid #d10000; 
-        margin-left: 26px;
-    }
-    nav ul li:nth-last-child(5) {
-        border-left: 0px;
-        border-right: 3px solid #d10000; 
-    }
-    nav ul li:nth-last-child(4) {
-        margin-top: 6px;  
-        margin-left: 26px;
-        border-right: 3px solid #000; 
-        border-left: 3px solid #000;
-    }
-    nav ul li:nth-last-child(1) { /* settings button */
-        width: 149px;
-        margin-top: -40px;
-        margin-right:170px;
-        margin-left:26px;
-        /*background: blue;*/
-        border-right: 3px solid #d10000; 
-        border-left: 3px solid #d10000; 
-        float: left;
-    }
-    nav ul li:nth-last-child(2) { /* login button */
-        width: 133px;
-        margin-top: -86px;
-        margin-right: 38px;
-        border-right: 0; 
-        border-left: 0; 
-        float: right;
-    }
-    nav ul li:nth-last-child(3) { /* contact button */
-        width: 149px;
-        margin-top: 52px;
-        border-right: 3px solid #d10000; 
-        border-left: 0; 
-        /*margin-right: 30px;*/
-        float: left;
-    }
     footer {
         width:100%;
         margin: 0;
     }
     .socials {
-        width:360px;
-    }
-    table th {
-        /*width:100px;*/
-        padding-top: 10px;
-        padding-bottom: 10px;
-        /*display: inline-block;*/
-    }
-    table td{
-        padding: 10px;
-        /*display: inline-block;*/
+        width:100%;
     }
     input[type=submit].emailChange {
         font-size: 17px;
-    }
-    .allegImage{
-        width:100%;
     }
     input[type=submit].rem{
         width: 80px;
@@ -863,11 +845,17 @@ input[type=submit].deleteButton:hover{
         width: 80px;
     }
 }
+@media only screen and (max-width: 390px) {
+    table{
+        /*margin-left: -8px;*/
+    }
+}
 /* resize textarea */
 @media only screen and (max-width: 545px) {
     textarea {
         width: 260px;
     }
+
 }
 
 #slideshow img {
@@ -893,7 +881,7 @@ input[type=submit].deleteButton:hover{
 
 #slideLogo img {
     width:100%;
-    /*height:200px;*/
+    height:200px;
 }
 #slideLogo {
     position:relative;
@@ -931,7 +919,7 @@ input[type=submit].deleteButton:hover{
 }
 .sortSelectShort{
     width: 150px;
-    margin-right: 0px;
+    margin-right: 20px;
     margin-top: 0px;
     padding: 2px 0px 2px 3px;
 }
