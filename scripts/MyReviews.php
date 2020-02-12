@@ -44,6 +44,6 @@ if (isset($_SESSION['editReview']) && $status == 2) { // info o edycji opinii
     $contentAdmin .= '<div class="textCenter">' . $_SESSION['editReview'] . '</div>';
     unset($_SESSION['editReview']);
 }
-$contentLOG .= '<h2>Tutaj możesz edytować swoje opinie </h2><div id="editReview"></div>' . $reviews;
+$contentLOG .= '<h2>Tutaj możesz edytować swoje opinie </h2><div id="editReview" class="textLeft"></div>' . $reviews;
 $contentAdmin .= '<h2>Tutaj możesz edytować swoje opinie </h2>' . $reviewsAdmin;
             

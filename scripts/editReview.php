@@ -23,7 +23,7 @@ $edit = filter_input_array(INPUT_POST)['edit'];
 $editReview = filter_input_array(INPUT_POST)['editReview'];
 $db->UPDATE("UPDATE reviews SET review = '$editReview' WHERE `id-reviews` = $edit");
 
-$contentLOG .= '<form action ="scripts/editReview.php" method="post"><textarea rows="8" style="width:94%;margin-top:10px;background-color:#efefef;" name="editReview" class="textLeft" required></textarea>\n\
+$contentLOG .= '<form action="scripts/editReview.php" method="post" ><textarea rows="8" style="width:94%;margin-top:10px;background-color:#efefef;text-align:center;" name="editReview" class="textLeft" required></textarea>\n\
                 <button type="submit" value="" name="edit">Zatwierdź</button></form>';
 
 if (isset(filter_input_array(INPUT_POST)['editReview'])) {

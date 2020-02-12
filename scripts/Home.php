@@ -158,7 +158,7 @@ $contentAdmin .= '
                         <div class="textLeft">
                             <p>Model:</p>
                             <input type="text" name="name" class="textLeft" required><br>
-                            <div style="display:inline-block">
+                            <div class="displayCategory">
                                 <p>Kategoria:</p>
                                 <select name="category" class="textLeft" onchange="change(value)">
                                     <option selected disabled hidden>Wybierz kategorię</option>
@@ -169,7 +169,7 @@ $contentAdmin .= '
                                     <option value="Aparaty i kamery">Aparaty i kamery</option>     
                                 </select>
                             </div>
-                            <div style="display:inline-block; margin-left: 20px;" id="brand" name="brand"></div>
+                            <div class="displayBrand" id="brand" name="brand"></div>
                             
                             <div id="detailedStars1"><p><br></p></div>
                             <div class="rating" id="stars1" name="stars">
