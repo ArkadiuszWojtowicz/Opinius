@@ -332,55 +332,6 @@ nav ul li ul li:nth-last-child(5){
     margin-top: 8px;
     border-top: 0px solid #751b1b;
 }
-/*nav ul li ol{
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    height: 40px;
-    font-size: 18px;
-    height: 35px;
-    line-height: 200%;
-    display: none;
-}
-nav ul li:hover ol{
-    display: inline-block;
-}
-nav ul li ol li{
-    background: #000;
-    position: relative;
-    z-index: 100;
-    float: left;
-    width: 150px;
-    height: 40px;
-    border-top: 3px solid #d10000;
-    border-left: 0px;
-    margin-left: 0px;
-}
-nav ul li ol li:hover{
-    background: #202020; 
-}
-nav ul li ol li:hover a{
-    color: #AB7859;
-}
-
-nav ul li ol li:nth-last-child(2) a {
-    font-weight: normal;
-    color: #AB7859;
-}
-nav ul li ol li:hover:nth-last-child(2){
-    background: #202020; 
-}
-TU EDYTOWAĆ W PRZYPADKU ZWIĘKSZAJĄCEJ SIĘ LICZBY PODSTRON W MENU "WIĘCEJ" -> nth-last-child(x+1) 
-nav ul li ol li:nth-last-child(2) {
-    background: #000;
-    margin-top: 8px;
-    border-top: 0px solid #751b1b;
-    margin-left: 0px;
-}
-nav ul li ol li:nth-last-child(1) {
-    border-left: 0px solid #751b1b;
-    border-right: 0px solid #751b1b;
-}*/
 .socials { 
     clear: both;
     width:100%;
@@ -604,11 +555,6 @@ input[type=submit].deleteButton:hover{
         grid-template-columns: 100%;
         grid-template-rows: auto auto auto auto auto;
     }
-    /*    nav{
-            height: 101px;
-            background: #000;
-            position: static;
-        }*/
     aside {
         /*margin: 30px 50px 30px 50px;*/
         margin-top: 300px;
@@ -625,67 +571,6 @@ input[type=submit].deleteButton:hover{
         padding: 20px;
         margin: 0;
     }   
-    /*    nav ul li:nth-last-child(1){
-            width: 145px;
-            margin-top: -40px;
-            margin-right:152px;
-            border-left: 0px solid #d10000;
-            border-right: 3px solid #d10000;
-            float: right;
-            background: pink;
-        }
-        nav ul li:nth-last-child(2){
-            width: 135px;
-            margin-top: -40px;
-            margin-left: 5px;
-            border-right: 3px solid #d10000;
-            border-left: 0px;
-            float: right;
-        }
-        nav ul li:nth-last-child(3){
-            background: green;
-            margin-top: 60px;
-            border-right: 3px solid #d10000;
-            border-left: 3px solid #d10000;
-            margin-left: 0px;
-            margin-right: -3px;
-            float: none;
-        }
-        nav ul li:nth-last-child(4){
-            border-right: 3px solid #d10000;
-        }
-        nav ul li ul li:nth-last-child(4){
-            border-right: 0px;
-        }
-        nav ul li ul li:nth-last-child(3){
-            margin-top: 0px;
-            float: left;
-            margin-left: -40px;
-            border-left: 0;
-        }
-        nav ul li ul li:nth-last-child(2){
-            margin-top: 0px;
-            float: left;
-            width: 230px;
-            border-right: 0;
-        }
-        nav ul li ul li:nth-last-child(1){
-            margin-top: 0px;
-            float: left;
-            width: 230px;
-        }
-        nav ul li ol li:nth-last-child(2) {
-            float: left;
-            margin-top: 8px;
-            width:150px;
-    
-        }
-        nav ul li ol li:nth-last-child(1) {
-            float: left;
-            margin-top: 0px;
-            width:150px;
-    
-        }*/
     .socials{      
         grid-row-start: 4;
     }
@@ -708,9 +593,9 @@ input[type=submit].deleteButton:hover{
 }
 /* smartfony i tablety */
 @media only screen and (max-width: 960px) {
-    body{
-        overflow: hidden;
-    }
+/*    body{
+        overflow: hidden; }
+    */
     table th{
         padding-top: 10px;
         padding-bottom: 10px;
@@ -746,9 +631,6 @@ input[type=submit].deleteButton:hover{
     }
     nav ul li ul li:nth-last-child(2){
         margin: 0;
-    }
-    section{//formularz na środek
-            //text-align: center;
     }
     section .reviewForm{
         text-align: center;
@@ -794,7 +676,7 @@ input[type=submit].deleteButton:hover{
     }
     table th {
         /*width:100px;*/
-        padding: 10px 4px 10px 4px;
+        padding: 10px 0px 10px 0px;
     }
     table td{
         padding: 10px;
@@ -821,8 +703,8 @@ input[type=submit].deleteButton:hover{
     section {        
         /*width:320px;*/
         /*width: 100%;*/
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 0;
+        padding-right: 0;
     }
     aside {
         width: 100%;
@@ -844,6 +726,17 @@ input[type=submit].deleteButton:hover{
     input[type=submit].edit{
         width: 80px;
     }
+    button[type=submit].rem,
+    button[type=submit].edit{
+        width: 75px;
+    }
+    .textLeft {
+        text-align: center;
+    }
+    .textRight{
+        text-align: center;
+    }
+    
 }
 @media only screen and (max-width: 390px) {
     table{

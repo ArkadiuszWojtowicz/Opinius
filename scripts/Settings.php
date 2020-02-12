@@ -65,7 +65,7 @@ $contentLOG .= '
                         <input type="text" name="nick"><br>
                         Podaj swój <span style="color:red;"><b>nowy</b></span> nick:<br>
                         <input type="text" name="nickN"><br>
-                        <input type="submit" value="Zmień mój nick"> 
+                        <input type="submit" value="Zmień mój nick"  class="emailChange"> 
                     </form>  
                     <form action="scripts/changeSettings.php" method="post" class="textCenter"> 
                        <h3>Zmień moje hasło:</h3>
@@ -75,7 +75,7 @@ $contentLOG .= '
                         <input type="password" name="passwordN"><br>
                         Potwierdź swoje <span style="color:red;"><b>nowe</b></span> hasło:<br>
                         <input type="password" name="passwordN2"><br>
-                        <input type="submit" value="Zmień moje hasło">
+                        <input type="submit" value="Zmień moje hasło"  class="emailChange">
                     </form>    
                     <form action="scripts/changeSettings.php" method="post" class="textCenter"> 
                         <h3>Usuń moje konto:</h3>
@@ -83,7 +83,7 @@ $contentLOG .= '
                         <input type="text" name="removeE"><br>
                         Podaj swoje hasło:<br>
                         <input type="password" name="removeH"><br>
-                        <input class="deleteButton" type="submit" value="Usuń moje konto">
+                        <input class="deleteButton" type="submit" value="Usuń moje konto"  class="emailChange">
                         
                     </form>   
                 ';
@@ -121,7 +121,7 @@ $contentAdmin .= '
                         <input type="text" name="email"><br>
                         Podaj swój <span style="color:red;"><b>nowy</b></span> adres e-mail:<br>
                         <input type="text" name="emailN"><br>
-                        <input type="submit" value="Zmień mój adres e-mail">      
+                        <input type="submit" value="Zmień mój adres e-mail"  class="emailChange">      
                     </form>     
                     <form action="scripts/changeSettings.php" method="post" class="textCenter"> 
                         <h3>Zmień mój nick:</h3>
@@ -129,7 +129,7 @@ $contentAdmin .= '
                         <input type="text" name="nick"><br>
                         Podaj swój <span style="color:red;"><b>nowy</b></span> nick:<br>
                         <input type="text" name="nickN"><br>
-                        <input type="submit" value="Zmień mój nick"> 
+                        <input type="submit" value="Zmień mój nick"  class="emailChange"> 
                     </form>  
                     <form action="scripts/changeSettings.php" method="post" class="textCenter"> 
                         <h3>Zmień moje hasło:</h3>
@@ -139,7 +139,7 @@ $contentAdmin .= '
                         <input type="password" name="passwordN"><br>
                         Potwierdź swoje <span style="color:red;"><b>nowe</b></span> hasło:<br>
                         <input type="password" name="passwordN2"><br>
-                        <input type="submit" value="Zmień moje hasło">  
+                        <input type="submit" value="Zmień moje hasło"  class="emailChange">  
                     </form>    
                     <form action="scripts/changeSettings.php" method="post" class="textCenter"> 
                         <h3>Usuń moje konto:</h3>
@@ -147,7 +147,7 @@ $contentAdmin .= '
                         <input type="text" name="removeE"><br>
                         Podaj swoje hasło:<br>
                         <input type="password" name="removeH"><br>
-                        <input class="deleteButton" type="submit" value="Usuń moje konto">       
+                        <input class="deleteButton" type="submit" value="Usuń moje konto"  class="emailChange">       
                     </form>   
              
                 ';

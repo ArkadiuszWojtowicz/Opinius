@@ -90,7 +90,7 @@ $contentLOG = '
                                 </select>
                             </form> 
                         </div>
-                        <div style="background: #c6c7c7;width:300px;height: 40px;border-radius: 40px;padding: 10px 10px 10px 10px;">
+                        <div style="background: #c6c7c7;width:300px;height: 40px;border-radius: 40px;padding: 10px 10px 10px 10px;margin-left:20px;">
                             <form method="post">
                                 <input type="text" name="search" style="background: #c6c7c7;width:200px;height:20px;border: none;outline: none;float: left;line-height: 40px;" placeholder="Wyszukaj model..."/>
                                 <button value="search" onsubmit="this.form.submit()" style="border:none;color: #e84118;float: right;width: 40px;height: 40px;border-radius: 50%;background: #2f3640;display: flex;justify-content: center;align-items: center;color: white;cursor: pointer;">
@@ -189,7 +189,7 @@ $content = '
                             </select>
                         </form> 
                     </div>
-                    <div style="background: #c6c7c7;width:300px;height: 40px;border-radius: 40px;padding: 10px 10px 10px 10px;">
+                    <div style="background: #c6c7c7;width:300px;height: 40px;border-radius: 40px;padding: 10px 10px 10px 10px;margin-left:20px;">
                             <form method="post">
                                 <input type="text" name="search" style="background: #c6c7c7;width:200px;height:20px;border: none;outline: none;float: left;line-height: 40px;" placeholder="Wyszukaj model..."/>
                                 <button value="search" onsubmit="this.form.submit()" style="border:none;color: #e84118;float: right;width: 40px;height: 40px;border-radius: 50%;background: #2f3640;display: flex;justify-content: center;align-items: center;color: white;cursor: pointer;">
@@ -287,7 +287,7 @@ $contentAdmin = '
                             </select>
                         </form> 
                     </div>
-                    <div style="background: #c6c7c7;width:300px;height: 40px;border-radius: 40px;padding: 10px 10px 10px 10px;">
+                    <div style="background: #c6c7c7;width:300px;height: 40px;border-radius: 40px;padding: 10px 10px 10px 10px;margin-left:20px;">
                             <form method="post">
                                 <input type="text" name="search" style="background: #c6c7c7;width:200px;height:20px;border: none;outline: none;float: left;line-height: 40px;" placeholder="Wyszukaj model..."/>
                                 <button value="search" onsubmit="this.form.submit()" style="border:none;color: #e84118;float: right;width: 40px;height: 40px;border-radius: 50%;background: #2f3640;display: flex;justify-content: center;align-items: center;color: white;cursor: pointer;">
